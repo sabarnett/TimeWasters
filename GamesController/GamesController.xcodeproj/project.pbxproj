@@ -39,6 +39,20 @@
 			remoteGlobalIDString = E872D6B42C9B18470011FE38;
 			remoteInfo = WordCraft;
 		};
+		E8E5E6AF2CB57E3100ACFB9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8DCA4FC2CB5709F00DC873E;
+			remoteInfo = SharedComponents;
+		};
+		E8E5E6B12CB57E3100ACFB9C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8DCA5042CB5709F00DC873E;
+			remoteInfo = SharedComponentsTests;
+		};
 		E8EA115D2C8F3C760078A9A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
@@ -139,6 +153,15 @@
 			isa = PBXGroup;
 			children = (
 				E872D6C42C9B185D0011FE38 /* WordCraft.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8E5E6AA2CB57E3100ACFB9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8E5E6B02CB57E3100ACFB9C /* SharedComponents.framework */,
+				E8E5E6B22CB57E3100ACFB9C /* SharedComponentsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,6 +279,10 @@
 					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
 				},
 				{
+					ProductGroup = E8E5E6AA2CB57E3100ACFB9C /* Products */;
+					ProjectRef = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
+				},
+				{
 					ProductGroup = E872D6BF2C9B185D0011FE38 /* Products */;
 					ProjectRef = E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */;
 				},
@@ -273,6 +300,20 @@
 			fileType = wrapper.framework;
 			path = WordCraft.framework;
 			remoteRef = E872D6C32C9B185D0011FE38 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8E5E6B02CB57E3100ACFB9C /* SharedComponents.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SharedComponents.framework;
+			remoteRef = E8E5E6AF2CB57E3100ACFB9C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8E5E6B22CB57E3100ACFB9C /* SharedComponentsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SharedComponentsTests.xctest;
+			remoteRef = E8E5E6B12CB57E3100ACFB9C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EA115E2C8F3C760078A9A6 /* MineSweeper.framework */ = {
