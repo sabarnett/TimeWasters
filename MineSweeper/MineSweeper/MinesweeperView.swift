@@ -71,6 +71,12 @@ public struct MinesweeperView: View {
                     }
                 }
             }
+            HostingWindowFinder { win in
+                guard let win else { return }
+                win.center()
+                win.setFrameAutosaveName("")
+            }
+            .frame(height: 0)
         }
         .onChange(of: game.gameState) {
             switch game.gameState {

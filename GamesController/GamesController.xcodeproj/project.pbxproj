@@ -20,7 +20,6 @@
 		E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E872D6C42C9B185D0011FE38 /* WordCraft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E872D6D22C9B1A1C0011FE38 /* dictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = E872D6D12C9B1A1C0011FE38 /* dictionary.txt */; };
 		E891E1DD2C932B0200BDDFC7 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891E1DC2C932B0200BDDFC7 /* Menus.swift */; };
-		E891E1DF2C932E1C00BDDFC7 /* HostingWindowFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891E1DE2C932E1C00BDDFC7 /* HostingWindowFinder.swift */; };
 		E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; };
 		E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */; };
@@ -91,7 +90,6 @@
 		E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordCraft.xcodeproj; path = ../WordCraft/WordCraft.xcodeproj; sourceTree = "<group>"; };
 		E872D6D12C9B1A1C0011FE38 /* dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.txt; sourceTree = "<group>"; };
 		E891E1DC2C932B0200BDDFC7 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
-		E891E1DE2C932E1C00BDDFC7 /* HostingWindowFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingWindowFinder.swift; sourceTree = "<group>"; };
 		E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedComponents.xcodeproj; path = ../SharedComponents/SharedComponents.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DCA5282CB572A700DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11102C8F3BA20078A9A6 /* A Time Wasters Compendium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Time Wasters Compendium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +134,6 @@
 				E805CA232C90C7FA001BD435 /* AppDelegate.swift */,
 				E8072E852C90D8A700FCEEDE /* DisplayMode.swift */,
 				E891E1DC2C932B0200BDDFC7 /* Menus.swift */,
-				E891E1DE2C932E1C00BDDFC7 /* HostingWindowFinder.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -354,7 +351,6 @@
 				E805CA262C90C857001BD435 /* Bundle+Extensions.swift in Sources */,
 				E80CE2C32C90D66300F68FCD /* SettingsViewModel.swift in Sources */,
 				E805CA2D2C90CB12001BD435 /* GameButton.swift in Sources */,
-				E891E1DF2C932E1C00BDDFC7 /* HostingWindowFinder.swift in Sources */,
 				E805CA282C90C8A7001BD435 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

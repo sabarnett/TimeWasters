@@ -39,8 +39,8 @@ struct GameBoardView: View {
                 }
             }
             HStack {
-                ForEach(viewModel.selectedLetters, id: \.self) { letter in
-                    Text(letter)
+                ForEach(viewModel.selectedLetters, id: \.self) { tile in
+                    Text(tile.letter)
                         .font(.title.weight(.bold))
                         .fontDesign(.rounded)
                         .frame(width: 50, height: 40)

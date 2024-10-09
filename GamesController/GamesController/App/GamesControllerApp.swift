@@ -38,7 +38,7 @@ struct GamesControllerApp: App {
         .windowResizability(.contentSize)
         
         WindowGroup(id: "wordcraft", for: Game.self) { $game in
-            WordCraftView()
+            WordCraftView(gameData: game!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)

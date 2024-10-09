@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+import SharedComponents
 
 public struct WordCraftView: View {
     @State private var viewModel = ViewModel()
+    
+    @State private var gameData: Game
 
-    public init() { }
+    public init(gameData: Game) {
+        self.gameData = gameData
+    }
     
     public var body: some View {
         VStack {
@@ -35,5 +40,5 @@ public struct WordCraftView: View {
 }
 
 #Preview {
-    WordCraftView()
+    WordCraftView(gameData: Games().games.first(where: {$0.id == "wordcraft"})!)
 }

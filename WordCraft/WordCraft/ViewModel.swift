@@ -14,9 +14,7 @@ class ViewModel {
     private var selected = [Tile]()
     var usedWords = Set<String>()
     var score = 0
-    var selectedLetters: [String] {
-        selected.map { $0.letter }
-    }
+    var selectedLetters: [Tile] = []
 
     private var targetLetter = "A"
     private var targetLength = 0
@@ -52,7 +50,8 @@ class ViewModel {
 
     func select(_ tile: Tile) {
         if selected.last == tile && selected.count >= 3 {
-            checkWord()
+            if checkWord() {
+            }
         } else if let index = selected.firstIndex(of: tile) {
             if selected.count == 1 {
                 selected.removeLast()
@@ -60,10 +59,29 @@ class ViewModel {
                 selected.removeLast(selected.count - index - 1)
             }
         } else {
-            selected.append(tile)
+            // Try to trap tripple tap. Not working!
+            if tileIsValid(tile) {
+                selected.append(tile)
+            }
         }
+        selectedLetters = selected.map { $0 }
     }
 
+    // If a user tripple taps the last letter, the last time may be
+    // added even though it no longer exists on the game board. This
+    // function ensures that, before we add a selecxted tile, it is
+    // still in play.
+    func tileIsValid(_ tile: Tile) -> Bool {
+        // Make sure the tile is still in play
+        for row in columns {
+            if row.contains(tile) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     func background(for tile: Tile) -> Color {
         if selected.contains(tile) {
             .white
@@ -95,7 +113,7 @@ class ViewModel {
         guard usedWords.contains(word) == false else { return }
         guard dictionary.contains(word.lowercased()) else { return }
         guard currentRule.predicate(word) else { return }
-
+        
         for tile in selected {
             remove(tile)
         }
@@ -105,7 +123,9 @@ class ViewModel {
         }
 
         selected.removeAll()
+        selectedLetters = selected.map { $0 }
         usedWords.insert(word)
+
         score += word.count * word.count
     }
 
