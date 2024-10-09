@@ -12,7 +12,7 @@
 import SwiftUI
 
 struct GameBoardView: View {
-    @State var viewModel: ViewModel
+    @State var viewModel: WordCraftViewModel
     
     var body: some View {
         VStack {
@@ -49,5 +49,6 @@ struct GameBoardView: View {
                 }
             }.frame(minHeight: 40)
         }
+        .preferredColorScheme(.dark)
     }
 }

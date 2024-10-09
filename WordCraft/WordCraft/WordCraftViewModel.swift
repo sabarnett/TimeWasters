@@ -8,7 +8,7 @@
 import SwiftUI
 
 @Observable
-class ViewModel {
+class WordCraftViewModel {
     var columns = [[Tile]]()
 
     private var selected = [Tile]()
@@ -50,8 +50,7 @@ class ViewModel {
 
     func select(_ tile: Tile) {
         if selected.last == tile && selected.count >= 3 {
-            if checkWord() {
-            }
+            checkWord()
         } else if let index = selected.firstIndex(of: tile) {
             if selected.count == 1 {
                 selected.removeLast()

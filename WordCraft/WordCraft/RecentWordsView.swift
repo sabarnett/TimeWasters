@@ -12,7 +12,7 @@
 import SwiftUI
 
 struct RecentWordsView : View {
-    @State var viewModel: ViewModel
+    @State var viewModel: WordCraftViewModel
     
     var body: some View {
         List {

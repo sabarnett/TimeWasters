@@ -9,7 +9,7 @@ import SwiftUI
 import SharedComponents
 
 public struct WordCraftView: View {
-    @State private var viewModel = ViewModel()
+    @State private var viewModel = WordCraftViewModel()
     
     @State private var gameData: Game
 
