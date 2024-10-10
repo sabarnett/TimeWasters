@@ -9,12 +9,11 @@ import SwiftUI
 import SharedComponents
 
 public struct WordCraftView: View {
-    @AppStorage("wordcraftPlaySounds") private var wordcraftPlaySounds = true
     
     @State private var viewModel = WordCraftViewModel()
     @State private var gameData: Game
     @State private var showGamePlay: Bool = false
-    
+
     public init(gameData: Game) {
         self.gameData = gameData
     }
@@ -34,8 +33,14 @@ public struct WordCraftView: View {
         }
         .padding()
         .fixedSize()
+        .onAppear() {
+            viewModel.playBackgroundSound()
+        }
         .sheet(isPresented: $showGamePlay) {
             GamePlayView(game: gameData)
+        }
+        .onDisappear() {
+            viewModel.stopSounds()
         }
     }
     
@@ -64,8 +69,8 @@ public struct WordCraftView: View {
             .buttonStyle(.plain)
             .help("Restart the game")
             
-            Button(action: { wordcraftPlaySounds.toggle() }) {
-                Image(systemName: wordcraftPlaySounds ? "speaker.slash.fill" : "speaker.fill")
+            Button(action: { viewModel.toggleSounds() }) {
+                Image(systemName: viewModel.speakerIcon)
                     .padding(5)
             }
             .buttonStyle(.plain)
