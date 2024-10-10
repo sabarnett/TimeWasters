@@ -34,6 +34,12 @@ class WordCraftViewModel {
     }()
 
     init() {
+        reset()
+    }
+    
+    func reset() {
+        columns = [[Tile]]()
+        
         for i in 0..<5 {
             var column = [Tile]()
 
@@ -46,6 +52,10 @@ class WordCraftViewModel {
         }
 
         selectRule()
+        usedWords = []
+        selected.removeAll()
+        selectedLetters = []
+        score = 0
     }
 
     func select(_ tile: Tile) {
