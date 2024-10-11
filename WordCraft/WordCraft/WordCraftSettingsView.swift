@@ -13,13 +13,15 @@ import SwiftUI
 
 public struct WordCraftSettingsView: View {
     
-    @AppStorage("wordcraftPlaySounds") private var wordcraftPlaySounds = true
+    @AppStorage(Constants.wordcraftPlaySounds) private var wordcraftPlaySounds = true
+    @AppStorage(Constants.wordcraftShowUsedWords) private var wordcraftShowUsedWords = true
 
     public init() { }
     
     public var body: some View {
         Form {
-            Toggle("Play Sounds", isOn: $wordcraftPlaySounds)
+            Toggle("Play sounds", isOn: $wordcraftPlaySounds)
+            Toggle("Show used words list", isOn: $wordcraftShowUsedWords)
         }
         .padding()
     }

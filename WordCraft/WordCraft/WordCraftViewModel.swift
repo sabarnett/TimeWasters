@@ -12,7 +12,7 @@ import AVKit
 class WordCraftViewModel {
 
     @ObservationIgnored
-    @AppStorage("wordcraftPlaySounds") private var wordcraftPlaySounds = true {
+    @AppStorage(Constants.wordcraftPlaySounds) private var wordcraftPlaySounds = true {
         didSet {
             updateSounds()
         }

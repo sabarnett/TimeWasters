@@ -10,6 +10,8 @@ import SharedComponents
 
 public struct WordCraftView: View {
     
+    @AppStorage(Constants.wordcraftShowUsedWords) private var wordcraftShowUsedWords = true
+    
     @State private var viewModel = WordCraftViewModel()
     @State private var gameData: Game
     @State private var showGamePlay: Bool = false
@@ -28,7 +30,9 @@ public struct WordCraftView: View {
             
             HStack(spacing: 5) {
                 GameBoardView(viewModel: viewModel)
-                RecentWordsView(viewModel: viewModel)
+                if wordcraftShowUsedWords {
+                    RecentWordsView(viewModel: viewModel)
+                }
             }
         }
         .padding()
