@@ -43,7 +43,7 @@ struct GameBoardView: View {
                     Text(tile.letter)
                         .font(.title.weight(.bold))
                         .fontDesign(.rounded)
-                        .frame(width: 50, height: 40)
+                        .frame(width: 30, height: 25)
                         .foregroundStyle(.black)
                         .background(.green.gradient)
                 }
