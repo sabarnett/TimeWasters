@@ -32,13 +32,13 @@ struct GamesControllerApp: App {
         .onChange(of: displayMode) { setDisplayMode() }
         
         WindowGroup(id: "minesweeper", for: Game.self) { $game in
-            MinesweeperView(gameData: game!)
+            MinesweeperView(gameData: Games().games.first(where: {$0.id == "minesweeper"} )!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
         WindowGroup(id: "wordcraft", for: Game.self) { $game in
-            WordCraftView(gameData: game!)
+            WordCraftView(gameData: Games().games.first(where: { $0.id == "wordcraft" } )!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)

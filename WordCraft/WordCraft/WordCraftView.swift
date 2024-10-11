@@ -37,7 +37,10 @@ public struct WordCraftView: View {
         }
         .padding()
         .fixedSize()
-
+        .onKeyPress(action: { keyPress in
+            viewModel.selectLetter(keyPress)
+            return .handled
+        })
         .onAppear() {
             viewModel.playBackgroundSound()
         }

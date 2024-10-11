@@ -77,6 +77,32 @@ class WordCraftViewModel {
         speakerIcon = wordcraftPlaySounds ? "speaker.slash.fill" : "speaker.fill"
     }
 
+    func selectLetter(_ key: KeyPress) {
+        if key.key == KeyEquivalent("\r") && selected.count >= 3 {
+            select(selected.last!)
+        } else if key.key == KeyEquivalent("\u{7F}") {
+            if selected.count >= 1 {
+                selected.removeLast()
+                selectedLetters = selected.map { $0 }
+            }
+        } else {
+            // Find a random tile for this letter and select it.
+            selectTileFor(key.key.character)
+        }
+    }
+    
+    // We have a key press. Find a currently unselected tile that matches the
+    // letter and select it.
+    private func selectTileFor(_ letter: Character) {
+        let testLetter = String(letter).uppercased()
+        let allTiles = columns.flatMap{ $0 }
+        let matchingTiles = allTiles.filter( { $0.letter == testLetter && selected.contains($0) == false })
+        if matchingTiles.count > 0 {
+            let randomIndex = Int.random(in: 0..<matchingTiles.count)
+            select(matchingTiles[randomIndex])
+        }
+    }
+    
     func select(_ tile: Tile) {
         if selected.last == tile && selected.count >= 3 {
             checkWord()
