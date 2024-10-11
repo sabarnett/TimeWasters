@@ -47,7 +47,11 @@ struct GameBoardView: View {
                         .foregroundStyle(.black)
                         .background(.green.gradient)
                 }
-            }.frame(minHeight: 40)
+            }
+            .frame(minHeight: 40)
+            .popover(item: $viewModel.errorMessage) { message in
+                MessagePopoverView(message: message)
+            }
         }
         .preferredColorScheme(.dark)
     }

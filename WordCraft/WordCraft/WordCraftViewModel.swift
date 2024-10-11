@@ -8,6 +8,12 @@
 import SwiftUI
 import AVKit
 
+struct WordValidationError: Identifiable, Equatable {
+    var id: String { word }
+    var word: String
+    var errorMessage: String
+}
+
 @Observable
 class WordCraftViewModel {
 
@@ -25,6 +31,7 @@ class WordCraftViewModel {
     var score = 0
     var selectedLetters: [Tile] = []
     var speakerIcon: String = "speaker.fill"
+    var errorMessage: WordValidationError?
 
     private var targetLetter = "A"
     private var targetLength = 0
@@ -131,9 +138,18 @@ class WordCraftViewModel {
     func checkWord() {
         let word = selected.map(\.letter).joined()
 
-        guard usedWords.contains(word) == false else { return }
-        guard dictionary.contains(word.lowercased()) else { return }
-        guard currentRule.predicate(word) else { return }
+        guard usedWords.contains(word) == false else {
+            errorMessage = WordValidationError(word: word, errorMessage: "Word already used")
+            return
+        }
+        guard dictionary.contains(word.lowercased()) else {
+            errorMessage = WordValidationError(word: word, errorMessage: "Word not in dictionary")
+            return
+        }
+        guard currentRule.predicate(word) else {
+            errorMessage = WordValidationError(word: word, errorMessage: "Word does not match the rule")
+            return
+        }
         
         playTileDropSound()
         

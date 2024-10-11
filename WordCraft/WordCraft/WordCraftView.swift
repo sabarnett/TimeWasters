@@ -23,7 +23,7 @@ public struct WordCraftView: View {
     public var body: some View {
         VStack(alignment: .leading) {
             topBarAndButtons
-            
+
             Text(viewModel.currentRule.name)
                 .contentTransition(.numericText())
                 .font(.body)
@@ -37,6 +37,7 @@ public struct WordCraftView: View {
         }
         .padding()
         .fixedSize()
+
         .onAppear() {
             viewModel.playBackgroundSound()
         }
