@@ -32,6 +32,7 @@ class WordCraftViewModel {
     var selectedLetters: [Tile] = []
     var speakerIcon: String = "speaker.fill"
     var errorMessage: WordValidationError?
+    var submittedWord: String?
 
     private var targetLetter = "A"
     private var targetLength = 0
@@ -163,9 +164,11 @@ class WordCraftViewModel {
 
     func checkWord() {
         let word = selected.map(\.letter).joined()
+        submittedWord = nil
 
         guard usedWords.contains(word) == false else {
             errorMessage = WordValidationError(word: word, errorMessage: "Word already used")
+            submittedWord = word
             return
         }
         guard dictionary.contains(word.lowercased()) else {

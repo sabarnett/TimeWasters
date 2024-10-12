@@ -15,7 +15,7 @@ struct RecentWordsView : View {
     @State var viewModel: WordCraftViewModel
     
     var body: some View {
-        List {
+        List(selection: $viewModel.submittedWord) {
             ForEach(viewModel.usedWords.sorted(), id: \.self) { word in
                 Text(word)
             }
