@@ -12,6 +12,7 @@
 import SwiftUI
 import MineSweeper
 import WordCraft
+import Snake
 
 struct SettingsView: View {
     @StateObject private var settings = SettingsViewModel()
@@ -30,7 +31,12 @@ struct SettingsView: View {
             
             WordCraftSettingsView()
                 .tabItem {
-                    Label("WordCraft", systemImage: "textformat.abc")  
+                    Label("WordCraft", systemImage: "textformat.abc")
+                }
+            
+            SnakeSettingsView()
+                .tabItem {
+                    Label("Snake", systemImage: "scribble.variable")
                 }
         }
         .frame(minWidth: 460)
