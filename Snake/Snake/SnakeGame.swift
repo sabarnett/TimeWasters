@@ -21,6 +21,7 @@ struct Position: Equatable, Hashable {
 }
 
 struct SnakeGame {
+    
     var snake: [Position] = [Position(x: 10, y: 10)]
     var food: Position = Position(x: Int.random(in: 0..<20), y: Int.random(in: 0..<20))
     var direction: Direction = .right

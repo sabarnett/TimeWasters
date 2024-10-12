@@ -30,10 +30,10 @@ public class Games: ObservableObject {
         games = [
             minesweeperGame(),
             wordcraftGame(),
-            snakeGame(),
-            matchedPairsGame(),
-            game1Game(),
-            game2Game()
+            snakeGame()
+//            matchedPairsGame(),
+//            game1Game(),
+//            game2Game()
         ]
     }
 
@@ -71,36 +71,6 @@ public class Games: ObservableObject {
         Game(id: "snake",
              title: "Snake Game",
              tagLine: "Feed the snake, but beware the borders",
-             description: "",
-             gamePlay: textBlock(""),
-             credits: "Steve Barnett",
-             link: "http://www.sabarnett.co.uk")
-    }
-    
-    private func matchedPairsGame() -> Game {
-        Game(id: "matchpairs",
-             title: "Match Pairs",
-             tagLine: "Match the pairs of icons",
-             description: "",
-             gamePlay: textBlock(""),
-             credits: "Steve Barnett",
-             link: "http://www.sabarnett.co.uk")
-    }
-
-    private func game1Game() -> Game {
-        Game(id: "game1",
-             title: "Game 1 title",
-             tagLine: "Game 1 description",
-             description: "",
-             gamePlay: textBlock(""),
-             credits: "Steve Barnett",
-             link: "http://www.sabarnett.co.uk")
-    }
-    
-    private func game2Game() -> Game {
-        Game(id: "game2",
-             title: "Game 2 title",
-             tagLine: "Game 2 description",
              description: "",
              gamePlay: textBlock(""),
              credits: "Steve Barnett",

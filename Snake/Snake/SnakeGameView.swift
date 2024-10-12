@@ -18,12 +18,15 @@ import SwiftUI
 import SharedComponents
 
 public struct SnakeGameView: View {
-    
+
+    @AppStorage(Constants.snakePlaySounds) private var snakePlaySounds = true
+
     @State public var gameData: Game
     
     @State private var game = SnakeGame()
     @State private var timer: Timer?
-    @State private var pause: Bool = false
+    @State private var pause: Bool = true
+    @State private var showGamePlay: Bool = false
     
     let cellSize: CGFloat = 20
     
@@ -32,47 +35,48 @@ public struct SnakeGameView: View {
     }
     
     public var body: some View {
-        VStack {
-            if game.isGameOver {
-                Text("Game Over!")
-                    .font(.largeTitle)
-                    .padding()
-                Button("Restart") {
-                    game.resetGame()
-                    startGameLoop()
-                }
-            } else {
-                VStack {
-                    Text("Score area").padding(.top, 30)
-                    ZStack {
-                        ForEach(game.snake, id: \.self) { segment in
-                            Rectangle()
-                                .fill(Color.green)
-                                .frame(width: cellSize, height: cellSize)
-                                .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
-                                          y: CGFloat(segment.y) * cellSize + cellSize / 2)
-                        }
-                        
-                        Image(systemName: "applelogo")
-                            .scaleEffect(1.8)
-                            .foregroundStyle(.red)
+        ZStack {
+            VStack {
+                topBarAndButtons
+                    .padding(.horizontal, 8)
+                
+                ZStack {
+                    ForEach(game.snake, id: \.self) { segment in
+                        Rectangle()
+                            .fill(Color.green)
                             .frame(width: cellSize, height: cellSize)
-                            .position(x: CGFloat(game.food.x) * cellSize + cellSize / 2,
-                                      y: CGFloat(game.food.y) * cellSize + cellSize / 2)
-                        
-                        if pause {
-                            Image(systemName: "pause.circle.fill")
-                                .scaleEffect(4)
-                                .zIndex(1)
-                                .foregroundStyle(.white)
-                        }
+                            .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
+                                      y: CGFloat(segment.y) * cellSize + cellSize / 2)
                     }
-                    .frame(width: cellSize * CGFloat(game.gridSize), height: cellSize * CGFloat(game.gridSize))
-                    .background(Color.black)
-                    .border(Color.red, width: 1)
+                    
+                    Image(systemName: "applelogo")
+                        .scaleEffect(1.8)
+                        .foregroundStyle(.red)
+                        .frame(width: cellSize, height: cellSize)
+                        .position(x: CGFloat(game.food.x) * cellSize + cellSize / 2,
+                                  y: CGFloat(game.food.y) * cellSize + cellSize / 2)
+                    
+                    if pause {
+                        Image(systemName: "pause.circle.fill")
+                            .scaleEffect(4)
+                            .zIndex(1)
+                            .foregroundStyle(.white)
+                    }
+                }
+                .frame(width: cellSize * CGFloat(game.gridSize), height: cellSize * CGFloat(game.gridSize))
+                .background(Color.black)
+                .border(Color.red, width: 1)
+            }.disabled(game.isGameOver)
+                        
+            if game.isGameOver {
+                GameOverView() {
+                    withAnimation {
+                        restartGame()
+                    }
                 }
             }
         }
+        .preferredColorScheme(.dark)
         .onAppear {
             startGameLoop()
         }
@@ -85,8 +89,61 @@ public struct SnakeGameView: View {
             KeyEventHandlingView { event in
                 handleKeyPress(event)
             }
-            .frame(width: 0, height: 0)  // Invisible but captures keyboard input
+                .frame(width: 0, height: 0)  // Invisible but captures keyboard input
         )
+        .sheet(isPresented: $showGamePlay) {
+            GamePlayView(game: gameData)
+        }
+    }
+    
+    var topBarAndButtons: some View {
+        HStack {
+            Button(action: { showGamePlay.toggle() }) {
+                Image(systemName: "questionmark.circle.fill")
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Show game rules")
+            
+            Spacer()
+            
+            Text(game.snake.count.formatted(.number.precision(.integerLength(3))))
+                            .fixedSize()
+                            .padding(.horizontal, 6)
+                            .foregroundStyle(.red.gradient)
+            Spacer()
+            
+            Button(action: { restartGame() }) {
+                Image(systemName: "arrow.uturn.left.circle.fill")
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Restart the game")
+            
+            Button(action: { toggleSounds() }) {
+                Image(systemName: speakerIcon)
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sound effects")
+        }
+        .monospacedDigit()
+        .font(.largeTitle)
+        .background(.black)
+        .clipShape(.rect(cornerRadius: 10))
+    }
+    
+    var speakerIcon: String {
+        if snakePlaySounds {
+            return "speaker.fill"
+        } else {
+            return "speaker.slash.fill"
+        }
+    }
+    
+    func toggleSounds() {
+        snakePlaySounds.toggle()
+        // TODO: Start or stop sounds
     }
     
     func startGameLoop() {
@@ -96,7 +153,7 @@ public struct SnakeGameView: View {
             game.moveSnake()
         }
     }
-
+    
     func handleKeyPress(_ event: NSEvent) {
         switch event.keyCode {
         case 49:    // Space bar
@@ -113,8 +170,13 @@ public struct SnakeGameView: View {
             break
         }
     }
+    
+    private func restartGame() {
+        game.resetGame()
+        startGameLoop()
+    }
 }
 
 #Preview {
-    SnakeGameView(gameData: Games().games.first(where: { $0.id == "game" } )!)
+    SnakeGameView(gameData: Games().games.first(where: { $0.id == "snake" } )!)
 }

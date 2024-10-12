@@ -50,18 +50,6 @@ struct GamesControllerApp: App {
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
-        WindowGroup(id: "game2", for: Game.self) { $game in
-            Text(game!.description)
-        }
-        .defaultPosition(.center)
-        .windowResizability(.contentSize)
-        
-        WindowGroup(id: "game3", for: Game.self) { $game in
-            Text(game!.description)
-        }
-        .defaultPosition(.center)
-        .windowResizability(.contentSize)
-        
         Settings {
             SettingsView()
         }

@@ -40,6 +40,20 @@
 			remoteGlobalIDString = E872D6B42C9B18470011FE38;
 			remoteInfo = WordCraft;
 		};
+		E8C4C9CE2CBAB91D003D363A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89C52122CBAB24C00C3CFB7;
+			remoteInfo = Snake;
+		};
+		E8C4C9D02CBAB91D003D363A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E89C521A2CBAB24C00C3CFB7;
+			remoteInfo = SnakeTests;
+		};
 		E8E5E6AF2CB57E3100ACFB9C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
@@ -156,6 +170,15 @@
 			isa = PBXGroup;
 			children = (
 				E872D6C42C9B185D0011FE38 /* WordCraft.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E8C4C9C72CBAB91D003D363A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8C4C9CF2CBAB91D003D363A /* Snake.framework */,
+				E8C4C9D12CBAB91D003D363A /* SnakeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -288,6 +311,10 @@
 					ProjectRef = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
 				},
 				{
+					ProductGroup = E8C4C9C72CBAB91D003D363A /* Products */;
+					ProjectRef = E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */;
+				},
+				{
 					ProductGroup = E872D6BF2C9B185D0011FE38 /* Products */;
 					ProjectRef = E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */;
 				},
@@ -305,6 +332,20 @@
 			fileType = wrapper.framework;
 			path = WordCraft.framework;
 			remoteRef = E872D6C32C9B185D0011FE38 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8C4C9CF2CBAB91D003D363A /* Snake.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Snake.framework;
+			remoteRef = E8C4C9CE2CBAB91D003D363A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8C4C9D12CBAB91D003D363A /* SnakeTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SnakeTests.xctest;
+			remoteRef = E8C4C9D02CBAB91D003D363A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8E5E6B02CB57E3100ACFB9C /* SharedComponents.framework */ = {
