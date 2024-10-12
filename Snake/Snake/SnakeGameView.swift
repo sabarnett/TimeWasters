@@ -19,8 +19,6 @@ import SharedComponents
 
 public struct SnakeGameView: View {
 
-    @AppStorage(Constants.snakePlaySounds) private var snakePlaySounds = true
-
     @State public var gameData: Game
     
     @State private var game = SnakeGame()
@@ -81,6 +79,7 @@ public struct SnakeGameView: View {
             startGameLoop()
         }
         .onDisappear {
+            game.stopSounds()
             timer?.invalidate()
         }
         .frame(width: cellSize * CGFloat(game.gridSize + 2), height: cellSize * CGFloat(game.gridSize) + 80)
@@ -120,8 +119,8 @@ public struct SnakeGameView: View {
             .buttonStyle(.plain)
             .help("Restart the game")
             
-            Button(action: { toggleSounds() }) {
-                Image(systemName: speakerIcon)
+            Button(action: { game.toggleSounds() }) {
+                Image(systemName: game.speakerIcon)
                     .padding(5)
             }
             .buttonStyle(.plain)
@@ -133,20 +132,8 @@ public struct SnakeGameView: View {
         .clipShape(.rect(cornerRadius: 10))
     }
     
-    var speakerIcon: String {
-        if snakePlaySounds {
-            return "speaker.fill"
-        } else {
-            return "speaker.slash.fill"
-        }
-    }
-    
-    func toggleSounds() {
-        snakePlaySounds.toggle()
-        // TODO: Start or stop sounds
-    }
-    
     func startGameLoop() {
+        game.playBackgroundSound()
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
             guard pause == false else { return }

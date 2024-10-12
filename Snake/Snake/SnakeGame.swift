@@ -10,6 +10,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 enum Direction {
     case up, down, left, right
@@ -20,15 +21,23 @@ struct Position: Equatable, Hashable {
     var y: Int
 }
 
-struct SnakeGame {
+@Observable
+class SnakeGame {
     
+    @ObservationIgnored
+    @AppStorage(Constants.snakePlaySounds) private var snakePlaySounds = true {
+        didSet {
+            updateSounds()
+        }
+    }
+
     var snake: [Position] = [Position(x: 10, y: 10)]
     var food: Position = Position(x: Int.random(in: 0..<20), y: Int.random(in: 0..<20))
     var direction: Direction = .right
     var isGameOver = false
     var gridSize = 20
 
-    mutating func moveSnake() {
+    func moveSnake() {
         guard !isGameOver else { return }
         
         var newHead = snake[0]
@@ -47,12 +56,14 @@ struct SnakeGame {
         // Check for wall collision
         if newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize {
             isGameOver = true
+            stopSounds()
             return
         }
 
         // Check for self collision
         if snake.contains(newHead) {
             isGameOver = true
+            stopSounds()
             return
         }
 
@@ -61,13 +72,14 @@ struct SnakeGame {
         
         // Check for food
         if newHead == food {
+            playBiteSound()
             food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
         } else {
             snake.removeLast()  // Remove the tail if no food is eaten
         }
     }
     
-    mutating func changeDirection(newDirection: Direction) {
+    func changeDirection(newDirection: Direction) {
         // Prevent snake from reversing direction
         if (newDirection == .up && direction != .down) ||
            (newDirection == .down && direction != .up) ||
@@ -77,10 +89,76 @@ struct SnakeGame {
         }
     }
     
-    mutating func resetGame() {
+    func resetGame() {
         snake = [Position(x: 10, y: 10)]
         food = Position(x: Int.random(in: 0..<20), y: Int.random(in: 0..<20))
         direction = .right
         isGameOver = false
     }
+    
+    // MARK: - Souond functions
+    
+    private var sounds: AVAudioPlayer!
+    private var bite: AVAudioPlayer!
+    private var backgroundURL: URL { soundFile(named: "background") }
+    private var biteURL: URL { soundFile(named: "bite") }
+    var speakerIcon: String = "speaker.fill"
+
+    /// Play the background music
+    func playBackgroundSound() {
+        guard snakePlaySounds else { return }
+        playSound(backgroundURL, repeating: true, volume: 0.3)
+    }
+    
+    /// If the background music is playing, stop it.
+    func stopSounds() {
+        guard snakePlaySounds else { return }
+        sounds.stop()
+    }
+
+    /// Play the tile drop sound while the new tiles enter into the game play area. This
+    /// will play over the top of the background sound.
+    func playBiteSound() {
+        guard snakePlaySounds else { return }
+        bite = try? AVAudioPlayer(contentsOf: biteURL)
+        bite.play()
+    }
+    
+    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
+    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
+    /// any other sound, so this is a safe bet.
+    func toggleSounds() {
+        snakePlaySounds.toggle()
+    }
+    
+    private func updateSounds() {
+        speakerIcon = snakePlaySounds ? "speaker.slash.fill" : "speaker.fill"
+
+        if snakePlaySounds {
+            playSound(backgroundURL, repeating: true)
+        } else {
+            sounds.stop()
+        }
+    }
+    
+    /// Creates the URL of a sound file. The file must exist within the minesweeper project
+    /// bundle.
+    private func soundFile(named file: String) -> URL {
+        let bun = Bundle(for: SnakeGame.self)
+        let sound = bun.path(forResource: file, ofType: "mp3")
+        return URL(fileURLWithPath: sound!)
+    }
+
+    /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
+    /// disabled, we do nothing.
+    private func playSound(_ url: URL, repeating: Bool = false, volume: Float = 1) {
+        guard snakePlaySounds else { return }
+        if sounds != nil { sounds.stop() }
+        
+        sounds = try! AVAudioPlayer(contentsOf: url)
+        sounds.numberOfLoops = repeating ? -1 : 0
+        if volume != 1 { sounds.volume = volume }
+        self.sounds.play()
+    }
+
 }
