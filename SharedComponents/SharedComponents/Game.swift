@@ -30,6 +30,7 @@ public class Games: ObservableObject {
         games = [
             minesweeperGame(),
             wordcraftGame(),
+            snakeGame(),
             matchedPairsGame(),
             game1Game(),
             game2Game()
@@ -66,6 +67,16 @@ public class Games: ObservableObject {
              link: "https://www.hackingwithswift.com/plus")
     }
     
+    private func snakeGame() -> Game {
+        Game(id: "snake",
+             title: "Snake Game",
+             tagLine: "Feed the snake, but beware the borders",
+             description: "",
+             gamePlay: textBlock(""),
+             credits: "Steve Barnett",
+             link: "http://www.sabarnett.co.uk")
+    }
+    
     private func matchedPairsGame() -> Game {
         Game(id: "matchpairs",
              title: "Match Pairs",
@@ -75,7 +86,7 @@ public class Games: ObservableObject {
              credits: "Steve Barnett",
              link: "http://www.sabarnett.co.uk")
     }
-    
+
     private func game1Game() -> Game {
         Game(id: "game1",
              title: "Game 1 title",

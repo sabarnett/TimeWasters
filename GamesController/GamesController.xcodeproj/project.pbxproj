@@ -20,6 +20,8 @@
 		E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E872D6C42C9B185D0011FE38 /* WordCraft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E872D6D22C9B1A1C0011FE38 /* dictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = E872D6D12C9B1A1C0011FE38 /* dictionary.txt */; };
 		E891E1DD2C932B0200BDDFC7 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891E1DC2C932B0200BDDFC7 /* Menus.swift */; };
+		E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52452CBAB43700C3CFB7 /* Snake.framework */; };
+		E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52452CBAB43700C3CFB7 /* Snake.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; };
 		E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */; };
@@ -69,6 +71,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */,
+				E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */,
 				E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */,
 				E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */,
 			);
@@ -90,6 +93,8 @@
 		E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordCraft.xcodeproj; path = ../WordCraft/WordCraft.xcodeproj; sourceTree = "<group>"; };
 		E872D6D12C9B1A1C0011FE38 /* dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.txt; sourceTree = "<group>"; };
 		E891E1DC2C932B0200BDDFC7 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
+		E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snake.xcodeproj; path = ../Snake/Snake.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E89C52452CBAB43700C3CFB7 /* Snake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Snake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedComponents.xcodeproj; path = ../SharedComponents/SharedComponents.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DCA5282CB572A700DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11102C8F3BA20078A9A6 /* A Time Wasters Compendium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Time Wasters Compendium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */,
+				E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */,
 				E8EA115F2C8F3C950078A9A6 /* MineSweeper.framework in Frameworks */,
 				E872D6CF2C9B19B10011FE38 /* WordCraft.framework in Frameworks */,
 			);
@@ -170,6 +176,7 @@
 				E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */,
 				E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */,
 				E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */,
+				E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */,
 				E8EA11112C8F3BA20078A9A6 /* Products */,
 				E8EA11432C8F3C360078A9A6 /* Frameworks */,
 			);
@@ -210,6 +217,7 @@
 		E8EA11432C8F3C360078A9A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E89C52452CBAB43700C3CFB7 /* Snake.framework */,
 				E8DCA5282CB572A700DC873E /* SharedComponents.framework */,
 			);
 			name = Frameworks;

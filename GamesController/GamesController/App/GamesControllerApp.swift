@@ -13,6 +13,7 @@ import SwiftUI
 import SharedComponents
 import MineSweeper
 import WordCraft
+import Snake
 
 @main
 struct GamesControllerApp: App {
@@ -43,8 +44,8 @@ struct GamesControllerApp: App {
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
-        WindowGroup(id: "game1", for: Game.self) { $game in
-            Text(game!.description)
+        WindowGroup(id: "snake", for: Game.self) { $game in
+            SnakeGameView(gameData: Games().games.first(where: { $0.id == "snake" } )!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
