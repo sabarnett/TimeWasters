@@ -197,6 +197,12 @@ class WordCraftViewModel {
         score += word.count * word.count
     }
 
+    func changeRule() {
+        withAnimation {
+            selectRule()
+        }
+    }
+    
     func startsWithLetter(_ word: String) -> Bool {
         word.starts(with: targetLetter)
     }

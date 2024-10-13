@@ -24,9 +24,18 @@ public struct WordCraftView: View {
         VStack(alignment: .leading) {
             topBarAndButtons
 
-            Text(viewModel.currentRule.name)
-                .contentTransition(.numericText())
-                .font(.body)
+            HStack {
+                Button(action: {
+                    viewModel.changeRule()
+                }, label: {
+                    Image(systemName: "arrow.uturn.left.circle")
+                })
+                .buttonStyle(PlainButtonStyle())
+                .help("Change the wordcraft rule")
+                
+                Text(viewModel.currentRule.name)
+                    .contentTransition(.numericText())
+            }.font(.system(size: 18))
             
             HStack(spacing: 5) {
                 GameBoardView(viewModel: viewModel)

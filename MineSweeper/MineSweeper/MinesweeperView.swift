@@ -108,9 +108,7 @@ public struct MinesweeperView: View {
     /// buttons we have in the buttons area.
     private var toggleButtons : some View {
         HStack {
-            Button(action: {
-                showGamePlay.toggle()
-            }) {
+            Button(action: { showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
@@ -118,9 +116,7 @@ public struct MinesweeperView: View {
 
             Spacer()
 
-            Button(action: {
-                toggleSounds()
-            }) {
+            Button(action: { toggleSounds() }) {
                 Image(systemName: minePlaySounds ? "speaker.slash.fill" : "speaker.fill")
                     .scaleEffect(2)
                     .padding(5)
@@ -179,7 +175,6 @@ public struct MinesweeperView: View {
         playSound(tickingURL, repeating: true)
     }
     
-
     /// Creates the URL of a sound file. The file must exist within the minesweeper project
     /// bundle.
     private func soundFile(named file: String) -> URL {
