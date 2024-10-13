@@ -132,6 +132,7 @@ public struct SnakeGameView: View {
     }
     
     func startGameLoop() {
+        pause = true
         game.playBackgroundSound()
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
