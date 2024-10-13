@@ -26,7 +26,6 @@ public struct GameInfo: View {
             Text(gameData.tagLine).font(.subheadline)
             ScrollView {
                 Text(gameData.description)
-                    
             }
             .padding(6)
             .border(.black, width: 0.5)
