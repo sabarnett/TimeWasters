@@ -57,7 +57,6 @@ public struct MinesweeperView: View {
                 }
                 .font(.largeTitle)
                 .onAppear(perform: game.createGrid)
-                .preferredColorScheme(.dark)
                 .clipShape(.rect(cornerRadius: 6))
                 .padding([.horizontal, .bottom])
                 .opacity(game.isWaiting || game.isPlaying ? 1 : 0.5)

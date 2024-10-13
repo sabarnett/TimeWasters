@@ -53,6 +53,5 @@ struct GameBoardView: View {
                 MessagePopoverView(message: message)
             }
         }
-        .preferredColorScheme(.dark)
     }
 }

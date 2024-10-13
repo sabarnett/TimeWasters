@@ -86,7 +86,6 @@ public struct WordCraftView: View {
         }
         .monospacedDigit()
         .font(.largeTitle)
-        .background(.black)
         .clipShape(.rect(cornerRadius: 10))
     }
 }

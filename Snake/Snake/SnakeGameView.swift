@@ -19,6 +19,7 @@ import SharedComponents
 
 public struct SnakeGameView: View {
 
+    @Environment(\.colorScheme) private var colorScheme
     @State public var gameData: Game
     
     @State private var game = SnakeGame()
@@ -74,7 +75,6 @@ public struct SnakeGameView: View {
                 }
             }
         }
-        .preferredColorScheme(.dark)
         .onAppear {
             startGameLoop()
         }
@@ -83,7 +83,7 @@ public struct SnakeGameView: View {
             timer?.invalidate()
         }
         .frame(width: cellSize * CGFloat(game.gridSize + 2), height: cellSize * CGFloat(game.gridSize) + 80)
-        .background(Color.black)
+        .background(colorScheme == .dark ? Color.black : Color.white)
         .overlay(
             KeyEventHandlingView { event in
                 handleKeyPress(event)
@@ -128,7 +128,6 @@ public struct SnakeGameView: View {
         }
         .monospacedDigit()
         .font(.largeTitle)
-        .background(.black)
         .clipShape(.rect(cornerRadius: 10))
     }
     
