@@ -12,17 +12,18 @@
 import SwiftUI
 
 struct GeneralSettingsView: View {
-    @ObservedObject var settings: SettingsViewModel
-    
+    @AppStorage(Constants.autoCloseApp) var closeAppWhenLastWindowCloses: Bool = true
+    @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .auto
+
     var body: some View {
         Form {
-            Picker("Display mode", selection: $settings.displayMode) {
+            Picker("Display mode", selection: $displayMode) {
                 ForEach(DisplayMode.allCases) { mode in
                     Text(mode.description).tag(mode)
                 }
             }
             
-            Toggle(isOn: $settings.closeAppWhenLastWindowCloses,
+            Toggle(isOn: $closeAppWhenLastWindowCloses,
                    label: { Text("Close the app when the last window closes.")})
         }
         .padding()
@@ -30,5 +31,5 @@ struct GeneralSettingsView: View {
 }
 
 #Preview {
-    GeneralSettingsView(settings: SettingsViewModel())
+    GeneralSettingsView()
 }

@@ -12,6 +12,19 @@
 import SwiftUI
 import SharedComponents
 
+/// Creates the game button for the home page.
+///
+/// The game button consists of a rectangular button with a title and short title. To the
+/// left will be a clock icon. When the user hovers over the clock, it transforms into
+/// an info icon. When they move off the info icon, it reverts to a clock.
+///
+/// When the button is clicked, we call the padded in playGame function. If the user
+/// clicks on the info button, we call the showInfo function.
+///
+/// When the button is created, it can be passed a timeDelay parameter. This is used to
+/// introduce a short delay before the button becomes visible. The delay is the timeDelay
+/// value time 0.3 seconds. By passing n increasing values for the timeDelay, you can
+/// stagger the display of the buttons.
 struct GameButton: View {
     @Environment(\.openWindow) private var openWindow
 
@@ -106,9 +119,9 @@ struct GameButton: View {
     }
 }
 
-//#Preview {
-////    GameButton(game: Games.minesweeper)
-//    GameButton(game: Games.games[0],
-//               playGame: { game in print(game)},
-//               showInfo: { game in print(game)})
-//}
+#Preview {
+    GameButton(game: Games().games[0],
+               gameIndex: 0,
+               playGame: { print("Play Game")},
+               showInfo: { print("Show Info")})
+}

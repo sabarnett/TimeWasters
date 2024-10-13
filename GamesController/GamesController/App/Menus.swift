@@ -18,6 +18,8 @@ struct Menus: Commands {
     }
 }
 
+
+/// Override the About This App menu so we can show our own custom window.
 struct SystemMenus: Commands {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
@@ -30,6 +32,7 @@ struct SystemMenus: Commands {
     }
 }
 
+/// Add a Display menu so we can change between Light/Dark/Auto mode.
 struct DisplayMenu: Commands {
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .light
     

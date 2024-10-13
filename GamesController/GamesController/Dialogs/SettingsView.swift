@@ -15,11 +15,10 @@ import WordCraft
 import Snake
 
 struct SettingsView: View {
-    @StateObject private var settings = SettingsViewModel()
 
     var body: some View {
         TabView {
-            GeneralSettingsView(settings: settings)
+            GeneralSettingsView()
                 .tabItem {
                     Label("General", systemImage: "gearshape")
                 }
@@ -42,7 +41,6 @@ struct SettingsView: View {
         .frame(minWidth: 460)
     }
 }
-
 
 #Preview {
     SettingsView()

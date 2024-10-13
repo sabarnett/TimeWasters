@@ -22,12 +22,8 @@ struct GameIndexView: View {
     @State var showInfo: Bool = false
     
     @State private var buttonsVisible = false
-    private var columns: [GridItem] {
-        Array.init(repeating: GridItem(), count: 2)
-    }
-    private var games: [Game] {
-        gameList.games
-    }
+    private var columns: [GridItem] { Array.init(repeating: GridItem(), count: 2) }
+    private var games: [Game] { gameList.games }
     
     var body: some View {
         ZStack {
@@ -54,7 +50,6 @@ struct GameIndexView: View {
                                     selectedGame = game
                                     showInfo = true
                                 })
-
                             }
                         }
                     }
@@ -101,6 +96,13 @@ struct GameIndexView: View {
         .presentedWindowStyle(.hiddenTitleBar)
     }
     
+    /// Sets the home screen attributes. We are looking to create a window with
+    ///
+    /// * No close/minimize/zoom buttons
+    /// * Has no title or title bar
+    /// * Can be moved (since there is no title bar) by dragging the background.
+    ///
+    /// - Parameter window: The NSWindow reference of our main window.
     private func setAttributes(window: NSWindow) {
         window.standardWindowButton(.closeButton)?.isHidden = true
         window.standardWindowButton(.miniaturizeButton)?.isHidden = true

@@ -17,7 +17,9 @@ import Snake
 
 @main
 struct GamesControllerApp: App {
+    
     @AppStorage(Constants.displayMode) var displayMode: DisplayMode = .auto
+    
     @State var gameList = Games()
     
     var body: some Scene {
@@ -32,20 +34,23 @@ struct GamesControllerApp: App {
         .commands { Menus() }
         .onChange(of: displayMode) { setDisplayMode() }
         
+        /// Minesweeper Game - opening window
         WindowGroup(id: "minesweeper", for: Game.self) { $game in
-            MinesweeperView(gameData: Games().games.first(where: {$0.id == "minesweeper"} )!)
+            MinesweeperView(gameData: gameList.game(for: "minesweeper")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
+        /// Word Craft Game - opening window
         WindowGroup(id: "wordcraft", for: Game.self) { $game in
-            WordCraftView(gameData: Games().games.first(where: { $0.id == "wordcraft" } )!)
+            WordCraftView(gameData: gameList.game(for: "wordcraft")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
+        /// Snake Game - opening window
         WindowGroup(id: "snake", for: Game.self) { $game in
-            SnakeGameView(gameData: Games().games.first(where: { $0.id == "snake" } )!)
+            SnakeGameView(gameData: gameList.game(for: "snake")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
@@ -55,6 +60,7 @@ struct GamesControllerApp: App {
         }
     }
     
+    /// Called to change the display mode for the entire app when it gets changed in the settings
     fileprivate func setDisplayMode() {
         switch displayMode {
         case .light:

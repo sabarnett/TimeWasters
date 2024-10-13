@@ -31,12 +31,23 @@ public class Games: ObservableObject {
             minesweeperGame(),
             wordcraftGame(),
             snakeGame()
-//            matchedPairsGame(),
-//            game1Game(),
-//            game2Game()
         ]
     }
-
+    
+    /// Return the game definition for the game with the passed in id.
+    ///
+    /// - Parameter id: The id of the game you want to retrieve
+    ///
+    /// - Returns: The Game definition for the game or nil if there is
+    /// no game with the padded in id.
+    public func game(for id: String) -> Game? {
+        if let index = games.firstIndex(where: { $0.id == id }) {
+            return games[index]
+        } else {
+            return nil
+        }
+    }
+    
     private func minesweeperGame() -> Game {
         Game(id: "minesweeper",
         title: "Minesweeper",
@@ -80,7 +91,7 @@ public class Games: ObservableObject {
     /// textBlock - takes a variadic parameter list of strings and returns a
     /// single string with each parameter separated by two newline characters.
     ///
-    /// Used to make it easier and ore readable to create the description text
+    /// Used to make it easier and more readable to create the description text
     /// for a game.
     private func textBlock(_ text: String...) -> String {
         text.joined(separator: "\n\n")

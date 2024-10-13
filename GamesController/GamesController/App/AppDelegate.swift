@@ -17,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private var aboutBoxWindowController: NSWindowController?
     
+    /// Shows our custom about box. This is a complete replacement for the
+    /// built in about box, allowing us a lot of customisation options.
     func showAboutWnd() {
         if aboutBoxWindowController == nil {
             let styleMask: NSWindow.StyleMask = [.closable, .miniaturizable, .titled]

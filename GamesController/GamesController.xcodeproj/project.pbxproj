@@ -15,7 +15,6 @@
 		E805CA2D2C90CB12001BD435 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA2C2C90CB12001BD435 /* GameButton.swift */; };
 		E8072E862C90D8A700FCEEDE /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8072E852C90D8A700FCEEDE /* DisplayMode.swift */; };
 		E80CE2C02C90D60F00F68FCD /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */; };
-		E80CE2C32C90D66300F68FCD /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CE2C22C90D66300F68FCD /* SettingsViewModel.swift */; };
 		E872D6CF2C9B19B10011FE38 /* WordCraft.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E872D6C42C9B185D0011FE38 /* WordCraft.framework */; };
 		E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E872D6C42C9B185D0011FE38 /* WordCraft.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E872D6D22C9B1A1C0011FE38 /* dictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = E872D6D12C9B1A1C0011FE38 /* dictionary.txt */; };
@@ -103,7 +102,6 @@
 		E805CA2C2C90CB12001BD435 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		E8072E852C90D8A700FCEEDE /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
 		E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
-		E80CE2C22C90D66300F68FCD /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordCraft.xcodeproj; path = ../WordCraft/WordCraft.xcodeproj; sourceTree = "<group>"; };
 		E872D6D12C9B1A1C0011FE38 /* dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.txt; sourceTree = "<group>"; };
 		E891E1DC2C932B0200BDDFC7 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 			children = (
 				E805CA1E2C90C2BB001BD435 /* SettingsView.swift */,
 				E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */,
-				E80CE2C22C90D66300F68FCD /* SettingsViewModel.swift */,
 				E805CA212C90C723001BD435 /* AboutView.swift */,
 			);
 			path = Dialogs;
@@ -398,7 +395,6 @@
 				E805CA222C90C723001BD435 /* AboutView.swift in Sources */,
 				E80CE2C02C90D60F00F68FCD /* GeneralSettingsView.swift in Sources */,
 				E805CA262C90C857001BD435 /* Bundle+Extensions.swift in Sources */,
-				E80CE2C32C90D66300F68FCD /* SettingsViewModel.swift in Sources */,
 				E805CA2D2C90CB12001BD435 /* GameButton.swift in Sources */,
 				E805CA282C90C8A7001BD435 /* Constants.swift in Sources */,
 			);

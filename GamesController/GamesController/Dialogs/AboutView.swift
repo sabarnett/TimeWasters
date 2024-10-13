@@ -25,16 +25,37 @@ struct AboutView: View {
                         .textSelection(.enabled)
                 }
             }
-            
-            Link(Constants.homeAddress,
-                 destination: Constants.homeUrl )
-            
-            Text(Bundle.main.copyright)
-                .font(.system(size: 10, weight: .thin))
-                .multilineTextAlignment(.center)
+            .padding([.leading, .top, .trailing], 12)
+
+            VStack(alignment: .leading, spacing: 5) {
+                LabeledContent("Appliation support from") {
+                    Link(Constants.homeAddress,
+                         destination: Constants.homeUrl )
+                }
+                
+                LabeledContent("Sound files from") {
+                    Link("zapsplat.com",
+                         destination: URL(string: "https://www.zapsplat.com")!)
+                }
+                
+                LabeledContent("Home page images supplied by") {
+                    Link("pixabay.com",
+                         destination: URL(string: "https://pixabay.com")!)
+                }
+            }
+            .padding([.leading, .trailing], 20)
+
+            HStack {
+                Spacer()
+                Text(Bundle.main.copyright)
+                    .font(.system(size: 12, weight: .thin))
+                    .multilineTextAlignment(.center)
+                    .padding(.top, 16)
+                    .padding(.bottom, 8)
+                    .padding(.trailing, 12)
+            }
         }
-        .padding(20)
-        .frame(minWidth: 500, minHeight: 200)
+        .frame(width: 480)
     }
 }
 
