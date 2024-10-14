@@ -26,7 +26,7 @@ struct MessagePopoverView : View {
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
         }
-        .frame(width: 400, height: 70)
+        .frame(width: 400, height: 60)
         .fontDesign(.rounded)
         .foregroundStyle(Color.white)
         .background(Color.red.gradient)

@@ -33,6 +33,7 @@ class WordCraftViewModel {
     var speakerIcon: String = "speaker.fill"
     var errorMessage: WordValidationError?
     var submittedWord: String?
+    var showGamePlay: Bool = false
 
     private var targetLetter = "A"
     private var targetLength = 0
@@ -78,6 +79,7 @@ class WordCraftViewModel {
         speakerIcon = wordcraftPlaySounds ? "speaker.slash.fill" : "speaker.fill"
     }
 
+    // A key was pressed on the keyboard; process return, backspace or a letter key.
     func selectLetter(_ key: KeyPress) {
         if key.key == KeyEquivalent("\r") && selected.count >= 3 {
             select(selected.last!)
@@ -114,7 +116,9 @@ class WordCraftViewModel {
                 selected.removeLast(selected.count - index - 1)
             }
         } else {
-            // Try to trap tripple tap. Not working!
+            // It is possible to tap a tile that is about to be removed
+            // from the game, so make sure it is still in the tile list
+            // before we select a tile.
             if tileIsValid(tile) {
                 selected.append(tile)
             }
@@ -138,19 +142,11 @@ class WordCraftViewModel {
     }
     
     func background(for tile: Tile) -> Color {
-        if selected.contains(tile) {
-            .white
-        } else {
-            .blue
-        }
+        selected.contains(tile) ? .white : .blue
     }
 
     func foreground(for tile: Tile) -> Color {
-        if selected.contains(tile) {
-            .black
-        } else {
-            .white
-        }
+        selected.contains(tile) ? .black : .white
     }
 
     func remove(_ tile: Tile) {
@@ -254,6 +250,14 @@ class WordCraftViewModel {
 
         return vowels == consonants
     }
+    
+    func hasEvenNumberOfLetters(_ word: String) -> Bool {
+        word.count.isMultiple(of: 2)
+    }
+    
+    func hasOddNumberOfLetters(_ word: String) -> Bool {
+        !hasEvenNumberOfLetters(word)
+    }
 
     func count(for letter: String) -> Int {
         var count = 0
@@ -283,7 +287,9 @@ class WordCraftViewModel {
             Rule(name: "Has at least \(targetLength) letters", predicate: isAtLeastLengthN),
             Rule(name: "Begins and ends with the same letter", predicate: beginsAndEndsSame),
             Rule(name: "Uses each letter only once", predicate: hasUniqueLetters),
-            Rule(name: "Has equal vowels and consonants", predicate: hasEqualVowelsAndConsonants)
+            Rule(name: "Has equal vowels and consonants", predicate: hasEqualVowelsAndConsonants),
+            Rule(name: "Has an odd number of letters", predicate: hasOddNumberOfLetters),
+            Rule(name: "Has an even number of letters", predicate: hasEvenNumberOfLetters)
         ]
 
         let newRule = rules.randomElement()!

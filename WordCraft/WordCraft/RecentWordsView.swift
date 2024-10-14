@@ -18,6 +18,7 @@ struct RecentWordsView : View {
         List(selection: $viewModel.submittedWord) {
             ForEach(viewModel.usedWords.sorted(), id: \.self) { word in
                 Text(word)
+                    .fontWeight(.semibold)
             }
         }
         .frame(width: 200)

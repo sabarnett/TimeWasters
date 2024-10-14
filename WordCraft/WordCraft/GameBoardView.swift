@@ -12,6 +12,9 @@
 import SwiftUI
 
 struct GameBoardView: View {
+    
+    @AppStorage(Constants.wordcraftShowSelectedLetters) private var wordcraftShowSelectedLetters = true
+
     @State var viewModel: WordCraftViewModel
     
     var body: some View {
@@ -38,19 +41,21 @@ struct GameBoardView: View {
                     }
                 }
             }
-            HStack {
-                ForEach(viewModel.selectedLetters, id: \.self) { tile in
-                    Text(tile.letter)
-                        .font(.title.weight(.bold))
-                        .fontDesign(.rounded)
-                        .frame(width: 30, height: 25)
-                        .foregroundStyle(.black)
-                        .background(.green.gradient)
-                }
-            }
-            .frame(minHeight: 40)
             .popover(item: $viewModel.errorMessage) { message in
                 MessagePopoverView(message: message)
+            }
+            if wordcraftShowSelectedLetters {
+                HStack {
+                    ForEach(viewModel.selectedLetters, id: \.self) { tile in
+                        Text(tile.letter)
+                            .font(.title.weight(.bold))
+                            .fontDesign(.rounded)
+                            .frame(width: 30, height: 25)
+                            .foregroundStyle(.black)
+                            .background(.green.gradient)
+                    }
+                }
+                .frame(minHeight: 40)
             }
         }
     }

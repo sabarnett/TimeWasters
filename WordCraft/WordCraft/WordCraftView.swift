@@ -14,7 +14,6 @@ public struct WordCraftView: View {
     
     @State private var viewModel = WordCraftViewModel()
     @State private var gameData: Game
-    @State private var showGamePlay: Bool = false
 
     public init(gameData: Game) {
         self.gameData = gameData
@@ -22,20 +21,9 @@ public struct WordCraftView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            topBarAndButtons
+            WordCraftToolBar(viewModel: viewModel)
 
-            HStack {
-                Button(action: {
-                    viewModel.changeRule()
-                }, label: {
-                    Image(systemName: "arrow.uturn.left.circle")
-                })
-                .buttonStyle(PlainButtonStyle())
-                .help("Change the wordcraft rule")
-                
-                Text(viewModel.currentRule.name)
-                    .contentTransition(.numericText())
-            }.font(.system(size: 18))
+            WordCraftRuleView(viewModel: viewModel)
             
             HStack(spacing: 5) {
                 GameBoardView(viewModel: viewModel)
@@ -53,49 +41,12 @@ public struct WordCraftView: View {
         .onAppear() {
             viewModel.playBackgroundSound()
         }
-        .sheet(isPresented: $showGamePlay) {
+        .sheet(isPresented: $viewModel.showGamePlay) {
             GamePlayView(game: gameData)
         }
         .onDisappear() {
             viewModel.stopSounds()
         }
-    }
-    
-    // Left & right buttons and the score in the middle
-    var topBarAndButtons: some View {
-        HStack {
-            Button(action: { showGamePlay.toggle() }) {
-                Image(systemName: "questionmark.circle.fill")
-                    .padding(5)
-            }
-            .buttonStyle(.plain)
-            .help("Show game rules")
-            
-            Spacer()
-            
-            Text(viewModel.score.formatted(.number.precision(.integerLength(3))))
-                .fixedSize()
-                .padding(.horizontal, 6)
-                .foregroundStyle(.red.gradient)
-            Spacer()
-            
-            Button(action: { viewModel.reset() }) {
-                Image(systemName: "arrow.uturn.left.circle.fill")
-                    .padding(5)
-            }
-            .buttonStyle(.plain)
-            .help("Restart the game")
-            
-            Button(action: { viewModel.toggleSounds() }) {
-                Image(systemName: viewModel.speakerIcon)
-                    .padding(5)
-            }
-            .buttonStyle(.plain)
-            .help("Toggle sound effects")
-        }
-        .monospacedDigit()
-        .font(.largeTitle)
-        .clipShape(.rect(cornerRadius: 10))
     }
 }
 

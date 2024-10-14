@@ -15,6 +15,7 @@ public struct WordCraftSettingsView: View {
     
     @AppStorage(Constants.wordcraftPlaySounds) private var wordcraftPlaySounds = true
     @AppStorage(Constants.wordcraftShowUsedWords) private var wordcraftShowUsedWords = true
+    @AppStorage(Constants.wordcraftShowSelectedLetters) private var wordcraftShowSelectedLetters = true
 
     public init() { }
     
@@ -22,6 +23,7 @@ public struct WordCraftSettingsView: View {
         Form {
             Toggle("Play sounds", isOn: $wordcraftPlaySounds)
             Toggle("Show used words list", isOn: $wordcraftShowUsedWords)
+            Toggle("Show selected letters", isOn: $wordcraftShowSelectedLetters)
         }
         .padding()
     }
