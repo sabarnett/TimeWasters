@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E893248A2CBD5086005B30BC /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324842CBD5086005B30BC /* Game.swift */; };
+		E893248B2CBD5086005B30BC /* GameInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324852CBD5086005B30BC /* GameInfo.swift */; };
+		E893248C2CBD5086005B30BC /* GamePlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324862CBD5086005B30BC /* GamePlayView.swift */; };
+		E893248D2CBD5086005B30BC /* HostingWindowFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324872CBD5086005B30BC /* HostingWindowFinder.swift */; };
+		E893248E2CBD5086005B30BC /* SharedComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = E89324882CBD5086005B30BC /* SharedComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DCA5052CB5709F00DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA4FC2CB5709F00DC873E /* SharedComponents.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,30 +26,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E89324842CBD5086005B30BC /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		E89324852CBD5086005B30BC /* GameInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfo.swift; sourceTree = "<group>"; };
+		E89324862CBD5086005B30BC /* GamePlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayView.swift; sourceTree = "<group>"; };
+		E89324872CBD5086005B30BC /* HostingWindowFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingWindowFinder.swift; sourceTree = "<group>"; };
+		E89324882CBD5086005B30BC /* SharedComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedComponents.h; sourceTree = "<group>"; };
 		E8DCA4FC2CB5709F00DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5042CB5709F00DC873E /* SharedComponentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedComponentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E8DCA50C2CB5709F00DC873E /* Exceptions for "SharedComponents" folder in "SharedComponents" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				SharedComponents.h,
-			);
-			target = E8DCA4FB2CB5709F00DC873E /* SharedComponents */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E8DCA4FE2CB5709F00DC873E /* SharedComponents */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E8DCA50C2CB5709F00DC873E /* Exceptions for "SharedComponents" folder in "SharedComponents" target */,
-			);
-			path = SharedComponents;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E8DCA4F92CB5709F00DC873E /* Frameworks */ = {
@@ -65,10 +54,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E89324892CBD5086005B30BC /* SharedComponents */ = {
+			isa = PBXGroup;
+			children = (
+				E89324842CBD5086005B30BC /* Game.swift */,
+				E89324852CBD5086005B30BC /* GameInfo.swift */,
+				E89324862CBD5086005B30BC /* GamePlayView.swift */,
+				E89324872CBD5086005B30BC /* HostingWindowFinder.swift */,
+				E89324882CBD5086005B30BC /* SharedComponents.h */,
+			);
+			path = SharedComponents;
+			sourceTree = "<group>";
+		};
 		E8DCA4F22CB5709F00DC873E = {
 			isa = PBXGroup;
 			children = (
-				E8DCA4FE2CB5709F00DC873E /* SharedComponents */,
+				E89324892CBD5086005B30BC /* SharedComponents */,
 				E8DCA4FD2CB5709F00DC873E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +90,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E893248E2CBD5086005B30BC /* SharedComponents.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,9 +109,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				E8DCA4FE2CB5709F00DC873E /* SharedComponents */,
 			);
 			name = SharedComponents;
 			packageProductDependencies = (
@@ -199,6 +198,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E893248A2CBD5086005B30BC /* Game.swift in Sources */,
+				E893248B2CBD5086005B30BC /* GameInfo.swift in Sources */,
+				E893248C2CBD5086005B30BC /* GamePlayView.swift in Sources */,
+				E893248D2CBD5086005B30BC /* HostingWindowFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E893247B2CBD5067005B30BC /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324702CBD5067005B30BC /* background.mp3 */; };
+		E893247C2CBD5067005B30BC /* bite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324712CBD5067005B30BC /* bite.mp3 */; };
+		E893247D2CBD5067005B30BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324732CBD5067005B30BC /* Constants.swift */; };
+		E893247E2CBD5067005B30BC /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324742CBD5067005B30BC /* GameOverView.swift */; };
+		E893247F2CBD5067005B30BC /* NSApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324752CBD5067005B30BC /* NSApplication+Extension.swift */; };
+		E89324802CBD5067005B30BC /* SnakeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324772CBD5067005B30BC /* SnakeGame.swift */; };
+		E89324812CBD5067005B30BC /* SnakeGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324782CBD5067005B30BC /* SnakeGameView.swift */; };
+		E89324822CBD5067005B30BC /* SnakeSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324792CBD5067005B30BC /* SnakeSettingsView.swift */; };
+		E89324832CBD5067005B30BC /* Snake.h in Headers */ = {isa = PBXBuildFile; fileRef = E89324762CBD5067005B30BC /* Snake.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E89C521B2CBAB24C00C3CFB7 /* Snake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52122CBAB24C00C3CFB7 /* Snake.framework */; };
 		E89C52422CBAB3BB00C3CFB7 /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52412CBAB3BB00C3CFB7 /* SharedComponents.framework */; };
 		E89C52432CBAB3BB00C3CFB7 /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52412CBAB3BB00C3CFB7 /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -37,31 +46,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E89324702CBD5067005B30BC /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
+		E89324712CBD5067005B30BC /* bite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bite.mp3; sourceTree = "<group>"; };
+		E89324732CBD5067005B30BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E89324742CBD5067005B30BC /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		E89324752CBD5067005B30BC /* NSApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extension.swift"; sourceTree = "<group>"; };
+		E89324762CBD5067005B30BC /* Snake.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
+		E89324772CBD5067005B30BC /* SnakeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGame.swift; sourceTree = "<group>"; };
+		E89324782CBD5067005B30BC /* SnakeGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameView.swift; sourceTree = "<group>"; };
+		E89324792CBD5067005B30BC /* SnakeSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeSettingsView.swift; sourceTree = "<group>"; };
 		E89C52122CBAB24C00C3CFB7 /* Snake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Snake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89C521A2CBAB24C00C3CFB7 /* SnakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E89C52412CBAB3BB00C3CFB7 /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E89C52222CBAB24C00C3CFB7 /* Exceptions for "Snake" folder in "Snake" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			publicHeaders = (
-				Snake.h,
-			);
-			target = E89C52112CBAB24C00C3CFB7 /* Snake */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		E89C52142CBAB24C00C3CFB7 /* Snake */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E89C52222CBAB24C00C3CFB7 /* Exceptions for "Snake" folder in "Snake" target */,
-			);
-			path = Snake;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		E89C520F2CBAB24C00C3CFB7 /* Frameworks */ = {
@@ -83,10 +80,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E89324722CBD5067005B30BC /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E89324702CBD5067005B30BC /* background.mp3 */,
+				E89324712CBD5067005B30BC /* bite.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		E893247A2CBD5067005B30BC /* Snake */ = {
+			isa = PBXGroup;
+			children = (
+				E89324722CBD5067005B30BC /* Sounds */,
+				E89324732CBD5067005B30BC /* Constants.swift */,
+				E89324742CBD5067005B30BC /* GameOverView.swift */,
+				E89324752CBD5067005B30BC /* NSApplication+Extension.swift */,
+				E89324772CBD5067005B30BC /* SnakeGame.swift */,
+				E89324782CBD5067005B30BC /* SnakeGameView.swift */,
+				E89324792CBD5067005B30BC /* SnakeSettingsView.swift */,
+				E89324762CBD5067005B30BC /* Snake.h */,
+			);
+			path = Snake;
+			sourceTree = "<group>";
+		};
 		E89C52082CBAB24C00C3CFB7 = {
 			isa = PBXGroup;
 			children = (
-				E89C52142CBAB24C00C3CFB7 /* Snake */,
+				E893247A2CBD5067005B30BC /* Snake */,
 				E89C52402CBAB3BB00C3CFB7 /* Frameworks */,
 				E89C52132CBAB24C00C3CFB7 /* Products */,
 			);
@@ -116,6 +137,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E89324832CBD5067005B30BC /* Snake.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,9 +157,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				E89C52142CBAB24C00C3CFB7 /* Snake */,
 			);
 			name = Snake;
 			packageProductDependencies = (
@@ -210,6 +229,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E893247B2CBD5067005B30BC /* background.mp3 in Resources */,
+				E893247C2CBD5067005B30BC /* bite.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E893247D2CBD5067005B30BC /* Constants.swift in Sources */,
+				E893247E2CBD5067005B30BC /* GameOverView.swift in Sources */,
+				E893247F2CBD5067005B30BC /* NSApplication+Extension.swift in Sources */,
+				E89324802CBD5067005B30BC /* SnakeGame.swift in Sources */,
+				E89324812CBD5067005B30BC /* SnakeGameView.swift in Sources */,
+				E89324822CBD5067005B30BC /* SnakeSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
