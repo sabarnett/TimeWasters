@@ -1,7 +1,7 @@
 //
 // -----------------------------------------
-// Original project: SnakeGPT
-// Original package: SnakeGPT
+// Original project: Snake
+// Original package: Snake
 // Created on: 04/10/2024 by: Steven Barnett
 // Web: http://www.sabarnett.co.uk
 // GitHub: https://www.github.com/sabarnett
@@ -31,11 +31,17 @@ class SnakeGame {
         }
     }
 
-    var snake: [Position] = [Position(x: 10, y: 10)]
-    var food: Position = Position(x: Int.random(in: 0..<20), y: Int.random(in: 0..<20))
+    var showGamePlay: Bool = false
+    var snake: [Position] = []
+    var food: Position = Position(x: 0, y: 0)
     var direction: Direction = .right
     var isGameOver = false
     var gridSize = 20
+    
+    init() {
+        snake = [Position(x: gridSize / 2, y: gridSize / 2)]
+        food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
+    }
 
     func moveSnake() {
         guard !isGameOver else { return }
@@ -90,8 +96,8 @@ class SnakeGame {
     }
     
     func resetGame() {
-        snake = [Position(x: 10, y: 10)]
-        food = Position(x: Int.random(in: 0..<20), y: Int.random(in: 0..<20))
+        snake = [Position(x: gridSize / 2, y: gridSize / 2)]
+        food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
         direction = .right
         isGameOver = false
     }
@@ -160,5 +166,4 @@ class SnakeGame {
         if volume != 1 { sounds.volume = volume }
         self.sounds.play()
     }
-
 }

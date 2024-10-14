@@ -12,13 +12,11 @@ struct GameOverView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Group {
-                Text("Bad luck!")
-            }
-            .textCase(.uppercase)
-            .font(.system(size: 60).weight(.black))
-            .fontDesign(.rounded)
-            .foregroundStyle(.white)
+            Text("Bad luck!")
+                .textCase(.uppercase)
+                .font(.system(size: 60).weight(.black))
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
 
             Button(action: restart) {
                 Text("Try Again")

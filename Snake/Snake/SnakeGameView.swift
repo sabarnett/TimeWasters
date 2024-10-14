@@ -25,7 +25,6 @@ public struct SnakeGameView: View {
     @State private var game = SnakeGame()
     @State private var timer: Timer?
     @State private var pause: Bool = true
-    @State private var showGamePlay: Bool = false
     
     let cellSize: CGFloat = 20
     
@@ -90,14 +89,14 @@ public struct SnakeGameView: View {
             }
                 .frame(width: 0, height: 0)  // Invisible but captures keyboard input
         )
-        .sheet(isPresented: $showGamePlay) {
+        .sheet(isPresented: $game.showGamePlay) {
             GamePlayView(game: gameData)
         }
     }
     
     var topBarAndButtons: some View {
         HStack {
-            Button(action: { showGamePlay.toggle() }) {
+            Button(action: { game.showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
                     .padding(5)
             }
