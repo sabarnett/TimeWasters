@@ -22,11 +22,11 @@ struct GeneralSettingsView: View {
                     Text(mode.description).tag(mode)
                 }
             }
-            .frame(maxWidth: 350)
             
             Toggle(isOn: $closeAppWhenLastWindowCloses,
                    label: { Text("Close the app when the last window closes.")})
         }
+        .frame(width: 350)
         .padding()
     }
 }

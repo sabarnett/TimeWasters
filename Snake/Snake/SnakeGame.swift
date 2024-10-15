@@ -30,6 +30,9 @@ class SnakeGame {
             updateSounds()
         }
     }
+    
+    @ObservationIgnored
+    @AppStorage(Constants.snakeGameSize) private var snakeGameSize: SnakeGameSize = .medium
 
     var showGamePlay: Bool = false
     var snake: [Position] = []
@@ -39,6 +42,7 @@ class SnakeGame {
     var gridSize = 20
     
     init() {
+        gridSize = snakeGameSize.rawValue
         snake = [Position(x: gridSize / 2, y: gridSize / 2)]
         food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
     }
@@ -96,6 +100,7 @@ class SnakeGame {
     }
     
     func resetGame() {
+        gridSize = snakeGameSize.rawValue
         snake = [Position(x: gridSize / 2, y: gridSize / 2)]
         food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
         direction = .right
