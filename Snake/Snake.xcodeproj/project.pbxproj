@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E856958A2CBEB1B200BC1730 /* SnakeGameSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */; };
 		E893247B2CBD5067005B30BC /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324702CBD5067005B30BC /* background.mp3 */; };
 		E893247C2CBD5067005B30BC /* bite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324712CBD5067005B30BC /* bite.mp3 */; };
 		E893247D2CBD5067005B30BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324732CBD5067005B30BC /* Constants.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameSpeed.swift; sourceTree = "<group>"; };
 		E89324702CBD5067005B30BC /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		E89324712CBD5067005B30BC /* bite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bite.mp3; sourceTree = "<group>"; };
 		E89324732CBD5067005B30BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				E89324782CBD5067005B30BC /* SnakeGameView.swift */,
 				E89324792CBD5067005B30BC /* SnakeSettingsView.swift */,
 				E89324762CBD5067005B30BC /* Snake.h */,
+				E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */,
 			);
 			path = Snake;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				E893247E2CBD5067005B30BC /* GameOverView.swift in Sources */,
 				E893247F2CBD5067005B30BC /* NSApplication+Extension.swift in Sources */,
 				E89324802CBD5067005B30BC /* SnakeGame.swift in Sources */,
+				E856958A2CBEB1B200BC1730 /* SnakeGameSpeed.swift in Sources */,
 				E89324812CBD5067005B30BC /* SnakeGameView.swift in Sources */,
 				E89324822CBD5067005B30BC /* SnakeSettingsView.swift in Sources */,
 			);

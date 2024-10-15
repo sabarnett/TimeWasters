@@ -13,4 +13,5 @@ import Foundation
 
 struct Constants {
     public static let snakePlaySounds = "snakePlaySounds"
+    public static let snakeGameSpeed = "snakeGameSpeed"
 }

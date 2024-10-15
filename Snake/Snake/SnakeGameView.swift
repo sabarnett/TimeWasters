@@ -20,8 +20,10 @@ import SharedComponents
 public struct SnakeGameView: View {
 
     @Environment(\.colorScheme) private var colorScheme
-    @State public var gameData: Game
     
+    @AppStorage(Constants.snakeGameSpeed) private var snakeGameSpeed: SnakeGameSpeed = .medium
+    
+    @State public var gameData: Game
     @State private var game = SnakeGame()
     @State private var timer: Timer?
     @State private var pause: Bool = true
@@ -134,7 +136,16 @@ public struct SnakeGameView: View {
         pause = true
         game.playBackgroundSound()
         timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { _ in
+        
+        var speed = 0.15
+        switch snakeGameSpeed {
+        case .slow: speed = 0.25
+        case .medium: speed = 0.15
+        case .fast: speed = 0.1
+        }
+        print("Timer set to \(speed)")
+        
+        timer = Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { _ in
             guard pause == false else { return }
             game.moveSnake()
         }
