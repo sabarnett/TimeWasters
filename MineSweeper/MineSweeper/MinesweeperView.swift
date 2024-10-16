@@ -16,7 +16,7 @@ enum GameState {
 /// xx
 public struct MinesweeperView: View {
 
-    @AppStorage("minePlaySounds") private var minePlaySounds = true
+    @AppStorage(Constants.minePlaySounds) private var minePlaySounds = true
     
     @State private var game = MinesweeperGame()
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()

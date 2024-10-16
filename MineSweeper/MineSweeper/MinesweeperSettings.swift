@@ -11,38 +11,54 @@
 
 import SwiftUI
 
+enum GameDifficulty: Int, CaseIterable, Identifiable, CustomStringConvertible {
+    case beginner
+    case intermediate
+    case expert
+    
+    var id: Self { self }
+    
+    var description: String {
+        switch self {
+        case .beginner: return "Beginner"
+        case .intermediate: return "Intermediate"
+        case .expert: return "Expert"
+        }
+    }
+}
+
 public struct MinesweeperSettings: View {
     
-    @AppStorage("cellCount") private var cellCount = 10
-    @AppStorage("mineCount") private var mineCount = 10
-    @AppStorage("minePlaySounds") private var minePlaySounds = true
+    @AppStorage(Constants.mineGameDifficulty) private var mineGameDifficulty: GameDifficulty = .beginner
+    @AppStorage(Constants.minePlaySounds) private var minePlaySounds = true
 
     public init() { }
     
     public var body: some View {
         Form {
-            HStack {
-                Stepper("Grid size",
-                        value: $cellCount,
-                    in: 8...25,
-                    step: 1
-                )
-                Text("\(cellCount.formatted()) cells")
+            Picker("Game difficulty", selection: $mineGameDifficulty) {
+                ForEach(GameDifficulty.allCases, id: \.self) { difficulty in
+                    Text(difficulty.description)
+                        .tag(difficulty)
+                }
             }
-            .padding(.bottom, 12)
-            
-            HStack {
-                Stepper("Mine count",
-                        value: $mineCount,
-                    in: 10...99,
-                    step: 1
-                )
-                Text("\(mineCount.formatted()) mines")
-            }
-            .padding(.bottom, 12)
+            LabeledContent("") {
+                    switch mineGameDifficulty {
+                    case .beginner:
+                        Text("9x9 Grid with 10 mines")
+                            .font(.caption2)
+                    case .intermediate:
+                        Text("16x16 Grid with 25 mines")
+                            .font(.caption2)
+                    case .expert:
+                        Text("22x22 Grid with 60 mines")
+                            .font(.caption2)
+                    }
+                }
             
             Toggle("Play Sounds", isOn: $minePlaySounds)
         }
+        .frame(maxWidth: 400)
         .padding()
     }
 }

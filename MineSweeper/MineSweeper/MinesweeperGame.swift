@@ -15,10 +15,27 @@ import SwiftUI
 class MinesweeperGame {
     
     @ObservationIgnored
-    @AppStorage("cellCount") private var cellCount = 10
+    @AppStorage(Constants.mineGameDifficulty) private var mineGameDifficulty: GameDifficulty = .beginner
+
+    private var cellCount: Int {
+        get {
+            switch mineGameDifficulty {
+            case .beginner: return 9
+            case .intermediate: return 16
+            case .expert: return 22
+            }
+        }
+    }
     
-    @ObservationIgnored
-    @AppStorage("mineCount") private var mineCount = 10
+    private var mineCount: Int {
+        get {
+            switch mineGameDifficulty {
+            case .beginner: return 10
+            case .intermediate: return 25
+            case .expert: return 60
+            }
+        }
+    }
     
     public var rows = [[Square]]()
 
@@ -166,5 +183,4 @@ class MinesweeperGame {
         gameState = .waiting
         createGrid()
     }
-
 }

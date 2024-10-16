@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct SquareView: View {
+    
+    @AppStorage(Constants.mineGameDifficulty) private var gameDifficullty: GameDifficulty = .beginner
+    
     var square: Square
 
+    var cellSize: CGFloat {
+        switch gameDifficullty {
+        case .beginner: return 60
+        case .intermediate: return 50
+        case .expert: return 35
+        }
+    }
+    
+    var textSize: CGFloat {
+        switch gameDifficullty {
+        case .beginner: return 30
+        case .intermediate: return 24
+        case .expert: return 18
+        }
+    }
+    
     var color: Color {
         if square.isRevealed {
             .gray.opacity(0.2)
@@ -26,10 +45,11 @@ struct SquareView: View {
             if square.isRevealed {
                 if square.hasMine {
                     Text("💥")
-                        .font(.system(size: 48))
+                        .font(.system(size: textSize * 1.3))
                         .shadow(color: .red, radius: 1)
                 } else if square.nearbyMines > 0 {
                     Text(String(square.nearbyMines))
+                        .font(.system(size: textSize))
                 }
             } else if square.isFlagged {
                 Image(systemName: "exclamationmark.triangle.fill")
@@ -37,7 +57,7 @@ struct SquareView: View {
                     .shadow(color: .black, radius: 3)
             }
         }
-        .frame(width: 60, height: 60)
+        .frame(width: cellSize, height: cellSize)
     }
 }
 

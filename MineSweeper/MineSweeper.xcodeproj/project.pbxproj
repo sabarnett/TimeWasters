@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80ABFED2CC00B0E00740D82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80ABFEC2CC00B0E00740D82 /* Constants.swift */; };
 		E862BCFE2C9989A0003D9BA5 /* MinesweeperSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E862BCFD2C9989A0003D9BA5 /* MinesweeperSettings.swift */; };
 		E8EA11532C8F3C760078A9A6 /* MineSweeper.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EA11522C8F3C760078A9A6 /* MineSweeper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8EA11692C8F42D00078A9A6 /* MinesweeperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11642C8F42D00078A9A6 /* MinesweeperView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80ABFEC2CC00B0E00740D82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E862BCFD2C9989A0003D9BA5 /* MinesweeperSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinesweeperSettings.swift; sourceTree = "<group>"; };
 		E8EA114F2C8F3C760078A9A6 /* MineSweeper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MineSweeper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11522C8F3C760078A9A6 /* MineSweeper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSweeper.h; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				E8EA11522C8F3C760078A9A6 /* MineSweeper.h */,
 				E862BCFD2C9989A0003D9BA5 /* MinesweeperSettings.swift */,
 				E8F80DDF2CB18E600067BE92 /* Sounds */,
+				E80ABFEC2CC00B0E00740D82 /* Constants.swift */,
 			);
 			path = MineSweeper;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				E8EA11692C8F42D00078A9A6 /* MinesweeperView.swift in Sources */,
 				E8EA116B2C8F42D00078A9A6 /* GameOverView.swift in Sources */,
 				E862BCFE2C9989A0003D9BA5 /* MinesweeperSettings.swift in Sources */,
+				E80ABFED2CC00B0E00740D82 /* Constants.swift in Sources */,
 				E8EA116C2C8F42D00078A9A6 /* MinesweeperGame.swift in Sources */,
 				E8EA116A2C8F42D00078A9A6 /* SquareView.swift in Sources */,
 			);
