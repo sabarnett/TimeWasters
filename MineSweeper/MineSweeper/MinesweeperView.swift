@@ -15,19 +15,19 @@ enum GameState {
 
 /// xx
 public struct MinesweeperView: View {
-
+    
     @AppStorage(Constants.minePlaySounds) private var minePlaySounds = true
     
     @State private var game = MinesweeperGame()
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var ticking: AVAudioPlayer!
     @State private var showGamePlay: Bool = false
-
+    
     private var tickingURL: URL { soundFile(named: "ticking") }
     private var explosionURL: URL { soundFile(named: "explosion") }
     private var fanfareURL: URL { soundFile(named: "winner") }
     private var gameData: Game
-
+    
     public init(gameData: Game) {
         self.gameData = gameData
     }
@@ -39,7 +39,7 @@ public struct MinesweeperView: View {
                     toggleButtons
                     gameStatusDisplay
                 }
-
+                
                 Grid(horizontalSpacing: 2, verticalSpacing: 2) {
                     ForEach(0..<game.rows.count, id: \.self) { row in
                         GridRow {
@@ -62,7 +62,7 @@ public struct MinesweeperView: View {
                 .opacity(game.isWaiting || game.isPlaying ? 1 : 0.5)
             }
             .disabled(game.isWon || game.isLost)
-
+            
             if game.isWon || game.isLost {
                 GameOverView(state: game.gameState) {
                     withAnimation {
@@ -72,8 +72,8 @@ public struct MinesweeperView: View {
             }
             HostingWindowFinder { win in
                 guard let win else { return }
-                win.center()
                 win.setFrameAutosaveName("")
+                win.center()
             }
             .frame(height: 0)
         }
@@ -101,6 +101,8 @@ public struct MinesweeperView: View {
         .sheet(isPresented: $showGamePlay) {
             GamePlayView(game: gameData)
         }
+        
+        .frame(maxWidth: game.playingAreaWidth)
     }
     
     /// Handles any toggle buttons to display in the scores area. We do these separately to
@@ -113,9 +115,9 @@ public struct MinesweeperView: View {
                     .scaleEffect(2)
                     .padding(5)
             }.buttonStyle(.plain)
-
+            
             Spacer()
-
+            
             Button(action: { toggleSounds() }) {
                 Image(systemName: minePlaySounds ? "speaker.slash.fill" : "speaker.fill")
                     .scaleEffect(2)
@@ -168,7 +170,7 @@ public struct MinesweeperView: View {
             ticking.stop()
         }
     }
-
+    
     // Reset the game to unplayed state and restart the sounds.
     private func resetGame() {
         game.reset()
@@ -182,7 +184,7 @@ public struct MinesweeperView: View {
         let sound = bun.path(forResource: file, ofType: "mp3")
         return URL(fileURLWithPath: sound!)
     }
-
+    
     /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
     /// disabled, we do nothing.
     private func playSound(_ url: URL, repeating: Bool = false) {

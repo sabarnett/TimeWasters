@@ -56,6 +56,14 @@ class MinesweeperGame {
     public var isPlaying: Bool { gameState == .playing }
     public var isWaiting: Bool { gameState == .waiting }
     
+    public var playingAreaWidth: CGFloat {
+        let (cellWidth, paddingWidth) = switch mineGameDifficulty {
+        case .beginner:  (60.0, 35.0)
+        case .intermediate:  (50.0, 50.0)
+        case .expert:  (35.0, 60.0)
+        }
+        return Double(cellCount) * cellWidth + paddingWidth
+    }
     public var statusEmoji: String {
         if isHoveringOverRestart {
             "😮"
