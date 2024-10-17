@@ -47,6 +47,10 @@ class SnakeGame {
         food = Position(x: Int.random(in: 0..<gridSize), y: Int.random(in: 0..<gridSize))
     }
 
+    func isSnakeHead(_ cell: Position) -> Bool {
+        snake[0] == cell
+    }
+    
     func moveSnake() {
         guard !isGameOver else { return }
         

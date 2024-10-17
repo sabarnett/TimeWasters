@@ -25,4 +25,12 @@ enum SnakeGameSpeed: Int, CustomStringConvertible, CaseIterable, Identifiable {
         case .fast: return "Fast"
         }
     }
+    
+    var speed: Double {
+        switch self {
+        case .slow: 0.25
+        case .medium: 0.15
+        case .fast: 0.1
+        }
+    }
 }

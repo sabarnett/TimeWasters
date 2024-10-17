@@ -42,11 +42,20 @@ public struct SnakeGameView: View {
                 
                 ZStack {
                     ForEach(game.snake, id: \.self) { segment in
-                        Rectangle()
-                            .fill(Color.green)
-                            .frame(width: cellSize, height: cellSize)
-                            .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
-                                      y: CGFloat(segment.y) * cellSize + cellSize / 2)
+                        
+                        if game.isSnakeHead(segment) {
+                            Circle()
+                                .fill(Color.green.opacity(0.7))
+                                .frame(width: cellSize, height: cellSize)
+                                .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
+                                          y: CGFloat(segment.y) * cellSize + cellSize / 2)
+                        } else {
+                            Rectangle()
+                                .fill(Color.green)
+                                .frame(width: cellSize, height: cellSize)
+                                .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
+                                          y: CGFloat(segment.y) * cellSize + cellSize / 2)
+                        }
                     }
                     
                     Image(systemName: "applelogo")
@@ -136,16 +145,10 @@ public struct SnakeGameView: View {
         pause = true
         game.playBackgroundSound()
         timer?.invalidate()
-        
-        var speed = 0.15
-        switch snakeGameSpeed {
-        case .slow: speed = 0.25
-        case .medium: speed = 0.15
-        case .fast: speed = 0.1
-        }
-        print("Timer set to \(speed)")
-        
-        timer = Timer.scheduledTimer(withTimeInterval: speed, repeats: true) { _ in
+        timer = Timer.scheduledTimer(
+            withTimeInterval: snakeGameSpeed.speed,
+            repeats: true
+        ) { _ in
             guard pause == false else { return }
             game.moveSnake()
         }
