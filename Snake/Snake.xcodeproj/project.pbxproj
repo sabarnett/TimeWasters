@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E856958A2CBEB1B200BC1730 /* SnakeGameSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */; };
 		E856958C2CBEBA1D00BC1730 /* SnakeGameSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856958B2CBEBA1D00BC1730 /* SnakeGameSize.swift */; };
+		E86B7BFB2CC69BDC00F3FCDC /* SnakeGame.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86B7BFA2CC69BDC00F3FCDC /* SnakeGame.xcassets */; };
 		E893247B2CBD5067005B30BC /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324702CBD5067005B30BC /* background.mp3 */; };
 		E893247C2CBD5067005B30BC /* bite.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E89324712CBD5067005B30BC /* bite.mp3 */; };
 		E893247D2CBD5067005B30BC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89324732CBD5067005B30BC /* Constants.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameSpeed.swift; sourceTree = "<group>"; };
 		E856958B2CBEBA1D00BC1730 /* SnakeGameSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameSize.swift; sourceTree = "<group>"; };
+		E86B7BFA2CC69BDC00F3FCDC /* SnakeGame.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SnakeGame.xcassets; sourceTree = "<group>"; };
 		E89324702CBD5067005B30BC /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		E89324712CBD5067005B30BC /* bite.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bite.mp3; sourceTree = "<group>"; };
 		E89324732CBD5067005B30BC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		E89C52082CBAB24C00C3CFB7 = {
 			isa = PBXGroup;
 			children = (
+				E86B7BFA2CC69BDC00F3FCDC /* SnakeGame.xcassets */,
 				E893247A2CBD5067005B30BC /* Snake */,
 				E89C52402CBAB3BB00C3CFB7 /* Frameworks */,
 				E89C52132CBAB24C00C3CFB7 /* Products */,
@@ -235,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E86B7BFB2CC69BDC00F3FCDC /* SnakeGame.xcassets in Resources */,
 				E893247B2CBD5067005B30BC /* background.mp3 in Resources */,
 				E893247C2CBD5067005B30BC /* bite.mp3 in Resources */,
 			);

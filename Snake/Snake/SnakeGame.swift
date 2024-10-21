@@ -175,4 +175,16 @@ class SnakeGame {
         if volume != 1 { sounds.volume = volume }
         self.sounds.play()
     }
+    
+    // MARK: - Image assets
+    
+    // convenient for specific image
+    public func snakeHead() -> Image {
+        return Image("snakeHead", bundle: Bundle(for: SnakeGame.self))
+    }
+
+    // for any image located in bundle where this class has built
+    public func image(named: String) -> Image {
+        return Image(named, bundle: Bundle(for: SnakeGame.self))
+    }
 }

@@ -30,6 +30,19 @@ public struct SnakeGameView: View {
     
     let cellSize: CGFloat = 20
     
+    var headAngle: CGFloat {
+        switch game.direction {
+        case .up:
+            270
+        case .down:
+            90
+        case .left:
+            180
+        case .right:
+            0
+        }
+    }
+    
     public init(gameData: Game) {
         self.gameData = gameData
     }
@@ -44,9 +57,10 @@ public struct SnakeGameView: View {
                     ForEach(game.snake, id: \.self) { segment in
                         
                         if game.isSnakeHead(segment) {
-                            Circle()
-                                .fill(Color.green.opacity(0.7))
+                            game.snakeHead()
+                                .resizable()
                                 .frame(width: cellSize, height: cellSize)
+                                .rotationEffect(Angle(degrees: headAngle))
                                 .position(x: CGFloat(segment.x) * cellSize + cellSize / 2,
                                           y: CGFloat(segment.y) * cellSize + cellSize / 2)
                         } else {
