@@ -9,7 +9,7 @@ At present, this Mac app contains three games;
 * WordCraft
 * Snake
 
-Minesweeper and WordCraft were created by Paul Hudson in his Hacking With Swift live-streams. I have 'messed' with themto extend the games. Snake is mine.
+Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. Snake is mine.
 
 More will be added at some point. This is just a starter project.
 
