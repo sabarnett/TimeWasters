@@ -55,12 +55,12 @@ public class Games: ObservableObject {
              description: textBlock(
                 "Minesweeper is a classic game from the dim and distant past. The aim of the game is to identify all of the mines without clicking on one and setting it off.",
                 "Minesweeper rules are very simple. The board is divided into cells, with mines randomly distributed. To win, you need to open all the cells. The number on a cell shows the number of mines adjacent to it. Using this information, you can determine cells that are safe, and cells that contain mines. Cells suspected of being mines can be marked with a flag.",
-                "To win a game of Minesweeper, all non-mine cells must be opened without opening a mine. There is no score, but there is a timer recording the time taken to finish the game. Difficulty can be increased by adding mines or starting with a larger grid. You can do this via the settings panel. Beginner level is usually on an 8x8 or 9x9 board containing 10 mines, Intermediate is usually on a 16x16 board with 40 mines and expert is usually on a 22x22 board with 99 mines; however, you are free to customise board size and mine count."
+                "To win a game of Minesweeper, all non-mine cells must be opened without opening a mine. There is no score, but there is a timer recording the time taken to finish the game. Difficulty can be increased by adding mines or starting with a larger grid. You can do this via the settings panel. Beginner level is usually on an 8x8 or 9x9 board containing 10 mines, Intermediate is usually on a 16x16 board with 40 mines and expert is usually on a 22x22 board with 99 mines; however, you are free to customize board size and mine count."
              ),
              gamePlay: textBlock(
                 "When the game starts you will be presented with a grid. Under that grid are hidden a number of mines. It is your job to locate those mines and to clear every cell without a mine.",
                 "You select a cell by clicking on it. If the cell does not contain a mine, it will clear and surrounding cells will be updated to show how many cells border it. This is your only clue to the whereabouts of mined cells.",
-                "You can ndicate that you believe a cell to contain a mine by long-pressing on it. When you do this a warning symbol will be placed on the cell. There is no guarantee that the cell actually contains a mine, so beware! If you change your mind, long-press to remove the marker.",
+                "You can indicate that you believe a cell to contain a mine by long-pressing on it. When you do this a warning symbol will be placed on the cell. There is no guarantee that the cell actually contains a mine, so beware! If you change your mind, long-press to remove the marker.",
                 "The game ends when you either click on a mine or you clear all non-mine cells. If you clear all non-mine cells without opening a mine, you win!"
                                 ),
         credits: "Paul Hudson - Hacking With Swift+, with modifications by Steven Barnett",
@@ -91,8 +91,8 @@ public class Games: ObservableObject {
              title: "Snake Game",
              tagLine: "Feed the snake, but beware the borders",
              description: textBlock(
-                "This is a classic game from the early days of computing. The premis is very simple but game play is surprisingly difficult the longer you play. ",
-                "Your job is to gude the snake towards it's food. The snake will grow longer as it eats food. If it touches the borders or itself, it will die. As the game progresses and the snake grows longer and longer, you will need to work out routes to the food that will not cause the snake to die.",
+                "This is a classic game from the early days of computing. The premise is very simple but game play is surprisingly difficult the longer you play. ",
+                "Your job is to guide the snake towards it's food. The snake will grow longer as it eats food. If it touches the borders or itself, it will die. As the game progresses and the snake grows longer and longer, you will need to work out routes to the food that will not cause the snake to die.",
                 "The game is very addictive and can be played for hours. It is a great way to spend a few minutes."
              ),
              gamePlay: textBlock(
