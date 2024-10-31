@@ -14,6 +14,7 @@ import SharedComponents
 import MineSweeper
 import WordCraft
 import Snake
+import PyramidOfDoom
 
 @main
 struct GamesControllerApp: App {
@@ -55,6 +56,13 @@ struct GamesControllerApp: App {
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
+        /// Pyramid of Doom Adventure Game - opening window
+        WindowGroup(id: "pyramidOfDoom", for: Game.self) { $game in
+            AdventureGameView(gameData: gameList.game(for: "pyramidOfDoom")!, game: "adv08")
+        }
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+
         Settings {
             SettingsView()
         }

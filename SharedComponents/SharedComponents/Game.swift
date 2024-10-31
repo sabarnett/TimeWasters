@@ -30,7 +30,8 @@ public class Games: ObservableObject {
         games = [
             minesweeperGame(),
             wordcraftGame(),
-            snakeGame()
+            snakeGame(),
+            pyramidOfDoom()
         ]
     }
     
@@ -101,6 +102,23 @@ public class Games: ObservableObject {
              credits: "Steve Barnett",
              link: "http://www.sabarnett.co.uk")
     }
+    
+    private func pyramidOfDoom() -> Game {
+        Game(id: "pyramidOfDoom",
+             title: "Pyramid of Doom",
+             tagLine: "Can you survive the pyramid of doom?",
+             description: textBlock(
+                "This is a text adventure where you will explore the Pyramid Of Doom, looking for teasures to store in the treasure room all while trying to avoid the traps that are there to stop you.",
+                "Your mission is simple, find al the treasures before the pyramid kills you.",
+                "You are going to navigate from location to location using text commands like 'north', 'south', 'east', 'west', 'take item', 'drop item', 'read', 'inventory' and 'help'. There are many more commands, just try them out!"
+                ),
+             gamePlay: textBlock(
+                "You can see where you are at any time by typing 'look'. That will show you your current location, what's at that location and possible directions you can go in. You can also take items by typing 'take item'. You can drop items by typing 'drop item'. You can read items by typing 'read item'. You can see your inventory by typing 'inventory'. You can also ask for help by typing 'help'."
+             ),
+             credits: "Steve Barnett",
+             link: "http://www.sabarnett.co.uk")
+    }
+                 
 
     /// textBlock - takes a variadic parameter list of strings and returns a
     /// single string with each parameter separated by two newline characters.

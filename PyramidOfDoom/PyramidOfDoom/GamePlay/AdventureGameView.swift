@@ -1,0 +1,171 @@
+//
+// -----------------------------------------
+// Original project: AdventureGame
+// Original package: AdventureGame
+// Created on: 25/10/2024 by: Steven Barnett
+// Web: http://www.sabarnett.co.uk
+// GitHub: https://www.github.com/sabarnett
+// -----------------------------------------
+// Copyright © 2024 Steven Barnett. All rights reserved.
+//
+
+import SwiftUI
+import SharedComponents
+
+public struct AdventureGameView: View {
+    
+    @Environment(\.colorScheme) private var colorScheme
+    
+    @State public var gameData: Game
+    @State var gameModel: GamePlayViewModel
+    
+    public init(gameData: SharedComponents.Game, game: String) {
+        self.gameData = gameData
+        gameModel = GamePlayViewModel(game: game)
+    }
+    
+    public var body: some View {
+        VStack {
+            topBarAndButtons
+                .padding(.horizontal, 8)
+            
+            NavigationSplitView() {
+                List {
+                    carriedItemsView
+                    Spacer().frame(height: 32)
+                        .listRowSeparator(.hidden)
+                        .listSectionSeparator(.hidden)
+                    treasureItemsView
+                        .listRowSeparator(.hidden)
+                        .listSectionSeparator(.hidden)
+                }
+            } detail: {
+                gamePlayView
+            }
+        }
+        .background(colorScheme == .dark ? Color.black : Color.white)
+        .sheet(isPresented: $gameModel.showGamePlay) {
+            GamePlayView(game: gameData)
+        }
+    }
+    
+    private var topBarAndButtons: some View {
+        HStack {
+            Button(action: { gameModel.showGamePlay.toggle() }) {
+                Image(systemName: "questionmark.circle.fill")
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Show game rules")
+            
+            Spacer()
+            
+//            Text(game.snake.count.formatted(.number.precision(.integerLength(3))))
+//                            .fixedSize()
+//                            .padding(.horizontal, 6)
+//                            .foregroundStyle(.red.gradient)
+//            Spacer()
+            
+            Button(action: {
+                print("Restart Game")
+            }) {
+                Image(systemName: "arrow.uturn.left.circle.fill")
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Restart the game")
+            
+            Button(action: {
+                print("Toggle Sounds")
+            }) {
+                Image(systemName: "speaker.slash.circle.fill")
+                    .padding(5)
+//                Image(systemName: game.speakerIcon)
+//                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sound effects")
+        }
+        .monospacedDigit()
+        .font(.largeTitle)
+        .clipShape(.rect(cornerRadius: 10))
+    }
+
+    private var gamePlayView: some View {
+        VStack(spacing: 0) {
+            ScrollView {
+                ForEach(gameModel.gameProgress) { gameProgress in
+                    GameRowView(gameDataRow: gameProgress)
+                }
+            }
+            .defaultScrollAnchor(.bottom)
+            .padding()
+            .background(colorScheme == .dark ? Color.black : Color.white)
+
+            TextField("What do you want to do?",
+                      text: $gameModel.commandLine)
+            .font(.title)
+            .padding()
+            .background(colorScheme == .dark ? Color.black : Color.white)
+            .onSubmit {
+                gameModel.consoleEnter()
+            }
+        }
+    }
+    
+    private var carriedItemsView: some View {
+        Section(content: {
+            ForEach(gameModel.carriedItems, id:\.self) { item in
+                Text(item)
+                    .font(.system(size: 14))
+                    .listRowSeparator(.hidden)
+                    .listSectionSeparator(.hidden)
+            }
+        }, header: {
+            HStack {
+                Text("Inventory").font(.title)
+                Spacer()
+            }
+            .listSectionSeparator(.hidden)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
+            .background {
+                Color.accentColor.opacity(0.4)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        })
+        .listSectionSeparator(.hidden)
+    }
+    
+    private var treasureItemsView: some View {
+        Section(content: {
+            ForEach(gameModel.treasureItems, id:\.self) { item in
+                Text(item)
+                    .font(.system(size: 14))
+                    .listRowSeparator(.hidden)
+                    .listSectionSeparator(.hidden)
+            }
+        }, header: {
+            HStack {
+                Text("Treasures").font(.title)
+                Spacer()
+                Text("\(gameModel.treasuresFound) %")
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
+            .background {
+                Color.accentColor.opacity(0.4)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+            }
+        })
+        .listSectionSeparator(.hidden)
+    }
+}
+
+#Preview {
+    AdventureGameView(
+        gameData: Games().games.first(where: { $0.id == "pyramidOfDoom" } )!,
+        game: "adv08")
+}
