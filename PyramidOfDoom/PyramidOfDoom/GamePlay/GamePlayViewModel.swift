@@ -46,6 +46,7 @@ class GamePlayViewModel {
         game.TreasuresFound
     }
     
+    /// Clear all game state and start the game again
     func restartGame() {
         gameProgress.removeAll()
         
@@ -61,12 +62,16 @@ class GamePlayViewModel {
         game.promptForTurn()
     }
     
+    /// Save the current state of the game so it can be restored later
     func saveGame() {
-        // TODO: Save the game
+        let gameSaver = GameSave()
+        gameSaver.save(game: game, progress: gameProgress, gameDefinition: gameDefinition)
     }
     
+    /// Clear the current state of the game and reload the last saved game details.
     func restoreGame() {
-        // TODO: Restore game
+        let gameLoader = GameSave()
+        gameLoader.restore(game: &game, progress: &gameProgress, gameDefinition: gameDefinition)
     }
     
     /// Displays the text from the game.

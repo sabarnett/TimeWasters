@@ -33,7 +33,41 @@ struct GameSave {
     /// As a helper to the player, we save the last 25 interactions (messages and commands) just so the
     /// console is not completely blank when the restore the file.
     func save(game: AdventureGame, progress: [GameDataRow], gameDefinition: GameDefinition) {
+        // Get the save file name
+        let saveFileTo = saveFileUrl(gameDefinition: gameDefinition)
         
+        // Helper object for the save data
+        var saveData = GameSaveData()
+        
+        // Save the counters
+        for index in 0..<game.counters.NumberOfCounters {
+            saveData.counters.append(game.counters.getCounter(atIndex: index))
+        }
+        for room in game.savedRooms {
+            saveData.roomSaved.append(room)
+        }
+        saveData.darkFlag = game.flags.dark_flag
+        saveData.myLocation = game.location
+        saveData.currentCounter = game.counter
+        saveData.savedRoom = game.savedRoom
+        // TODO: GameHeader
+        saveData.lightTime = game.lampLeft
+        for item in game.items {
+            saveData.itemLocation.append(item.Location)
+        }
+        
+        // Save the progress view
+        let startAt = progress.count <= 25 ? 0 : progress.count - 25
+        for index in startAt..<progress.count {
+            let prefix = progress[index].dataType == .consoleOutput ? ">>>" : ""
+            saveData.gameProgress.append("\(prefix)\(progress[index].text)")
+        }
+        
+        // Json encode and save the file
+        let encoded = try! JSONEncoder().encode(saveData)
+        try? encoded.write(to: saveFileTo, options: .atomic)
+        
+        print("Save game written to \(saveFileTo.path())")
     }
     
     /// Restore a saved game
@@ -70,4 +104,29 @@ struct GameSave {
         return URL.documentsDirectory.appendingPathComponent(saveFileName)
     }
     
+}
+
+struct GameSaveData: Codable {
+    // Save game date
+    var saveDate: Date = .now
+    
+    // Counters & roomSaved
+    var counters: [Int] = []
+    var roomSaved: [Int] = []
+ 
+    // Dark Flag
+    var darkFlag: Bool = false
+    
+    // State values
+    var myLocation: Int = 0
+    var currentCounter: Int = 0
+    var savedRoom: Int = 0
+    // TODO: GameHeader
+    var lightTime: Int = 0
+    
+    // Item locations
+    var itemLocation: [Int] = []
+    
+    // Game progress - last 25 lines
+    var gameProgress: [String] = []
 }
