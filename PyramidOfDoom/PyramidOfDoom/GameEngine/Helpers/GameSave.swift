@@ -46,12 +46,15 @@ struct GameSave {
         for room in game.savedRooms {
             saveData.roomSaved.append(room)
         }
+        for flagIndex in 0..<game.flags.NFLAGS {
+            saveData.flags.append(game.flags[flagIndex])
+        }
         saveData.darkFlag = game.flags.dark_flag
         saveData.myLocation = game.location
         saveData.currentCounter = game.counter
         saveData.savedRoom = game.savedRoom
-        // TODO: GameHeader
-        saveData.lightTime = game.lampLeft
+        saveData.lightTime = game.gameHeader.LightTime
+        saveData.lampLeft = game.lampLeft
         for item in game.items {
             saveData.itemLocation.append(item.Location)
         }
@@ -106,7 +109,8 @@ struct GameSave {
     
 }
 
-struct GameSaveData: Codable {
+/// Helper object - this is what we will use to save the JSON data.
+fileprivate struct GameSaveData: Codable {
     // Save game date
     var saveDate: Date = .now
     
@@ -115,14 +119,15 @@ struct GameSaveData: Codable {
     var roomSaved: [Int] = []
  
     // Dark Flag
+    var flags: [Bool] = []
     var darkFlag: Bool = false
     
     // State values
     var myLocation: Int = 0
     var currentCounter: Int = 0
     var savedRoom: Int = 0
-    // TODO: GameHeader
     var lightTime: Int = 0
+    var lampLeft: Int = 0
     
     // Item locations
     var itemLocation: [Int] = []
