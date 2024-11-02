@@ -60,31 +60,26 @@ public struct AdventureGameView: View {
             
             Spacer()
             
-//            Text(game.snake.count.formatted(.number.precision(.integerLength(3))))
-//                            .fixedSize()
-//                            .padding(.horizontal, 6)
-//                            .foregroundStyle(.red.gradient)
-//            Spacer()
-            
-            Button(action: {
-                print("Restart Game")
-            }) {
+            Button(action: { gameModel.restartGame() }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .padding(5)
             }
             .buttonStyle(.plain)
-            .help("Restart the game")
+            .help("Restart the game.")
             
-            Button(action: {
-                print("Toggle Sounds")
-            }) {
-                Image(systemName: "speaker.slash.circle.fill")
+            Button(action: { gameModel.saveGame() }) {
+                Image(systemName: "dock.arrow.up.rectangle")
                     .padding(5)
-//                Image(systemName: game.speakerIcon)
-//                    .padding(5)
             }
             .buttonStyle(.plain)
-            .help("Toggle sound effects")
+            .help("Save the current game state.")
+            
+            Button(action: { gameModel.restoreGame() }) {
+                Image(systemName: "dock.arrow.down.rectangle")
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Reload the last saved game.")
         }
         .monospacedDigit()
         .font(.largeTitle)

@@ -46,6 +46,29 @@ class GamePlayViewModel {
         game.TreasuresFound
     }
     
+    func restartGame() {
+        gameProgress.removeAll()
+        
+        var optionSet = GameOptions()
+        optionSet.BugTolerant = true
+
+        game = AdventureGame(withOptions: optionSet)
+        loadGame(fromFile: gameDefinition.file)
+        
+        game.DisplayText = ShowGameText
+        game.DisplayPrompt = ShowPrompt
+        game.initiliseGame()
+        game.promptForTurn()
+    }
+    
+    func saveGame() {
+        // TODO: Save the game
+    }
+    
+    func restoreGame() {
+        // TODO: Restore game
+    }
+    
     /// Displays the text from the game.
     ///
     /// - Parameter message: The game generated message to display.

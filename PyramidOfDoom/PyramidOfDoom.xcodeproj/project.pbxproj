@@ -46,6 +46,7 @@
 		E8DE7EA92CD3C25E00847B82 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7E6E2CD3C25E00847B82 /* ListManager.swift */; };
 		E8DE7EAA2CD3C25E00847B82 /* Counters.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7E632CD3C25E00847B82 /* Counters.swift */; };
 		E8DE7EAB2CD3C25E00847B82 /* GameAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8DE7E642CD3C25E00847B82 /* GameAction.swift */; };
+		E8FC3FCA2CD66C4800991B12 /* GameSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FC3FC92CD66C4800991B12 /* GameSave.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -102,6 +103,7 @@
 		E8DE7E842CD3C25E00847B82 /* adv14a.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = adv14a.dat; sourceTree = "<group>"; };
 		E8DE7E852CD3C25E00847B82 /* adv14b.dat */ = {isa = PBXFileReference; lastKnownFileType = text; path = adv14b.dat; sourceTree = "<group>"; };
 		E8DE7E862CD3C25E00847B82 /* GameIndex.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GameIndex.json; sourceTree = "<group>"; };
+		E8FC3FC92CD66C4800991B12 /* GameSave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSave.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				E8DE7E6D2CD3C25E00847B82 /* GameLoader.swift */,
 				E8DE7E6E2CD3C25E00847B82 /* ListManager.swift */,
 				E8DE7E6F2CD3C25E00847B82 /* Translators.swift */,
+				E8FC3FC92CD66C4800991B12 /* GameSave.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				E8DE7E9E2CD3C25E00847B82 /* Translators.swift in Sources */,
 				E8DE7E9F2CD3C25E00847B82 /* GameHeader.swift in Sources */,
 				E8DE7EA02CD3C25E00847B82 /* GameRowView.swift in Sources */,
+				E8FC3FCA2CD66C4800991B12 /* GameSave.swift in Sources */,
 				E8DE7EA12CD3C25E00847B82 /* ActionInstruction.swift in Sources */,
 				E8DE7EA22CD3C25E00847B82 /* GameDataRowType.swift in Sources */,
 				E8DE7EA32CD3C25E00847B82 /* GameOptions.swift in Sources */,

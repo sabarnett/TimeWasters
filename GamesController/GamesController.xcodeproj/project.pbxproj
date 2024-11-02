@@ -76,6 +76,13 @@
 			remoteGlobalIDString = E8EA114F2C8F3C760078A9A6;
 			remoteInfo = MineSweeper;
 		};
+		E8FC3FC22CD66C1300991B12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8DE7E3E2CD3BDD600847B82;
+			remoteInfo = PyramidOfDoom;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -259,6 +266,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8FC3FBE2CD66C1300991B12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8FC3FC32CD66C1300991B12 /* PyramidOfDoom.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -310,6 +325,10 @@
 				{
 					ProductGroup = E8EA115A2C8F3C760078A9A6 /* Products */;
 					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
+				},
+				{
+					ProductGroup = E8FC3FBE2CD66C1300991B12 /* Products */;
+					ProjectRef = E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */;
 				},
 				{
 					ProductGroup = E8E5E6AA2CB57E3100ACFB9C /* Products */;
@@ -372,6 +391,13 @@
 			fileType = wrapper.framework;
 			path = MineSweeper.framework;
 			remoteRef = E8EA115D2C8F3C760078A9A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8FC3FC32CD66C1300991B12 /* PyramidOfDoom.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PyramidOfDoom.framework;
+			remoteRef = E8FC3FC22CD66C1300991B12 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
