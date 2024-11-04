@@ -29,6 +29,9 @@ public class ListManager {
 
             if testCase == searchWord {
                 return index
+            }
+            else if testCase == word.uppercased() {
+                return index
             } else if testCase.hasPrefix("*") && testCase.count > 1 {
                 // Generate the command without the asterisk prefix.
                 let index2 = testCase.index(testCase.startIndex, offsetBy: 1)
