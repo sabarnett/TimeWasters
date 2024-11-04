@@ -62,15 +62,13 @@ struct GameSave {
         // Save the progress view
         let startAt = progress.count <= 25 ? 0 : progress.count - 25
         for index in startAt..<progress.count {
-            let prefix = progress[index].dataType == .consoleOutput ? ">>>" : ""
+            let prefix = progress[index].dataType == .userInput ? "<<<" : ""
             saveData.gameProgress.append("\(prefix)\(progress[index].text)")
         }
         
         // Json encode and save the file
         let encoded = try! JSONEncoder().encode(saveData)
         try? encoded.write(to: saveFileTo, options: .atomic)
-        
-        print("Save game written to \(saveFileTo.path())")
     }
     
     /// Restore a saved game
@@ -92,8 +90,44 @@ struct GameSave {
     /// some context of where they were when the game was saved.
     /// 
     func restore(game: inout AdventureGame, progress: inout [GameDataRow], gameDefinition: GameDefinition) {
-        
         progress.removeAll()
+        
+        let loadFileFrom = saveFileUrl(gameDefinition: gameDefinition)
+        guard let gameData = try? Data(contentsOf: loadFileFrom) else { return }
+        guard let decodedData = try? JSONDecoder().decode(GameSaveData.self, from: gameData) else { return }
+
+        // We have reloaded the data - start filling out the game.
+        for (index, value) in decodedData.counters.enumerated() {
+            game.counters.setCounter(atIndex: index, toValue: value)
+        }
+        
+        game.savedRooms.removeAll()
+        for savedRoom in decodedData.roomSaved {
+            game.savedRooms.append(savedRoom)
+        }
+
+        for (index, value) in decodedData.flags.enumerated() {
+            game.flags[index] = value
+        }
+
+        game.flags.dark_flag = decodedData.darkFlag
+        game.location = decodedData.myLocation
+        game.counter = decodedData.currentCounter
+        game.savedRoom = decodedData.savedRoom
+        game.gameHeader.LightTime = decodedData.lightTime
+        game.lampLeft = decodedData.lampLeft
+
+        for (index, location) in decodedData.itemLocation.enumerated() {
+            game.items[index].Location = location
+        }
+
+        for progressItem in decodedData.gameProgress {
+            if progressItem.starts(with: "<<<") {
+                progress.append(GameDataRow(message: String(progressItem.dropFirst(3)), type: .userInput))
+            } else {
+                progress.append(GameDataRow(message: progressItem, type: .consoleOutput))
+            }
+        }
     }
     
     /// Generate the file name to save the data to or to reload the data from.
