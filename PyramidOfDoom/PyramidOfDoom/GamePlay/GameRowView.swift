@@ -23,16 +23,21 @@ struct GameRowView: View {
             HStack {
                 Text(gameDataRow.text)
                     .font(.system(size: 16))
-                    .padding(5)
+                    .padding(.vertical, 2)
+                    .padding(.horizontal, 12)
+                    .background(content: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.gray.opacity(0.3))
+                    })
                 Spacer()
             }
         } else {
             HStack {
                 Spacer()
                 Text(gameDataRow.text)
-                    .foregroundColor(.black)
                     .font(.system(size: 16))
-                    .padding(10)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 12)
                     .background(content: {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.accentColor.opacity(0.6))

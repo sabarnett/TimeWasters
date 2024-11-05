@@ -26,9 +26,6 @@ public struct AdventureGameView: View {
     
     public var body: some View {
         VStack {
-            topBarAndButtons
-                .padding(.horizontal, 8)
-            
             NavigationSplitView() {
                 List {
                     carriedItemsView
@@ -40,7 +37,12 @@ public struct AdventureGameView: View {
                         .listSectionSeparator(.hidden)
                 }
             } detail: {
-                gamePlayView
+                VStack {
+                    topBarAndButtons
+                        .padding(.horizontal, 8)
+                    
+                    gamePlayView
+                }
             }
         }
         .background(colorScheme == .dark ? Color.black : Color.white)
