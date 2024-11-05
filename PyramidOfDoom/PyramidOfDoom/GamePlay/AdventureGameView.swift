@@ -120,6 +120,7 @@ public struct AdventureGameView: View {
             HStack {
                 Text("Inventory").font(.title)
                 Spacer()
+                Text("\(gameModel.carriedItemsCount) of \(gameModel.carriedItemsLimit)")
             }
             .listSectionSeparator(.hidden)
             .frame(maxWidth: .infinity)

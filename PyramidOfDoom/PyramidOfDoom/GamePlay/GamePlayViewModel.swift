@@ -39,6 +39,12 @@ class GamePlayViewModel {
     var carriedItems: [String] {
         game.CarriedItems
     }
+    var carriedItemsCount: Int {
+        game.CarriedItems.count
+    }
+    var carriedItemsLimit: Int {
+        game.gameHeader.MaximumCarryItems
+    }
     var treasureItems: [String] {
         game.Treasures
     }
