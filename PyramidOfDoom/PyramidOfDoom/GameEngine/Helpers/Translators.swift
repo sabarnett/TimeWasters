@@ -78,10 +78,20 @@ public class Translators {
         switch verb.lowercased() {
         case "i":
             return "inventory"
-
         case "l":
             return "look"
-
+        case "e":
+            return "east"
+        case "w":
+            return "west"
+        case "n":
+            return "north"
+        case "s":
+            return "south"
+        case "u":
+            return "up"
+        case "d":
+            return "down"
         default:
             return verb
         }
