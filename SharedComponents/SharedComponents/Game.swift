@@ -108,12 +108,27 @@ public class Games: ObservableObject {
              title: "Pyramid of Doom",
              tagLine: "Can you survive the pyramid of doom?",
              description: textBlock(
-                "This is a text adventure where you will explore the Pyramid Of Doom, looking for teasures to store in the treasure room all while trying to avoid the traps that are there to stop you.",
+                "This is an Adventure that will transport you to a dangerous land of crumbling ruins and trackless desert wastes into the PYRAMID OF DOOM! Jewels, gold -- it's all here for the plundering -- IF you can find the way.",
+                
+                "(Difficulty Level: Moderate)",
+                
                 "Your mission is simple, find al the treasures before the pyramid kills you.",
+                
                 "You are going to navigate from location to location using text commands like 'north', 'south', 'east', 'west', 'take item', 'drop item', 'read', 'inventory' and 'help'. There are many more commands, just try them out!"
                 ),
              gamePlay: textBlock(
-                "You can see where you are at any time by typing 'look'. That will show you your current location, what's at that location and possible directions you can go in. You can also take items by typing 'take item'. You can drop items by typing 'drop item'. You can read items by typing 'read item'. You can see your inventory by typing 'inventory'. You can also ask for help by typing 'help'."
+                
+                "Draw a map as you go, there are a lot more places than you think and without a map you will end up going round in circles or missing areas which you haven't tried. It doesn't need to be perfect as long as you have some record of where you have been and what you've found (as well as where you found it). Examine things you find and try to remember that most problems have solutions that require no more than some careful thought and a little common sense. If you get stuck try typing HELP -- you may or may not get assistance but you won't know until you ask. And be careful about assuming things, it can be fatal.",
+
+                "To speed things up you may use the following abbreviations N, S, E, W, U, D, for Go North, South, East, West, Up or Down. I is short for Inventory and will list what you're carrying.",
+
+                "Some (but not all) of the words available that you may find useful are: --",
+
+                "Get, Take, Drop, Go, Climb, Jump, Enter, Examine, Go, Leave, Move, Quit, Say, Wear, Read, Save, Light, Pull, Push and Look ... There are others!!!",
+
+                "Instructions are entered by you in the form of two word commands with the first word being a verb. If the computer doesn't understand, it will tell you so and you must try rewording what you wish to do (e.g. instead of GO FLYING try FLY). You will find that objects which can be picked up usually require only the last part of their name as in the Blue Ox where typing GET OX is all that is needed.",
+
+                "Good luck, happy adventuring and try not to die too often."
              ),
              credits: "Steve Barnett",
              link: "http://www.sabarnett.co.uk")
