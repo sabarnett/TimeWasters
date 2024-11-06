@@ -19,35 +19,52 @@ public struct AdventureGameView: View {
     @State public var gameData: Game
     @State var gameModel: GamePlayViewModel
     
+    @FocusState private var inputFocus: Bool
+    
     public init(gameData: SharedComponents.Game, game: String) {
         self.gameData = gameData
         gameModel = GamePlayViewModel(game: game)
     }
     
     public var body: some View {
-        VStack {
-            NavigationSplitView() {
-                List {
-                    carriedItemsView
-                    Spacer().frame(height: 32)
-                        .listRowSeparator(.hidden)
-                        .listSectionSeparator(.hidden)
-                    treasureItemsView
-                        .listRowSeparator(.hidden)
-                        .listSectionSeparator(.hidden)
-                }
-            } detail: {
-                VStack {
-                    topBarAndButtons
-                        .padding(.horizontal, 8)
-                    
-                    gamePlayView
+        ZStack {
+            VStack {
+                NavigationSplitView() {
+                    List {
+                        carriedItemsView
+                        Spacer().frame(height: 32)
+                            .listRowSeparator(.hidden)
+                            .listSectionSeparator(.hidden)
+                        treasureItemsView
+                            .listRowSeparator(.hidden)
+                            .listSectionSeparator(.hidden)
+                    }
+                } detail: {
+                    VStack {
+                        topBarAndButtons
+                            .padding(.horizontal, 8)
+                        
+                        gamePlayView
+                    }
                 }
             }
-        }
-        .background(colorScheme == .dark ? Color.black : Color.white)
-        .sheet(isPresented: $gameModel.showGamePlay) {
-            GamePlayView(game: gameData)
+            .background(colorScheme == .dark ? Color.black : Color.white)
+            .sheet(isPresented: $gameModel.showGamePlay) {
+                GamePlayView(game: gameData)
+            }
+            .onAppear {
+                inputFocus = true
+            }
+            if gameModel.gameOver {
+                GameOverView() {
+                    withAnimation {
+                        gameModel.restartGame()
+                        inputFocus = true
+                    }
+                }
+
+            }
+
         }
     }
     
@@ -62,7 +79,10 @@ public struct AdventureGameView: View {
             
             Spacer()
             
-            Button(action: { gameModel.restartGame() }) {
+            Button(action: {
+                gameModel.restartGame()
+                inputFocus = true
+            }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .padding(5)
             }
@@ -107,6 +127,8 @@ public struct AdventureGameView: View {
             .onSubmit {
                 gameModel.consoleEnter()
             }
+            .disabled(gameModel.gameOver)
+            .focused($inputFocus)
         }
     }
     

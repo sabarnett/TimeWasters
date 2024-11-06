@@ -156,6 +156,7 @@ extension ActionInstruction {
             game.flags.dark_flag = true
             game.location = game.rooms.count - 1
             game.needToLook = true
+            game.finish(3)
 
         case 62:        // put = Param = item room
             let itemIndex = args.removeFirst()
@@ -189,8 +190,8 @@ extension ActionInstruction {
 
 //        case clear = 70       // Do nothing
 
-        case 71:        // save_game =
-            game.promptAndSave()
+//        case 71:        // save_game =
+//            game.promptAndSave()
 
         case 72:        // swap = Param = item and item
             let item1Index = args.removeFirst()

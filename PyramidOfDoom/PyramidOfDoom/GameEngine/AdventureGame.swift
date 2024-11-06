@@ -23,7 +23,11 @@ public class AdventureGame {
         let items = items.filter { $0.Location == ROOM_CARRIED }.map {$0.ItemDescription}
         return items.count > 0 ? items : ["Nothing is being carried"]
     }
-    
+    public var CarriedItemsCount: Int {
+        let items = items.filter { $0.Location == ROOM_CARRIED }.map {$0.ItemDescription}
+        return items.count
+    }
+
     /// Returns a lisat of the treasures that have been found and left in the treasure room
     public var Treasures: [String] {
         let treasures = items.filter {
@@ -121,18 +125,17 @@ extension AdventureGame {
     /// Set the game initial parameters and display the opening credits. If we have a
     /// saved game, then we reload it now.
     public func initiliseGame() {
+        finished = false
         location = gameHeader.PlayerRoom
         lampLeft = gameHeader.LightTime
 
         let gameId = "AdventureKit, a Scott Adams game toolkit in Swift"
-        let copyright = "(c) 2018 Steven Barnett"
+        let copyright = "(c) Scott Adams & 2024 Steven Barnett"
 
         display(message: "\(gameId)\n\(copyright)")
         
         // Set the word length for lookup list searches
         ListManager.wordLength = gameHeader.WordLength
-
-        // TODO: Reload previous game
     }
 
     /// Displays the prompt to the user to enter a command. Before we do that
@@ -162,7 +165,9 @@ extension AdventureGame {
         display(message: "Obvious exits are \(xits)")
 
         let itms = Translators.itemsInALocation(items: items, location: location)
-        display(message: "I can also see: \(itms)")
+        if !items.isEmpty {
+            display(message: "I can also see: \(itms)")
+        }
     }
 
     /// Takes the command the user hs entered and executes it.
@@ -170,6 +175,11 @@ extension AdventureGame {
     /// - Parameter command: The command entered by the user. Should be
     /// one or two words separated by a space.
     public func processTurn(command: String) {
+        
+        if finished {
+            display(message: "The game is over - restart it to play again.")
+            return
+        }
 
         let words = command.split(separator: " ")
         if words.count == 0 {
@@ -259,10 +269,6 @@ extension AdventureGame {
         return items.filter() { $0.Location == ROOM_CARRIED }.count
     }
 
-    public func restore(noun: String) {
-        // TODO
-    }
-
     public func processLighting() {
 
         // No lamp left!
@@ -342,10 +348,6 @@ extension AdventureGame {
         return returnCode
     }
 
-    public func promptAndSave() {
-        // TODO: Implement PromptAndSave
-    }
-
     /// Displays a list of the items the player is carrying
     public func inventory() {
         let carryMessage: String = "I am carrying:"
@@ -387,6 +389,7 @@ extension AdventureGame {
     }
 
     public func finish(_ retcode: Int) {
+        finished = true
         display(message: "Game Over")
     }
 }
@@ -409,6 +412,7 @@ extension AdventureGame {
             actuallyLook()
         } else if isDark() {
             display(message: "I fell down and broke my neck.")
+            finish(2)
         } else {
             display(message: "I can't go in that direction.")
         }

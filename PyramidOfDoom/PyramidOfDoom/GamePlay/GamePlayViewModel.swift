@@ -19,6 +19,7 @@ class GamePlayViewModel {
     var gameProgress = [GameDataRow]()
     var commandLine: String = ""
     var showGamePlay: Bool = false
+    var gameOver: Bool = false
     
     init(game gameName: String) {
         let gamesList = GameDefinitions()
@@ -40,7 +41,7 @@ class GamePlayViewModel {
         game.CarriedItems
     }
     var carriedItemsCount: Int {
-        game.CarriedItems.count
+        game.CarriedItemsCount
     }
     var carriedItemsLimit: Int {
         game.gameHeader.MaximumCarryItems
@@ -66,6 +67,7 @@ class GamePlayViewModel {
         game.DisplayPrompt = ShowPrompt
         game.initiliseGame()
         game.promptForTurn()
+        gameOver = false
     }
     
     /// Save the current state of the game so it can be restored later
@@ -85,6 +87,10 @@ class GamePlayViewModel {
     /// - Parameter message: The game generated message to display.
     private func ShowGameText(message: String) {
         gameProgress.append(GameDataRow(message: message, type: .consoleOutput))
+        
+        if game.finished {
+            gameOver = true
+        }
     }
 
     /// Sets the prompt text
