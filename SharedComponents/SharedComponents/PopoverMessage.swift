@@ -30,7 +30,8 @@ public class PopupNotificationCentre {
     ///   - popupType: The type of the popup which defines the icon to show
     ///   - title: The text of the message
     ///   - description: The accessibility description of the icon
-    public func showPopup(_ popupType: PopupNotifications, title: String, description: String) {
+    public func showPopup(_ popupType: PopupNotifications, title: String, description: String,
+                          size: BezelSize = .normal) {
         
         var imageName: String = ""
         
@@ -44,7 +45,7 @@ public class PopupNotificationCentre {
         }
         
         let image = imageFromSFSymbol(systemName: imageName, description: description)!
-        BezelNotification.show(messageText: title, icon: image)
+        BezelNotification.show(messageText: title, icon: image, size: size)
     }
     
     public func showPopup(systemImage: String, title: String, description: String) {

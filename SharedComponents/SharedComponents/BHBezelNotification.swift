@@ -402,8 +402,9 @@ private extension String {
 }
 
 /// The semantic size of a bezel notification
-enum BezelSize {
+public enum BezelSize {
     case normal
+    case wide
 }
 
 extension BezelSize {
@@ -412,12 +413,16 @@ extension BezelSize {
         switch self {
         case .normal:
             return 200
+        case .wide:
+            return 350
         }
     }
     
     private var height: CGFloat {
         switch self {
         case .normal:
+            return 200
+        case .wide:
             return 200
         }
     }

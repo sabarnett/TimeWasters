@@ -41,9 +41,6 @@ struct GameBoardView: View {
                     }
                 }
             }
-            .popover(item: $viewModel.errorMessage) { message in
-                MessagePopoverView(message: message)
-            }
             if wordcraftShowSelectedLetters {
                 HStack {
                     ForEach(viewModel.selectedLetters, id: \.self) { tile in

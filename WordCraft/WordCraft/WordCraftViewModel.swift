@@ -7,12 +7,7 @@
 
 import SwiftUI
 import AVKit
-
-struct WordValidationError: Identifiable, Equatable {
-    var id: String { word }
-    var word: String
-    var errorMessage: String
-}
+import SharedComponents
 
 @Observable
 class WordCraftViewModel {
@@ -25,13 +20,13 @@ class WordCraftViewModel {
     }
 
     var columns = [[Tile]]()
+    var notify = PopupNotificationCentre.shared
 
     private var selected = [Tile]()
     var usedWords = Set<String>()
     var score = 0
     var selectedLetters: [Tile] = []
     var speakerIcon: String = "speaker.fill"
-    var errorMessage: WordValidationError?
     var submittedWord: String?
     var showGamePlay: Bool = false
 
@@ -163,16 +158,31 @@ class WordCraftViewModel {
         submittedWord = nil
 
         guard usedWords.contains(word) == false else {
-            errorMessage = WordValidationError(word: word, errorMessage: "Word already used")
+            notify.showPopup(
+                .failure,
+                title: "Word already used",
+                description: "Word already used",
+                size: .wide
+            )
             submittedWord = word
             return
         }
         guard dictionary.contains(word.lowercased()) else {
-            errorMessage = WordValidationError(word: word, errorMessage: "Word not in dictionary")
+            notify.showPopup(
+                .failure,
+                title: "Not in dictionary",
+                description: "Word not in dictionary",
+                size: .wide
+            )
             return
         }
         guard currentRule.predicate(word) else {
-            errorMessage = WordValidationError(word: word, errorMessage: "Word does not match the rule")
+            notify.showPopup(
+                .failure,
+                title: "Does not match the rule",
+                description: "Word does not match the rule",
+                size: .wide
+            )
             return
         }
         
