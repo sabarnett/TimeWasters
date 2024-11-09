@@ -14,7 +14,7 @@ import SharedComponents
 import MineSweeper
 import WordCraft
 import Snake
-import PyramidOfDoom
+import AdventureGame
 
 @main
 struct GamesControllerApp: App {

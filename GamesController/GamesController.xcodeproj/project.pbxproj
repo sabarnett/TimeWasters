@@ -34,6 +34,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E8595CBA2CDFB0C800FDCC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8DCA4FC2CB5709F00DC873E;
+			remoteInfo = SharedComponents;
+		};
+		E8595CBC2CDFB0C800FDCC26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8DCA5042CB5709F00DC873E;
+			remoteInfo = SharedComponentsTests;
+		};
 		E872D6C32C9B185D0011FE38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */;
@@ -54,20 +68,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = E89C521A2CBAB24C00C3CFB7;
 			remoteInfo = SnakeTests;
-		};
-		E8E5E6AF2CB57E3100ACFB9C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E8DCA4FC2CB5709F00DC873E;
-			remoteInfo = SharedComponents;
-		};
-		E8E5E6B12CB57E3100ACFB9C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E8DCA5042CB5709F00DC873E;
-			remoteInfo = SharedComponentsTests;
 		};
 		E8EA115D2C8F3C760078A9A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -176,6 +176,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E8595CB42CDFB0C800FDCC26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8595CBB2CDFB0C800FDCC26 /* SharedComponents.framework */,
+				E8595CBD2CDFB0C800FDCC26 /* SharedComponentsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E872D6BF2C9B185D0011FE38 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,21 +202,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8E5E6AA2CB57E3100ACFB9C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E8E5E6B02CB57E3100ACFB9C /* SharedComponents.framework */,
-				E8E5E6B22CB57E3100ACFB9C /* SharedComponentsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		E8EA11072C8F3BA20078A9A6 = {
 			isa = PBXGroup;
 			children = (
-				E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */,
 				E8EA11122C8F3BA20078A9A6 /* GamesController */,
 				E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */,
+				E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */,
 				E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */,
 				E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */,
 				E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */,
@@ -331,7 +331,7 @@
 					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
 				},
 				{
-					ProductGroup = E8E5E6AA2CB57E3100ACFB9C /* Products */;
+					ProductGroup = E8595CB42CDFB0C800FDCC26 /* Products */;
 					ProjectRef = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
 				},
 				{
@@ -351,6 +351,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E8595CBB2CDFB0C800FDCC26 /* SharedComponents.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SharedComponents.framework;
+			remoteRef = E8595CBA2CDFB0C800FDCC26 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8595CBD2CDFB0C800FDCC26 /* SharedComponentsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SharedComponentsTests.xctest;
+			remoteRef = E8595CBC2CDFB0C800FDCC26 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E872D6C42C9B185D0011FE38 /* WordCraft.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -370,20 +384,6 @@
 			fileType = wrapper.cfbundle;
 			path = SnakeTests.xctest;
 			remoteRef = E8C4C9D02CBAB91D003D363A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E8E5E6B02CB57E3100ACFB9C /* SharedComponents.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = SharedComponents.framework;
-			remoteRef = E8E5E6AF2CB57E3100ACFB9C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		E8E5E6B22CB57E3100ACFB9C /* SharedComponentsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = SharedComponentsTests.xctest;
-			remoteRef = E8E5E6B12CB57E3100ACFB9C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8EA115E2C8F3C760078A9A6 /* MineSweeper.framework */ = {

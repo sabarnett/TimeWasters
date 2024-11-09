@@ -10,6 +10,7 @@
 //
 
 import Foundation
+import SharedComponents
 
 @Observable
 class GamePlayViewModel {
@@ -20,6 +21,8 @@ class GamePlayViewModel {
     var commandLine: String = ""
     var showGamePlay: Bool = false
     var gameOver: Bool = false
+    
+    var notify = PopupNotificationCentre.shared
     
     init(game gameName: String) {
         let gamesList = GameDefinitions()
@@ -68,18 +71,24 @@ class GamePlayViewModel {
         game.initiliseGame()
         game.promptForTurn()
         gameOver = false
+        
+        notify.showPopup(.success, title: "Game Restarted", description: "Game has been restarted from scratch")
     }
     
     /// Save the current state of the game so it can be restored later
     func saveGame() {
         let gameSaver = GameSave()
         gameSaver.save(game: game, progress: gameProgress, gameDefinition: gameDefinition)
+        
+        notify.showPopup(.success, title: "Game Saved", description: "Game saved to documents folder.")
     }
     
     /// Clear the current state of the game and reload the last saved game details.
     func restoreGame() {
         let gameLoader = GameSave()
         gameLoader.restore(game: &game, progress: &gameProgress, gameDefinition: gameDefinition)
+        
+        notify.showPopup(.success, title: "Game Restored", description: "Game loaded from documents folder.")
     }
     
     /// Displays the text from the game.
