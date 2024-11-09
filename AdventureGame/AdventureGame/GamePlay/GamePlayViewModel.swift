@@ -21,6 +21,8 @@ class GamePlayViewModel {
     var commandLine: String = ""
     var showGamePlay: Bool = false
     var gameOver: Bool = false
+    var showResetConfirmation: Bool = false
+    var showReloadConfirmation: Bool = false
     
     var notify = PopupNotificationCentre.shared
     

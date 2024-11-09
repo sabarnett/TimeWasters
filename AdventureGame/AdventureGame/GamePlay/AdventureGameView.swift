@@ -55,6 +55,33 @@ public struct AdventureGameView: View {
             .onAppear {
                 inputFocus = true
             }
+            .confirmationDialog(
+                String("Reset the game?"),
+                isPresented: $gameModel.showResetConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Yes") {
+                    gameModel.restartGame()
+                    inputFocus = true
+                }
+                Button("No", role: .cancel) { }
+            } message: {
+                Text("This action cannot be undone. Would you like to proceed?")
+            }
+            .confirmationDialog(
+                String("Reload saved game?"),
+                isPresented: $gameModel.showReloadConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Yes") {
+                    gameModel.restoreGame()
+                    inputFocus = true
+                }
+                Button("No", role: .cancel) { }
+            } message: {
+                Text("You will lose any current progress is you do this.")
+            }
+            
             if gameModel.gameOver {
                 GameOverView() {
                     withAnimation {
@@ -62,9 +89,10 @@ public struct AdventureGameView: View {
                         inputFocus = true
                     }
                 }
-
+                
             }
-
+            
+            
         }
     }
     
@@ -80,8 +108,7 @@ public struct AdventureGameView: View {
             Spacer()
             
             Button(action: {
-                gameModel.restartGame()
-                inputFocus = true
+                gameModel.showResetConfirmation = true
             }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .padding(5)
@@ -96,7 +123,9 @@ public struct AdventureGameView: View {
             .buttonStyle(.plain)
             .help("Save the current game state.")
             
-            Button(action: { gameModel.restoreGame() }) {
+            Button(action: {
+                gameModel.showReloadConfirmation = true
+            }) {
                 Image(systemName: "dock.arrow.down.rectangle")
                     .padding(5)
             }
@@ -107,7 +136,7 @@ public struct AdventureGameView: View {
         .font(.largeTitle)
         .clipShape(.rect(cornerRadius: 10))
     }
-
+    
     private var gamePlayView: some View {
         VStack(spacing: 0) {
             ScrollView {
@@ -118,7 +147,7 @@ public struct AdventureGameView: View {
             .defaultScrollAnchor(.bottom)
             .padding()
             .background(colorScheme == .dark ? Color.black : Color.white)
-
+            
             TextField("What do you want to do?",
                       text: $gameModel.commandLine)
             .font(.title)
