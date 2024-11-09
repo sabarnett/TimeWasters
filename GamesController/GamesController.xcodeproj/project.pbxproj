@@ -23,14 +23,14 @@
 		E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52452CBAB43700C3CFB7 /* Snake.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; };
 		E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E8DE7EAD2CD3C2CB00847B82 /* PyramidOfDoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */; };
-		E8DE7EAE2CD3C2CB00847B82 /* PyramidOfDoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */; };
 		E8EA11162C8F3BA20078A9A6 /* GameIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11152C8F3BA20078A9A6 /* GameIndexView.swift */; };
 		E8EA11182C8F3BA30078A9A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EA11172C8F3BA30078A9A6 /* Assets.xcassets */; };
 		E8EA111B2C8F3BA30078A9A6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EA111A2C8F3BA30078A9A6 /* Preview Assets.xcassets */; };
 		E8EA115F2C8F3C950078A9A6 /* MineSweeper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EA115E2C8F3C760078A9A6 /* MineSweeper.framework */; };
 		E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EA115E2C8F3C760078A9A6 /* MineSweeper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8ED460D2CDFA9DB00A90EE5 /* AdventureGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */; };
+		E8ED460E2CDFA9DB00A90EE5 /* AdventureGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,12 +76,12 @@
 			remoteGlobalIDString = E8EA114F2C8F3C760078A9A6;
 			remoteInfo = MineSweeper;
 		};
-		E8FC3FC22CD66C1300991B12 /* PBXContainerItemProxy */ = {
+		E8ED46052CDFA9C100A90EE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */;
+			containerPortal = E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = E8DE7E3E2CD3BDD600847B82;
-			remoteInfo = PyramidOfDoom;
+			remoteInfo = AdventureGame;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -92,10 +92,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E8DE7EAE2CD3C2CB00847B82 /* PyramidOfDoom.framework in Embed Frameworks */,
 				E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */,
 				E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */,
 				E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */,
+				E8ED460E2CDFA9DB00A90EE5 /* AdventureGame.framework in Embed Frameworks */,
 				E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -119,7 +119,6 @@
 		E89C52452CBAB43700C3CFB7 /* Snake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Snake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedComponents.xcodeproj; path = ../SharedComponents/SharedComponents.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DCA5282CB572A700DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PyramidOfDoom.xcodeproj; path = ../PyramidOfDoom/PyramidOfDoom.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PyramidOfDoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11102C8F3BA20078A9A6 /* A Time Wasters Compendium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Time Wasters Compendium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesControllerApp.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		E8EA111A2C8F3BA30078A9A6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E8EA111C2C8F3BA30078A9A6 /* GamesController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GamesController.entitlements; sourceTree = "<group>"; };
 		E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MineSweeper.xcodeproj; path = ../MineSweeper/MineSweeper.xcodeproj; sourceTree = "<group>"; };
+		E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AdventureGame.xcodeproj; path = ../AdventureGame/AdventureGame.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,10 +135,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8DE7EAD2CD3C2CB00847B82 /* PyramidOfDoom.framework in Frameworks */,
 				E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */,
 				E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */,
 				E8EA115F2C8F3C950078A9A6 /* MineSweeper.framework in Frameworks */,
+				E8ED460D2CDFA9DB00A90EE5 /* AdventureGame.framework in Frameworks */,
 				E872D6CF2C9B19B10011FE38 /* WordCraft.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,12 +205,12 @@
 		E8EA11072C8F3BA20078A9A6 = {
 			isa = PBXGroup;
 			children = (
+				E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */,
 				E8EA11122C8F3BA20078A9A6 /* GamesController */,
 				E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */,
 				E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */,
 				E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */,
 				E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */,
-				E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */,
 				E8EA11112C8F3BA20078A9A6 /* Products */,
 				E8EA11432C8F3C360078A9A6 /* Frameworks */,
 			);
@@ -266,10 +266,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8FC3FBE2CD66C1300991B12 /* Products */ = {
+		E8ED46022CDFA9C100A90EE5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8FC3FC32CD66C1300991B12 /* PyramidOfDoom.framework */,
+				E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -323,12 +323,12 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E8EA115A2C8F3C760078A9A6 /* Products */;
-					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
+					ProductGroup = E8ED46022CDFA9C100A90EE5 /* Products */;
+					ProjectRef = E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */;
 				},
 				{
-					ProductGroup = E8FC3FBE2CD66C1300991B12 /* Products */;
-					ProjectRef = E8DE7E492CD3BDD600847B82 /* PyramidOfDoom.xcodeproj */;
+					ProductGroup = E8EA115A2C8F3C760078A9A6 /* Products */;
+					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
 				},
 				{
 					ProductGroup = E8E5E6AA2CB57E3100ACFB9C /* Products */;
@@ -393,11 +393,11 @@
 			remoteRef = E8EA115D2C8F3C760078A9A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E8FC3FC32CD66C1300991B12 /* PyramidOfDoom.framework */ = {
+		E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = PyramidOfDoom.framework;
-			remoteRef = E8FC3FC22CD66C1300991B12 /* PBXContainerItemProxy */;
+			path = AdventureGame.framework;
+			remoteRef = E8ED46052CDFA9C100A90EE5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

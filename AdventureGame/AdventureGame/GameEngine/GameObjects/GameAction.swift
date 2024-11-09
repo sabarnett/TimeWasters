@@ -19,9 +19,9 @@ public class GameAction {
     public var Instructions: [ActionInstruction] = Array<ActionInstruction>()
     public var Args: [Int] = Array<Int>()
     public var Comment: String = ""
-    private let game: AdventureGame
+    private let game: Adventure
 
-    init(forGame: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    init(forGame: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
         game = forGame
 
         let verbNoun = try! dataFile.readInt()

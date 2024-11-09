@@ -63,9 +63,9 @@ public class ActionInstruction {
     }
 
     public var instruction : Int = 0
-    private let game: AdventureGame
+    private let game: Adventure
 
-    init(forGame: AdventureGame, withId: Int) {
+    init(forGame: Adventure, withId: Int) {
         game = forGame
         instruction = withId
     }
@@ -73,7 +73,7 @@ public class ActionInstruction {
 
 extension ActionInstruction {
 
-    convenience init(forGame: AdventureGame, withId: String) {
+    convenience init(forGame: Adventure, withId: String) {
 
         guard let numericId = Int(withId) else {
             fatalError("Invalid instruction encountered with id \(withId)")

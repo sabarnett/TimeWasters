@@ -1,7 +1,7 @@
 //
 // -----------------------------------------
-// Original project: PyramidOfDoom
-// Original package: PyramidOfDoom
+// Original project: AdventureGame
+// Original package: AdventureGame
 // Created on: 02/11/2024 by: Steven Barnett
 // Web: http://www.sabarnett.co.uk
 // GitHub: https://www.github.com/sabarnett
@@ -32,7 +32,7 @@ struct GameSave {
     ///
     /// As a helper to the player, we save the last 25 interactions (messages and commands) just so the
     /// console is not completely blank when the restore the file.
-    func save(game: AdventureGame, progress: [GameDataRow], gameDefinition: GameDefinition) {
+    func save(game: Adventure, progress: [GameDataRow], gameDefinition: GameDefinition) {
         // Get the save file name
         let saveFileTo = saveFileUrl(gameDefinition: gameDefinition)
         
@@ -89,7 +89,7 @@ struct GameSave {
     /// We also saved the last 25 interactions with the user, so we put those back too so the user has
     /// some context of where they were when the game was saved.
     /// 
-    func restore(game: inout AdventureGame, progress: inout [GameDataRow], gameDefinition: GameDefinition) {
+    func restore(game: inout Adventure, progress: inout [GameDataRow], gameDefinition: GameDefinition) {
         progress.removeAll()
         
         let loadFileFrom = saveFileUrl(gameDefinition: gameDefinition)

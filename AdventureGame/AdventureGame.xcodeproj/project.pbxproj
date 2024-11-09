@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E86851AB2CDBB8FD0062FD9E /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86851AA2CDBB8FD0062FD9E /* GameOverView.swift */; };
-		E8DE7E592CD3BDE200847B82 /* PyramidOfDoom.h in Headers */ = {isa = PBXBuildFile; fileRef = E8DE7E572CD3BDE200847B82 /* PyramidOfDoom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8DE7E592CD3BDE200847B82 /* AdventureGame.h in Headers */ = {isa = PBXBuildFile; fileRef = E8DE7E572CD3BDE200847B82 /* AdventureGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DE7E5C2CD3BE4100847B82 /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */; };
 		E8DE7E5D2CD3BE4100847B82 /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8DE7E882CD3C25E00847B82 /* adv14a.dat in Resources */ = {isa = PBXBuildFile; fileRef = E8DE7E842CD3C25E00847B82 /* adv14a.dat */; };
@@ -66,8 +66,8 @@
 
 /* Begin PBXFileReference section */
 		E86851AA2CDBB8FD0062FD9E /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
-		E8DE7E3E2CD3BDD600847B82 /* PyramidOfDoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PyramidOfDoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8DE7E572CD3BDE200847B82 /* PyramidOfDoom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PyramidOfDoom.h; sourceTree = "<group>"; };
+		E8DE7E3E2CD3BDD600847B82 /* AdventureGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventureGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8DE7E572CD3BDE200847B82 /* AdventureGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdventureGame.h; sourceTree = "<group>"; };
 		E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DE7E5F2CD3C25E00847B82 /* GameDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDefinitions.swift; sourceTree = "<group>"; };
 		E8DE7E602CD3C25E00847B82 /* ActionCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCondition.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		E8DE7E342CD3BDD600847B82 = {
 			isa = PBXGroup;
 			children = (
-				E8DE7E582CD3BDE200847B82 /* PyramidOfDoom */,
+				E8DE7E582CD3BDE200847B82 /* AdventureGame */,
 				E8DE7E5A2CD3BE4100847B82 /* Frameworks */,
 				E8DE7E3F2CD3BDD600847B82 /* Products */,
 			);
@@ -132,21 +132,21 @@
 		E8DE7E3F2CD3BDD600847B82 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E8DE7E3E2CD3BDD600847B82 /* PyramidOfDoom.framework */,
+				E8DE7E3E2CD3BDD600847B82 /* AdventureGame.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E8DE7E582CD3BDE200847B82 /* PyramidOfDoom */ = {
+		E8DE7E582CD3BDE200847B82 /* AdventureGame */ = {
 			isa = PBXGroup;
 			children = (
-				E8DE7E572CD3BDE200847B82 /* PyramidOfDoom.h */,
+				E8DE7E572CD3BDE200847B82 /* AdventureGame.h */,
 				E8DE7E5F2CD3C25E00847B82 /* GameDefinitions.swift */,
 				E8DE7E722CD3C25E00847B82 /* GameEngine */,
 				E8DE7E762CD3C25E00847B82 /* GamePlay */,
 				E8DE7E872CD3C25E00847B82 /* Games */,
 			);
-			path = PyramidOfDoom;
+			path = AdventureGame;
 			sourceTree = "<group>";
 		};
 		E8DE7E5A2CD3BE4100847B82 /* Frameworks */ = {
@@ -238,16 +238,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8DE7E592CD3BDE200847B82 /* PyramidOfDoom.h in Headers */,
+				E8DE7E592CD3BDE200847B82 /* AdventureGame.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E8DE7E3D2CD3BDD600847B82 /* PyramidOfDoom */ = {
+		E8DE7E3D2CD3BDD600847B82 /* AdventureGame */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E8DE7E442CD3BDD600847B82 /* Build configuration list for PBXNativeTarget "PyramidOfDoom" */;
+			buildConfigurationList = E8DE7E442CD3BDD600847B82 /* Build configuration list for PBXNativeTarget "AdventureGame" */;
 			buildPhases = (
 				E8DE7E392CD3BDD600847B82 /* Headers */,
 				E8DE7E3A2CD3BDD600847B82 /* Sources */,
@@ -259,11 +259,11 @@
 			);
 			dependencies = (
 			);
-			name = PyramidOfDoom;
+			name = AdventureGame;
 			packageProductDependencies = (
 			);
-			productName = PyramidOfDoom;
-			productReference = E8DE7E3E2CD3BDD600847B82 /* PyramidOfDoom.framework */;
+			productName = AdventureGame;
+			productReference = E8DE7E3E2CD3BDD600847B82 /* AdventureGame.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -280,7 +280,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E8DE7E382CD3BDD600847B82 /* Build configuration list for PBXProject "PyramidOfDoom" */;
+			buildConfigurationList = E8DE7E382CD3BDD600847B82 /* Build configuration list for PBXProject "AdventureGame" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -294,7 +294,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E8DE7E3D2CD3BDD600847B82 /* PyramidOfDoom */,
+				E8DE7E3D2CD3BDD600847B82 /* AdventureGame */,
 			);
 		};
 /* End PBXProject section */
@@ -382,7 +382,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.sabarnett.PyramidOfDoom;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.sabarnett.AdventureGame;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -415,7 +415,7 @@
 				MARKETING_VERSION = 1.0;
 				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
 				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
-				PRODUCT_BUNDLE_IDENTIFIER = uk.co.sabarnett.PyramidOfDoom;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.sabarnett.AdventureGame;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -551,7 +551,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E8DE7E382CD3BDD600847B82 /* Build configuration list for PBXProject "PyramidOfDoom" */ = {
+		E8DE7E382CD3BDD600847B82 /* Build configuration list for PBXProject "AdventureGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8DE7E472CD3BDD600847B82 /* Debug */,
@@ -560,7 +560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E8DE7E442CD3BDD600847B82 /* Build configuration list for PBXNativeTarget "PyramidOfDoom" */ = {
+		E8DE7E442CD3BDD600847B82 /* Build configuration list for PBXNativeTarget "AdventureGame" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E8DE7E452CD3BDD600847B82 /* Debug */,

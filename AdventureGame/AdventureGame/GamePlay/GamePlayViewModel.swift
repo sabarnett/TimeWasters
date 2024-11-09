@@ -15,7 +15,7 @@ import Foundation
 class GamePlayViewModel {
     
     var gameDefinition: GameDefinition
-    var game: AdventureGame
+    var game: Adventure
     var gameProgress = [GameDataRow]()
     var commandLine: String = ""
     var showGamePlay: Bool = false
@@ -28,7 +28,7 @@ class GamePlayViewModel {
         var optionSet = GameOptions()
         optionSet.BugTolerant = true
 
-        game = AdventureGame(withOptions: optionSet)
+        game = Adventure(withOptions: optionSet)
         loadGame(fromFile: gameDefinition.file)
         
         game.DisplayText = ShowGameText
@@ -60,7 +60,7 @@ class GamePlayViewModel {
         var optionSet = GameOptions()
         optionSet.BugTolerant = true
 
-        game = AdventureGame(withOptions: optionSet)
+        game = Adventure(withOptions: optionSet)
         loadGame(fromFile: gameDefinition.file)
         
         game.DisplayText = ShowGameText

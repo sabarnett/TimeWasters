@@ -43,7 +43,7 @@ public class GameLoader {
     ///   - game: The game object to be loaded.
     ///   - fromDataFile: The text loaded from the game file
     ///   - feedback: A closure used to send feedback
-    public func load(game: AdventureGame, fromDataFile: String, feedback: @escaping (String)->()) {
+    public func load(game: Adventure, fromDataFile: String, feedback: @escaping (String)->()) {
 
         // provide an optional feedback mechanism
         feedbackMessage = feedback
@@ -87,7 +87,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadGameHeader(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadGameHeader(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
         game.gameHeader.load(fromDataFile: dataFile)
     }
 
@@ -97,7 +97,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadActions(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadActions(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
         for _ in 0...game.gameHeader.NumberOfActions {
 
             let action = GameAction(forGame: game, fromDataFile: dataFile)
@@ -112,7 +112,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadNounsAndVerbs(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadNounsAndVerbs(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
         for _ in 0...game.gameHeader.NumberOfWords {
             game.verbs.append(dataFile.nextLine())
             game.nouns.append(dataFile.nextLine())
@@ -126,7 +126,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadRooms(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadRooms(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
         for _ in 0...game.gameHeader.NumberOfRooms {
 
             let room = GameRoom(fromDataFile: dataFile)
@@ -141,7 +141,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadMessages(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadMessages(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
 
         for _ in 0...game.gameHeader.NumberOfMessages {
 
@@ -157,7 +157,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadItems(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadItems(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
 
         for _ in 0...game.gameHeader.NumberOfItems {
             let item = GameItem(fromDataFile: dataFile)
@@ -172,7 +172,7 @@ public class GameLoader {
     ///   - game: a reference to the game object
     ///   - dataFile: The internal data file containing the lines from
     /// the game data read from disk.
-    private func loadActionComments(toGame game: AdventureGame, fromDataFile dataFile: GameDataReaderProtocol) {
+    private func loadActionComments(toGame game: Adventure, fromDataFile dataFile: GameDataReaderProtocol) {
 
         for lineNo in 0...game.gameHeader.NumberOfActions {
             let line = dataFile.nextLine()

@@ -38,9 +38,9 @@ public class ActionCondition {
 
     public var condition: Condition = .param
     public var value: Int = 0
-    private let game: AdventureGame
+    private let game: Adventure
 
-    init(forGame: AdventureGame, withCondition: Condition, usingValue: Int) {
+    init(forGame: Adventure, withCondition: Condition, usingValue: Int) {
         game = forGame
         condition = withCondition
         value = usingValue
@@ -49,7 +49,7 @@ public class ActionCondition {
 
 extension ActionCondition
 {
-    convenience init(forGame: AdventureGame, withCondition: Int, usingValue: Int) {
+    convenience init(forGame: Adventure, withCondition: Int, usingValue: Int) {
         guard let cond = Condition(rawValue: withCondition) else
         {
             fatalError("Error loading file - condition encountered with invalid value: \(withCondition)")
@@ -58,7 +58,7 @@ extension ActionCondition
         self.init(forGame: forGame, withCondition: cond, usingValue: usingValue)
     }
 
-    convenience init(forGame: AdventureGame, withCondition: String, usingValue: String) {
+    convenience init(forGame: Adventure, withCondition: String, usingValue: String) {
 
         guard let cond = Int(withCondition) else {
             fatalError("Invalid condition - condition with value \(withCondition) is not supported.")

@@ -10,7 +10,7 @@
 
 import Foundation
 
-public class AdventureGame {
+public class Adventure {
     
     /// Called when the game engine wants to display a message to the user
     public var DisplayText: ((_: String) -> ())?
@@ -120,7 +120,7 @@ public class AdventureGame {
 }
 
 /// Code to actually run the game
-extension AdventureGame {
+extension Adventure {
 
     /// Set the game initial parameters and display the opening credits. If we have a
     /// saved game, then we reload it now.
@@ -394,7 +394,7 @@ extension AdventureGame {
     }
 }
 
-extension AdventureGame {
+extension Adventure {
 
     public func autoGoTo(withVerb vIndex: Int, toLocationIndex nIndex: Int) -> Bool {
 
@@ -470,7 +470,7 @@ extension AdventureGame {
     }
 }
 
-extension AdventureGame {
+extension Adventure {
 
     /// Wizard Commands are commands that effectively let you cheat. They have to
     /// be enabled in the game options to be available.
