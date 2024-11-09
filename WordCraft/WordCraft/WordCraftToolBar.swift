@@ -32,7 +32,7 @@ struct WordCraftToolBar: View {
                 .foregroundStyle(.red.gradient)
             Spacer()
             
-            Button(action: { viewModel.reset() }) {
+            Button(action: { viewModel.showResetConfirmation = true }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .padding(5)
             }

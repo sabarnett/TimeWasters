@@ -47,6 +47,16 @@ public struct WordCraftView: View {
         .onDisappear() {
             viewModel.stopSounds()
         }
+        .confirmationDialog(
+            String("Reset the game?"),
+            isPresented: $viewModel.showResetConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button("Yes") { viewModel.reset() }
+            Button("No", role: .cancel) { }
+           } message: {
+               Text("This action cannot be undone. Would you like to proceed?")
+           }
     }
 }
 

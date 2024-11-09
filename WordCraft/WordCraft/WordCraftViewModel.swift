@@ -29,6 +29,7 @@ class WordCraftViewModel {
     var speakerIcon: String = "speaker.fill"
     var submittedWord: String?
     var showGamePlay: Bool = false
+    var showResetConfirmation: Bool = false
 
     private var targetLetter = "A"
     private var targetLength = 0
