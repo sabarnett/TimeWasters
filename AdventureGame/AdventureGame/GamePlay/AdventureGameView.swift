@@ -100,7 +100,7 @@ public struct AdventureGameView: View {
         HStack {
             Button(action: { gameModel.showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
-                    .padding(5)
+                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Show game rules")
@@ -111,14 +111,14 @@ public struct AdventureGameView: View {
                 gameModel.showResetConfirmation = true
             }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
-                    .padding(5)
+                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Restart the game.")
             
             Button(action: { gameModel.saveGame() }) {
-                Image(systemName: "dock.arrow.up.rectangle")
-                    .padding(5)
+                Image(systemName: "tray.and.arrow.down.fill")
+                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Save the current game state.")
@@ -126,8 +126,8 @@ public struct AdventureGameView: View {
             Button(action: {
                 gameModel.showReloadConfirmation = true
             }) {
-                Image(systemName: "dock.arrow.down.rectangle")
-                    .padding(5)
+                Image(systemName: "tray.and.arrow.up.fill")
+                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Reload the last saved game.")
