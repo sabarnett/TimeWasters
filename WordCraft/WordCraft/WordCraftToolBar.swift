@@ -39,6 +39,20 @@ struct WordCraftToolBar: View {
             .buttonStyle(.plain)
             .help("Restart the game")
             
+            Button(action: { viewModel.saveGame() }) {
+                Image(systemName: "tray.and.arrow.down.fill")
+                    .padding(.vertical, 5)
+            }
+            .buttonStyle(.plain)
+            .help("Save the current game state.")
+            
+            Button(action: { viewModel.showReloadConfirmation = true }) {
+                Image(systemName: "tray.and.arrow.up.fill")
+                    .padding(.vertical, 5)
+            }
+            .buttonStyle(.plain)
+            .help("Reload the last saved game.")
+            
             Button(action: { viewModel.toggleSounds() }) {
                 Image(systemName: viewModel.speakerIcon)
                     .padding(5)

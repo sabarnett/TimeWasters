@@ -57,6 +57,17 @@ public struct WordCraftView: View {
            } message: {
                Text("This action cannot be undone. Would you like to proceed?")
            }
+
+           .confirmationDialog(
+               String("Reload saved game?"),
+               isPresented: $viewModel.showReloadConfirmation,
+               titleVisibility: .visible
+           ) {
+               Button("Yes") { viewModel.restoreGame() }
+               Button("No", role: .cancel) { }
+           } message: {
+               Text("You will lose any current progress if you do this.")
+           }
     }
 }
 

@@ -30,6 +30,7 @@ class WordCraftViewModel {
     var submittedWord: String?
     var showGamePlay: Bool = false
     var showResetConfirmation: Bool = false
+    var showReloadConfirmation: Bool = false
 
     private var targetLetter = "A"
     private var targetLength = 0
@@ -88,6 +89,21 @@ class WordCraftViewModel {
             // Find a random tile for this letter and select it.
             selectTileFor(key.key.character)
         }
+    }
+    
+    func restoreGame() {
+        let restoreData = GameSave()
+        restoreData.restore(game: self)
+        selectRule()
+        
+        notify.showPopup(.success, title: "Game restored", description: "The last saved game has been restored")
+    }
+    
+    func saveGame() {
+        let saveData = GameSave()
+        saveData.save(game: self)
+        
+        notify.showPopup(.saved, title: "Game saved", description: "The game has been saved")
     }
     
     // We have a key press. Find a currently unselected tile that matches the
