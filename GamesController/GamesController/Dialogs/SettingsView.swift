@@ -13,6 +13,7 @@ import SwiftUI
 import MineSweeper
 import WordCraft
 import Snake
+import NumberCombinations
 
 struct SettingsView: View {
 
@@ -36,6 +37,11 @@ struct SettingsView: View {
             SnakeSettingsView()
                 .tabItem {
                     Label("Snake", systemImage: "scribble.variable")
+                }
+            
+            CombinationsSettingsView()
+                .tabItem {
+                    Label("Combinations", systemImage: "squareshape.split.2x2.dotted")
                 }
         }
         .frame(minWidth: 460)

@@ -15,6 +15,7 @@ import MineSweeper
 import WordCraft
 import Snake
 import AdventureGame
+import NumberCombinations
 
 @main
 struct GamesControllerApp: App {
@@ -59,6 +60,13 @@ struct GamesControllerApp: App {
         /// Pyramid of Doom Adventure Game - opening window
         WindowGroup(id: "pyramidOfDoom", for: Game.self) { $game in
             AdventureGameView(gameData: gameList.game(for: "pyramidOfDoom")!, game: "adv08")
+        }
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+        
+        /// Pyramid of Doom Adventure Game - opening window
+        WindowGroup(id: "numberCombinations", for: Game.self) { $game in
+            CombinationsView(gameData: gameList.game(for: "numberCombinations")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)
