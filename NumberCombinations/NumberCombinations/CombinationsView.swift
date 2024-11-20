@@ -24,10 +24,15 @@ public struct CombinationsView: View {
         self.gameData = gameData
     }
     
+    var formulaHint: String {
+        showSolution ? model.usedFormula : " "
+    }
+    
     public var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             topBarAndButtons
                 .padding(.horizontal, 8)
+            Spacer()
 
             HStack {
                 VStack {
@@ -39,14 +44,13 @@ public struct CombinationsView: View {
                         DisplayNumber(model.values[2])
                         DisplayNumber(model.values[3])
                     }
-                    if showSolution {
-                        Text(model.usedFormula).font(.title3)
-                    }
+                    Text(formulaHint).font(.title2)
                 }
                 Text("=")
                     .font(.system(size: 48, weight: .bold))
                 DisplayNumber(model.result, asResult: true)
             }
+            .padding(.top, 20)
 
             VStack(alignment: .leading, spacing: 0){
                 HStack {
@@ -58,6 +62,7 @@ public struct CombinationsView: View {
                             .font(.title2)
                     }
                 }
+                .frame(maxWidth: 460)
                 Text(model.formulaErrors)
                     .font(.caption)
                     .foregroundStyle(.red)
@@ -68,6 +73,7 @@ public struct CombinationsView: View {
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
+        .frame(width: 600, height: 360)
     }
     
     var topBarAndButtons: some View {

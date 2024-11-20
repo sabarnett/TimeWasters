@@ -71,6 +71,8 @@ class CombinationsViewModel {
             self.usedFormula = "\(values[0].value) + \(values[1].value  + values[2].value  + values[3].value)"
             result = FormulaValue(values[0].value + values[1].value + values[2].value + values[3].value)
         }
+
+        self.formula = ""
     }
     
     // MARK :- Formula parsing to highlight selected numbers

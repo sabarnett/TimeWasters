@@ -64,7 +64,7 @@ struct GamesControllerApp: App {
         .defaultPosition(.center)
         .windowResizability(.contentSize)
         
-        /// Pyramid of Doom Adventure Game - opening window
+        /// Number Combinations Game - opening window
         WindowGroup(id: "numberCombinations", for: Game.self) { $game in
             CombinationsView(gameData: gameList.game(for: "numberCombinations")!)
         }
