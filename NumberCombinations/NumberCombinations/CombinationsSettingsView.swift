@@ -14,7 +14,6 @@ import SwiftUI
 public struct CombinationsSettingsView: View {
     
     @AppStorage(Constants.ncPlaySounds) private var playSounds = true
-    @AppStorage(Constants.ncDisplaySolution) private var displaySolution: Bool = false
     @AppStorage(Constants.ncDisplayInterimResult) private var displayInterimResult: Bool = false
 
     public init() { }
@@ -22,7 +21,6 @@ public struct CombinationsSettingsView: View {
     public var body: some View {
         Form {
             Toggle("Play sounds", isOn: $playSounds)
-            Toggle("Show solution", isOn: $displaySolution)
             Toggle("Show interim result", isOn: $displayInterimResult)
         }
         .frame(width: 350)

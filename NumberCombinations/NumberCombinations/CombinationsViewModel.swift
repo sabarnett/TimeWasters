@@ -10,6 +10,7 @@
 //
 
 import SwiftUI
+import SharedComponents
 
 @Observable
 class CombinationsViewModel {
@@ -49,6 +50,9 @@ class CombinationsViewModel {
     
     /// Used to show the game play popover
     var showGamePlay: Bool = false
+    
+    @ObservationIgnored
+    var notify = PopupNotificationCentre.shared
     
     /// Generates a new puzzle by generating four numbers between 1 and 10 and a random
     /// formula. We then calculate the return from the formula and make this the target the
@@ -131,6 +135,14 @@ class CombinationsViewModel {
                 values[displayItem].isUsed = true
             }
         }
+    }
+    
+    func showSolution() {
+        notify.showPopup(
+            systemImage: "squareshape.split.2x2",
+            title: usedFormula,
+            description: "The formula used was \(usedFormula)"
+        )
     }
 }
 

@@ -15,17 +15,12 @@ import SharedComponents
 public struct CombinationsView: View {
     
     @AppStorage(Constants.ncDisplayInterimResult) private var displayInterimResult: Bool = false
-    @AppStorage(Constants.ncDisplaySolution) var showSolution: Bool = false
     
     @State public var gameData: Game
     @State var model = CombinationsViewModel()
     
     public init(gameData: Game) {
         self.gameData = gameData
-    }
-    
-    var formulaHint: String {
-        showSolution ? model.usedFormula : " "
     }
     
     public var body: some View {
@@ -44,7 +39,6 @@ public struct CombinationsView: View {
                         DisplayNumber(model.values[2])
                         DisplayNumber(model.values[3])
                     }
-                    Text(formulaHint).font(.title2)
                 }
                 Text("=")
                     .font(.system(size: 48, weight: .bold))
@@ -94,8 +88,8 @@ public struct CombinationsView: View {
             .buttonStyle(.plain)
             .help("Restart the game")
 
-            Button(action: { showSolution.toggle() }) {
-                Image(systemName: showSolution ?  "squareshape.dotted.split.2x2" : "squareshape.split.2x2")
+            Button(action: { model.showSolution() }) {
+                Image(systemName: "squareshape.split.2x2")
                     .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
