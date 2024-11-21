@@ -28,7 +28,49 @@ struct FormulaEvaluator {
         case rightParenthesis
     }
     
+    /// Evaluate an expression and return the result of that expression.
+    ///
+    /// - Parameter expression: The expression as a plain text string
+    /// - Returns: Te result of calculating the expression
+    ///
+    /// - Throws:
+    ///     InvalidCharacter - when an invalidf character is found
+    ///     unknownOperator - when an operator is found that is not one of our valid operators
+    ///     divideByZero - if the expression includes a divide by operation and the divisor is zero
+    ///     unexpectedToken - if the formula is malformed
+    ///     incompleteFormula - if the formula is incomplete. e.g. 3+
+    ///
     public func evaluate(expression: String) throws -> Int {
+        /*
+         How this works...
+        
+         Suppose we start with a formula consisting of "(1 + 2 * 3) / 4". The call to
+         tokenize will return an arry of the tokenized parts of the formula:
+        
+         [0] = leftParenthesis
+         [1] = number (number = 1)
+         [2] = operatorSymbol (operatorSymbol = "+")
+         [3] = number (number = 2)
+         [4] = operatorSymbol (operatorSymbol = "*")
+         [5] = number (number = 3)
+         [6] = rightParenthesis
+         [7] = operatorSymbol (operatorSymbol = "/")
+         [8] = number (number = 4)
+         
+         We then run this through the infixToPostfix conversion that constructs
+         the Postfix array, showing the order in which we want to evaluate the
+         tokens:
+         
+         [0] = number (number = 1)
+         [1] = number (number = 2)
+         [2] = number (number = 3)
+         [3] = operatorSymbol (operatorSymbol = "*")
+         [4] = operatorSymbol (operatorSymbol = "+")
+         [5] = number (number = 4)
+         [6] = operatorSymbol (operatorSymbol = "/")
+         
+         Finally, we evaluate the expression in it's postfix form. 
+        */
         let tokens = try tokenize(expression: expression)
         let postfixTokens = infixToPostfix(tokens: tokens)
         return try evaluatePostfix(postfixTokens)
