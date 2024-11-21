@@ -16,13 +16,15 @@ enum EvaluationErrors: Error {
     case unknownOperator(op: Character)
     case divideByZero
     case unexpectedToken
-    case incompleteFormula
+    case incompleteFormula2
 }
 
 struct FormulaEvaluator {
     
+    typealias resultType = Int
+    
     private enum Token: Equatable {
-        case number(Int)
+        case number(resultType)
         case operatorSymbol(Character)
         case leftParenthesis
         case rightParenthesis
@@ -40,7 +42,7 @@ struct FormulaEvaluator {
     ///     unexpectedToken - if the formula is malformed
     ///     incompleteFormula - if the formula is incomplete. e.g. 3+
     ///
-    public func evaluate(expression: String) throws -> Int {
+    public func evaluate(expression: String) throws -> resultType {
         /*
          How this works...
         
@@ -69,7 +71,7 @@ struct FormulaEvaluator {
          [5] = number (number = 4)
          [6] = operatorSymbol (operatorSymbol = "/")
          
-         Finally, we evaluate the expression in it's postfix form. 
+         Finally, we evaluate the expression in it's postfix form.
         */
         let tokens = try tokenize(expression: expression)
         let postfixTokens = infixToPostfix(tokens: tokens)
@@ -85,7 +87,7 @@ struct FormulaEvaluator {
                 currentNumber.append(char)
             } else {
                 if !currentNumber.isEmpty {
-                    tokens.append(.number(Int(currentNumber)!))
+                    tokens.append(.number(resultType(currentNumber)!))
                     currentNumber = ""
                 }
                 
@@ -106,7 +108,7 @@ struct FormulaEvaluator {
         
         // Add the last collected number if any
         if !currentNumber.isEmpty {
-            tokens.append(.number(Int(currentNumber)!))
+            tokens.append(.number(resultType(currentNumber)!))
         }
         
         return tokens
@@ -155,8 +157,8 @@ struct FormulaEvaluator {
         return outputQueue
     }
     
-    private func evaluatePostfix(_ tokens: [Token]) throws -> Int {
-        var stack = [Int]()
+    private func evaluatePostfix(_ tokens: [Token]) throws -> resultType {
+        var stack = [resultType]()
 
         for token in tokens {
             switch token {
@@ -165,7 +167,7 @@ struct FormulaEvaluator {
             case .operatorSymbol(let op):
                 guard let right = stack.popLast() else { throw EvaluationErrors.incompleteFormula }
                 guard let left = stack.popLast() else { throw EvaluationErrors.incompleteFormula }
-                let result: Int
+                let result: resultType
                 switch op {
                 case "+":
                     result = left + right
