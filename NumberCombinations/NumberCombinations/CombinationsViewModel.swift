@@ -11,6 +11,7 @@
 
 import SwiftUI
 import SharedComponents
+import AVKit
 
 @Observable
 class CombinationsViewModel {
@@ -54,8 +55,18 @@ class CombinationsViewModel {
     /// Indicates that the game has been completed successfully.
     var success: Bool = false
     
+    /// Determines which icon we need to use oon the tool bar for toggling the sounds
+    var speakerIcon: String = "speaker.fill"
+    
     @ObservationIgnored
     var notify = PopupNotificationCentre.shared
+    
+    @ObservationIgnored
+    @AppStorage(Constants.ncPlaySounds) private var playSounds = true {
+        didSet {
+            updateSounds()
+        }
+    }
     
     /// Generates a new puzzle by generating four numbers between 1 and 10 and a random
     /// formula. We then calculate the return from the formula and make this the target the
@@ -89,6 +100,8 @@ class CombinationsViewModel {
 
         formula = ""
         success = false
+        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
+        playBackgroundSound()
     }
     
     // MARK :- Formula parsing to highlight selected numbers
@@ -122,6 +135,8 @@ class CombinationsViewModel {
         
         if interimResult == result.value {
             success = true
+            stopSounds()
+            playSuccessSound()
         }
     }
     
@@ -155,6 +170,69 @@ class CombinationsViewModel {
             title: usedFormula,
             description: "The formula used was \(usedFormula)"
         )
+    }
+
+    // MARK: - Souond functions
+    
+    private var sounds: AVAudioPlayer!
+    private var tileDrop: AVAudioPlayer!
+    private var backgroundURL: URL { soundFile(named: "background") }
+    private var successURL: URL { soundFile(named: "success") }
+
+    /// Play the background music
+    func playBackgroundSound() {
+        playSound(backgroundURL, repeating: true)
+    }
+    
+    /// If the background music is playing, stop it.
+    func stopSounds() {
+        if sounds != nil {
+            sounds.stop()
+        }
+    }
+
+    /// Play the tile drop sound while the new tiles enter into the game play area. This
+    /// will play over the top of the background sound.
+    func playSuccessSound() {
+        guard playSounds else { return }
+        tileDrop = try? AVAudioPlayer(contentsOf: successURL)
+        tileDrop.play()
+    }
+    
+    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
+    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
+    /// any other sound, so this is a safe bet.
+    func toggleSounds() {
+        playSounds.toggle()
+    }
+    
+    private func updateSounds() {
+        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
+
+        if playSounds {
+            playSound(backgroundURL, repeating: true)
+        } else {
+            sounds.stop()
+        }
+    }
+    
+    /// Creates the URL of a sound file. The file must exist within the minesweeper project
+    /// bundle.
+    private func soundFile(named file: String) -> URL {
+        let bun = Bundle(for: CombinationsViewModel.self)
+        let sound = bun.path(forResource: file, ofType: "mp3")
+        return URL(fileURLWithPath: sound!)
+    }
+
+    /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
+    /// disabled, we do nothing.
+    private func playSound(_ url: URL, repeating: Bool = false) {
+        guard playSounds else { return }
+        if sounds != nil { sounds.stop() }
+        
+        sounds = try! AVAudioPlayer(contentsOf: url)
+        sounds.numberOfLoops = repeating ? -1 : 0
+        self.sounds.play()
     }
 }
 

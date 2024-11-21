@@ -73,7 +73,10 @@ public struct CombinationsView: View {
             }
         }
         .padding()
-        .onAppear { model.generatePuzzle() }
+        .onAppear {
+            model.generatePuzzle()
+            model.playBackgroundSound()
+        }
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
@@ -84,7 +87,6 @@ public struct CombinationsView: View {
         HStack {
             Button(action: { model.showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
-                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Show game rules")
@@ -93,27 +95,25 @@ public struct CombinationsView: View {
 
             Button(action: { model.generatePuzzle() }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
-                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Restart the game")
 
             Button(action: { model.showSolution() }) {
                 Image(systemName: "squareshape.split.2x2")
-                    .padding(.vertical, 5)
             }
             .buttonStyle(.plain)
             .help("Show/Hide the solution")
 
-//            Button(action: { game.toggleSounds() }) {
-//                Image(systemName: game.speakerIcon)
-//                    .padding(5)
-//            }
-//            .buttonStyle(.plain)
-//            .help("Toggle sound effects")
+            Button(action: { model.toggleSounds() }) {
+                Image(systemName: model.speakerIcon)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sound effects")
         }
         .monospacedDigit()
         .font(.largeTitle)
+        .frame(height: 30)
         .clipShape(.rect(cornerRadius: 10))
     }
 
