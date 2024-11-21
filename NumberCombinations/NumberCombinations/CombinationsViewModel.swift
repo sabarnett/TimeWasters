@@ -57,12 +57,20 @@ class CombinationsViewModel {
     /// Generates a new puzzle by generating four numbers between 1 and 10 and a random
     /// formula. We then calculate the return from the formula and make this the target the
     /// player needs to achieve. All arithmetic is integer arithmetic, so dividing 3 by 2 results in 1.
+    ///
+    /// Now, we could use random numbers, but that gives us the possibility of getting the same
+    /// number three or four times. That's not going to be a challenge. So, I use an array or ints,
+    /// shuffled into random order. This way, we get rour digits but can never have the same number
+    /// more than twice.
     func generatePuzzle() {
+        let numbers = [1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10]
+        let gameNumbers = numbers.shuffled()
+        
         values = [
-            FormulaValue(Int.random(in: 1...10)),
-            FormulaValue(Int.random(in: 1...10)),
-            FormulaValue(Int.random(in: 1...10)),
-            FormulaValue(Int.random(in: 1...10))
+            FormulaValue(gameNumbers[0]),
+            FormulaValue(gameNumbers[1]),
+            FormulaValue(gameNumbers[2]),
+            FormulaValue(gameNumbers[3])
         ]
         
         let generator = FormulaBuilder()
