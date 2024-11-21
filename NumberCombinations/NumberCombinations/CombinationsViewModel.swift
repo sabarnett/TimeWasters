@@ -51,6 +51,9 @@ class CombinationsViewModel {
     /// Used to show the game play popover
     var showGamePlay: Bool = false
     
+    /// Indicates that the game has been completed successfully.
+    var success: Bool = false
+    
     @ObservationIgnored
     var notify = PopupNotificationCentre.shared
     
@@ -74,17 +77,18 @@ class CombinationsViewModel {
         ]
         
         let generator = FormulaBuilder()
-        if let (formula, result) = generator.generateRandomFormula(values: values) {
-            self.usedFormula = formula
-            self.result = FormulaValue(result)
+        if let (formula, calculatedResult) = generator.generateRandomFormula(values: values) {
+            usedFormula = formula
+            result = FormulaValue(calculatedResult)
         } else {
             // This should never happen - famous last words. If it does
             // lets not die, lets just go with a very simple formula.
-            self.usedFormula = "\(values[0].value) + \(values[1].value  + values[2].value  + values[3].value)"
+            usedFormula = "\(values[0].value) + \(values[1].value  + values[2].value  + values[3].value)"
             result = FormulaValue(values[0].value + values[1].value + values[2].value + values[3].value)
         }
 
-        self.formula = ""
+        formula = ""
+        success = false
     }
     
     // MARK :- Formula parsing to highlight selected numbers
@@ -117,7 +121,7 @@ class CombinationsViewModel {
         }
         
         if interimResult == result.value {
-            print("Value achieved!")
+            success = true
         }
     }
     

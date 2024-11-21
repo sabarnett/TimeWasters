@@ -24,42 +24,52 @@ public struct CombinationsView: View {
     }
     
     public var body: some View {
-        VStack {
-            topBarAndButtons
-                .padding(.horizontal, 8)
-            Spacer()
-
-            HStack {
-                VStack {
-                    HStack {
-                        DisplayNumber(model.values[0])
-                        DisplayNumber(model.values[1])
-                    }
-                    HStack {
-                        DisplayNumber(model.values[2])
-                        DisplayNumber(model.values[3])
-                    }
-                }
-                Text("=")
-                    .font(.system(size: 48, weight: .bold))
-                DisplayNumber(model.result, asResult: true)
-            }
-            .padding(.top, 20)
-
-            VStack(alignment: .leading, spacing: 0){
+        ZStack {
+            VStack {
+                topBarAndButtons
+                    .padding(.horizontal, 8)
+                Spacer()
+                
                 HStack {
-                    TextField("Enter your formula", text: $model.formula)
-                        .font(.title2)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                    if displayInterimResult {
-                        Text(" = \(model.interimResult)")
+                    VStack {
+                        HStack {
+                            DisplayNumber(model.values[0])
+                            DisplayNumber(model.values[1])
+                        }
+                        HStack {
+                            DisplayNumber(model.values[2])
+                            DisplayNumber(model.values[3])
+                        }
+                    }
+                    Text("=")
+                        .font(.system(size: 48, weight: .bold))
+                    DisplayNumber(model.result, asResult: true)
+                }
+                .padding(.top, 20)
+                
+                VStack(alignment: .leading, spacing: 0){
+                    HStack {
+                        TextField("Enter your formula", text: $model.formula)
                             .font(.title2)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        if displayInterimResult {
+                            Text(" = \(model.interimResult)")
+                                .font(.title2)
+                        }
+                    }
+                    .frame(maxWidth: 460)
+                    Text(model.formulaErrors)
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                }
+            }.disabled(model.success)
+            
+            if model.success {
+                GameOverView() {
+                    withAnimation {
+                        model.generatePuzzle()
                     }
                 }
-                .frame(maxWidth: 460)
-                Text(model.formulaErrors)
-                    .font(.caption)
-                    .foregroundStyle(.red)
             }
         }
         .padding()
