@@ -133,7 +133,10 @@ class CombinationsViewModel {
             self.formulaErrors = error.localizedDescription
         }
         
-        if interimResult == result.value {
+        // Right result and all numbers used?
+        if interimResult == result.value
+            && values.allSatisfy(\.isUsed)
+            && formula.count(where: { $0 == "(" }) == formula.count(where: {$0 == ")"}) {
             success = true
             stopSounds()
             playSuccessSound()
