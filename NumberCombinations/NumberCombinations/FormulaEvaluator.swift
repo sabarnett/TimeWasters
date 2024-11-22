@@ -16,7 +16,7 @@ enum EvaluationErrors: Error {
     case unknownOperator(op: Character)
     case divideByZero
     case unexpectedToken
-    case incompleteFormula2
+    case incompleteFormula
 }
 
 struct FormulaEvaluator {
