@@ -94,39 +94,3 @@ public struct TicTacToeView: View {
 #Preview {
     TicTacToeView(gameData: Games().games.first(where: { $0.id == "ticTacToe" } )!)
 }
-
-struct ScoreView: View {
-    
-    @ObservedObject var model: TicTacToeGameModel
-    
-    var body: some View {
-        List {
-            scoreItem(title: "😀 Your Score", score: "\(model.playerWins)")
-            scoreItem(title: "🤖 My Score", score: "\(model.computerWins)")
-            scoreItem(title: "Draws", score: "\(model.draws)")
-        }
-    }
-    
-    private func scoreItem(title: String, score: String) -> some View {
-        Section(content: {
-            Text(score)
-                .font(.system(size: 18))
-                .listRowSeparator(.hidden)
-                .listSectionSeparator(.hidden)
-        }, header: {
-            Text(title)
-                .font(.title3)
-                .fontWeight(.bold)
-                .listSectionSeparator(.hidden)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 8)
-                .background {
-                    Color.accentColor.opacity(0.4)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
-                }
-        })
-        .listSectionSeparator(.hidden)
-    }
-
-}
