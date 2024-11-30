@@ -32,7 +32,8 @@ public class Games: ObservableObject {
             wordcraftGame(),
             snakeGame(),
             pyramidOfDoom(),
-            numberCombinations()
+            numberCombinations(),
+            ticTacToe()
         ]
     }
     
@@ -134,25 +135,44 @@ public class Games: ObservableObject {
              credits: "Steve Barnett",
              link: "http://www.sabarnett.co.uk")
     }
-      
-    private func numberCombinations() -> Game {
-        Game(id: "numberCombinations",
-        title: "Number Combinations",
-        tagLine: "Can you make the formula work?",
-             description: textBlock(
-                "This is a deceptively simple game where you are provided with a set of numbers and the result you are required to achieve. The hard part is that you have to work out the formula!",
-                "You must use the four digits provided, in any order, to achieve the target number. You are allowed to use any combination of + - * or / in your calculation and may use brackets as you see fit. To keep calculations simple (ok, that's a matter of opinion) division is integer division, so any remainder from a divide will be lost. 3/2 will result in 1.",
-                "There is no one right formula. Various combinations of numbers and operators will work."
-             ),
-             gamePlay: textBlock(
-                "Using all four digits, create a formula that will result in the target number. You may use addition, subtraction, multiplication and division and can use brackets as you see fit.",
-                "Division is integer division, so any remainder will be ignored. For example, dividing 3 by 2 will result in 1, not 1.5. This is intended to make the formula easier to create.",
-                "As you type the formula, any used numbers will be highlighted and a running total will be created when the formula is valid."
-                                ),
-        credits: "Steven Barnett",
-        link: "http://www.sabarnett.co.uk"
-             )
-    }
+    
+  private func numberCombinations() -> Game {
+      Game(id: "numberCombinations",
+      title: "Number Combinations",
+      tagLine: "Can you make the formula work?",
+           description: textBlock(
+              "This is a deceptively simple game where you are provided with a set of numbers and the result you are required to achieve. The hard part is that you have to work out the formula!",
+              "You must use the four digits provided, in any order, to achieve the target number. You are allowed to use any combination of + - * or / in your calculation and may use brackets as you see fit. To keep calculations simple (ok, that's a matter of opinion) division is integer division, so any remainder from a divide will be lost. 3/2 will result in 1.",
+              "There is no one right formula. Various combinations of numbers and operators will work."
+           ),
+           gamePlay: textBlock(
+              "Using all four digits, create a formula that will result in the target number. You may use addition, subtraction, multiplication and division and can use brackets as you see fit.",
+              "Division is integer division, so any remainder will be ignored. For example, dividing 3 by 2 will result in 1, not 1.5. This is intended to make the formula easier to create.",
+              "As you type the formula, any used numbers will be highlighted and a running total will be created when the formula is valid."
+                              ),
+      credits: "Steven Barnett",
+      link: "http://www.sabarnett.co.uk"
+           )
+  }
+    
+  private func ticTacToe() -> Game {
+      Game(id: "ticTacToe",
+      title: "Tic Tac Toe",
+      tagLine: "Can you beat the computer?",
+           description: textBlock(
+              "One",
+              "Two",
+              "Three"
+           ),
+           gamePlay: textBlock(
+              "GP 1",
+              "GP 2",
+              "GP 3"
+                              ),
+      credits: "Steven Barnett",
+      link: "http://www.sabarnett.co.uk"
+           )
+  }
 
 
     /// textBlock - takes a variadic parameter list of strings and returns a

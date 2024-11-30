@@ -16,6 +16,7 @@ import WordCraft
 import Snake
 import AdventureGame
 import NumberCombinations
+import TicTacToe
 
 @main
 struct GamesControllerApp: App {
@@ -71,6 +72,10 @@ struct GamesControllerApp: App {
         .defaultPosition(.center)
         .windowResizability(.contentSize)
 
+        WindowGroup(id: "ticTacToe", for: Game.self) { $game in
+            TicTacToeView(gameData: gameList.game(for: "ticTacToe")!)
+        }
+        
         Settings {
             SettingsView()
         }
