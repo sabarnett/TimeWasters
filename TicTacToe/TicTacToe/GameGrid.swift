@@ -23,7 +23,9 @@ struct GameGrid: View {
         LazyVGrid(columns: columns) {
             ForEach($model.gameBoard) { $tile in
                 TileView(tile: $tile) {
-                    handleTileSelect(tile)
+                    if model.playersGo {
+                        handleTileSelect(tile)
+                    }
                 }
             }
         }
@@ -31,11 +33,12 @@ struct GameGrid: View {
     
     func handleTileSelect(_ tile: PuzzleTile) {
         withAnimation(.bouncy) {
-            model.setPlayerState(tile)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            withAnimation(.bouncy) {
-                model.setComputerState()
+            if model.setPlayerState(tile) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    withAnimation(.bouncy) {
+                        model.setComputerState()
+                    }
+                }
             }
         }
     }

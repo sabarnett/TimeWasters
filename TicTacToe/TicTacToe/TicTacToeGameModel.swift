@@ -19,11 +19,11 @@ class TicTacToeGameModel: ObservableObject {
     @Published var computerWins = 0
     @Published var draws = 0
     @Published var messages: String = "Your Move"
-    
+    @Published var playersGo: Bool = true
+
     @Published var showGamePlay: Bool = false
     
     private var notify = PopupNotificationCentre.shared
-    private var playersGo: Bool = true
 
     init() {
         initialiseGameBoard()
@@ -43,9 +43,9 @@ class TicTacToeGameModel: ObservableObject {
     ///
     /// Assuming it hasn't, we tell the user that it's the computers turn and drop out.
     ///
-    func setPlayerState(_ tile: PuzzleTile) {
-        guard tile.state == .empty else { return }
-        guard playersGo else { return }
+    func setPlayerState(_ tile: PuzzleTile) -> Bool {
+        guard tile.state == .empty else { return false }
+        guard playersGo else { return false }
         
         playersGo.toggle()
         objectWillChange.send()
@@ -54,6 +54,7 @@ class TicTacToeGameModel: ObservableObject {
         checkForWin(.player)
         
         messages = "My turn... thinking..."
+        return true
     }
     
     /// Calculate the computers go.
@@ -86,6 +87,14 @@ class TicTacToeGameModel: ObservableObject {
         notify.showPopup(.success,
             title: "Game Reset",
             description: "The game has been reset")
+
+        if Int.random(in: 0...10) <= 3 {
+            // Computer goes first.
+            playersGo = false
+            setComputerState()
+        } else {
+            playersGo = true
+        }
     }
     
     private func checkForWin(_ winner: TileState) {
