@@ -16,11 +16,6 @@ public struct TicTacToeView: View {
     
     @State public var gameData: Game
     @StateObject var model = TicTacToeGameModel()
-    
-    let columns = [
-        GridItem(.fixed(90.00), spacing: 10),
-        GridItem(.fixed(90.00), spacing: 10),
-        GridItem(.fixed(90.00), spacing: 10)]
 
     public init(gameData: Game) {
         self.gameData = gameData
@@ -33,16 +28,8 @@ public struct TicTacToeView: View {
             Spacer()
 
             HStack {
-                LazyVGrid(columns: columns) {
-                    ForEach($model.gameBoard) { $tile in
-                        TileView(tile: $tile) {
-                            withAnimation {
-                                model.setPlayerState(tile)
-                            }
-                        }
-                    }
-                }
-                .frame(width: 340)
+                GameGrid(model: model)
+                    .frame(width: 380)
                 
                 Spacer()
                 
@@ -58,7 +45,7 @@ public struct TicTacToeView: View {
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
-        .frame(width: 560)
+        .frame(width: 580)
     }
     
     var topBarAndButtons: some View {
@@ -88,7 +75,6 @@ public struct TicTacToeView: View {
         .frame(height: 30)
         .clipShape(.rect(cornerRadius: 10))
     }
-
 }
 
 #Preview {

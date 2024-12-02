@@ -28,11 +28,9 @@ struct ScoreView: View {
     
     private func scoreItem(title: String, score: Int) -> some View {
         Section(content: {
-            Text(score.formatted(.number.precision(.integerLength(3))))
-                .fixedSize()
+            Text(score.formatted(.number))
+                .font(.system(size: 20))
                 .padding(.horizontal, 6)
-                .foregroundStyle(.red.gradient)
-                .monospacedDigit()
                 .listRowSeparator(.hidden)
                 .listSectionSeparator(.hidden)
         }, header: {
