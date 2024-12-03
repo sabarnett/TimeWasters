@@ -129,11 +129,82 @@ extension TicTacToeGameModel {
      The function will return an integer from 1 to 9 representing the computer’s move.
      */
     private func computerTry() -> Int {
-        guard let randomMove = self.gameBoard.filter({$0.state == .empty}).randomElement() else { return 0 }
-        
-        return gameBoard.firstIndex(where: {$0.id == randomMove.id })!
+        if let move = computerWinningMove() { return move }
+        if let move = playerWinningMove() { return move }
+        if let move = checkCorners() { return move }
+        if let move = checkCenter() { return move }
+        if let move = checkSides() { return move }
+        return 0
     }
 
+    /// 1. See if there’s a move the computer can make that will win the
+    /// game. If there is, take that move. Otherwise, go to step 2.
+    private func computerWinningMove() -> Int? {
+        if let move = checkCells(topRow, state: .computer) { return move }
+        if let move = checkCells(middleRow, state: .computer) { return move }
+        if let move = checkCells(bottomRow, state: .computer) { return move }
+        if let move = checkCells(columnOne, state: .computer) { return move }
+        if let move = checkCells(columnTwo, state: .computer) { return move }
+        if let move = checkCells(columnThree, state: .computer) { return move }
+        if let move = checkCells(leftDiagonal, state: .computer) { return move }
+        if let move = checkCells(rightDiagonal, state: .computer) { return move }
+
+        // No winning move
+        return nil
+    }
+    
+    /// 2. See if there’s a move the player can make that will cause the computer
+    /// to lose the game. If there is, the computer should move there to block the
+    /// player. Otherwise, go to step 3.
+    private func playerWinningMove() -> Int? {
+        if let move = checkCells(topRow, state: .player) { return move }
+        if let move = checkCells(middleRow, state: .player) { return move }
+        if let move = checkCells(bottomRow, state: .player) { return move }
+        if let move = checkCells(columnOne, state: .player) { return move }
+        if let move = checkCells(columnTwo, state: .player) { return move }
+        if let move = checkCells(columnThree, state: .player) { return move }
+        if let move = checkCells(leftDiagonal, state: .player) { return move }
+        if let move = checkCells(rightDiagonal, state: .player) { return move }
+
+        // No winning move
+        return nil
+
+    }
+    
+    /// 3. Check if any of the corners (spaces 1, 3, 7, or 9) are free. If no
+    /// corner space is free, go to step 4.
+    private func checkCorners() -> Int? {
+        if let cell = corners.filter({ $0.state == .empty }).randomElement() {
+            return gameBoard.firstIndex(where: {$0.id == cell.id })
+        }
+        return nil
+    }
+    
+    /// 4. Check if the center is free. If so, move there. If it isn’t, go to step 5.
+    private func checkCenter() -> Int? {
+        if gameBoard[4].state == .empty { return 4 }
+        return nil
+    }
+    
+    /// 5. Move on any of the sides (spaces 2, 4, 6, or 8). There are no more
+    /// steps, because the side spaces are the only spaces left if the execution
+    /// has reached this step.
+    private func checkSides() -> Int? {
+        if let cell = sides.filter({ $0.state == .empty }).randomElement() {
+            return gameBoard.firstIndex(where: {$0.id == cell.id })
+        }
+        return nil
+    }
+    
+    private func checkCells(_ cells: [PuzzleTile], state: TileState) -> Int? {
+        if cells.filter({ $0.state == state }).count == 2
+        && cells.filter({ $0.state == .empty }).count == 1 {
+            let cell = cells.filter({ $0.state == .empty }).first
+            return gameBoard.firstIndex(where: {$0.id == cell!.id })
+        }
+        
+        return nil
+    }
 }
  
 extension TicTacToeGameModel {
@@ -157,6 +228,10 @@ extension TicTacToeGameModel {
     
     var rightDiagonal: [PuzzleTile] { [ gameBoard[0], gameBoard[4], gameBoard[8] ] }
     var leftDiagonal: [PuzzleTile] { [ gameBoard[2], gameBoard[4], gameBoard[6] ] }
+    
+    // Corner Cells
+    var corners: [PuzzleTile] { [ gameBoard[0], gameBoard[2], gameBoard[6], gameBoard[8]] }
+    var sides: [PuzzleTile] { [ gameBoard[1], gameBoard[3], gameBoard[5], gameBoard[7]] }
     
     func isWinner(_ player: TileState) -> Bool {
         return topRow.allSatisfy({ $0.state == player})
