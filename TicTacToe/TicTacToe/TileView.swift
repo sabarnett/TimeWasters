@@ -55,6 +55,5 @@ struct TileView: View {
 
 #Preview {
     TileView(tile: .constant(PuzzleTile.init(state: .empty))) {
-        
     }
 }

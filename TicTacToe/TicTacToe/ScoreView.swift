@@ -21,7 +21,7 @@ struct ScoreView: View {
                       score: model.playerWins)
             scoreItem(title: "🤖 My Score",
                       score: model.computerWins)
-            scoreItem(title: "Draws",
+            scoreItem(title: "🤲 Draws",
                       score: model.draws)
         }
     }
@@ -48,7 +48,6 @@ struct ScoreView: View {
         })
         .listSectionSeparator(.hidden)
     }
-
 }
 
 #Preview {

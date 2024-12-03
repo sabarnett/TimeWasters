@@ -15,21 +15,26 @@ struct GameOverView: View {
     var state: GameState
     var restart: () -> Void
 
+    var message: String {
+        switch state {
+        case .playerWin:
+            return "You win!"
+        case .computerWin:
+            return "I win this time"
+        case .draw:
+            return "It's a draw!"
+        case .active:
+            return "Game On!"
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 10) {
-            Group {
-                if state == .playerWin {
-                    Text("You win!")
-                } else if state == .computerWin {
-                    Text("I win this time")
-                } else {
-                    Text("It's a draw!")
-                }
-            }
-            .textCase(.uppercase)
-            .font(.system(size: 60).weight(.black))
-            .fontDesign(.rounded)
-            .foregroundStyle(.white)
+            Text(message)
+                .textCase(.uppercase)
+                .font(.system(size: 60).weight(.black))
+                .fontDesign(.rounded)
+                .foregroundStyle(.white)
 
             Button(action: restart) {
                 Text("New Game")

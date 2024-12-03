@@ -66,10 +66,8 @@ class TicTacToeGameModel: ObservableObject {
             messages = "You win!!!"
             return false
         }
+        
         if checkForDraw() {
-            draws += 1
-            gameState = .draw
-            messages = "It's a draw"
             return false
         }
 
@@ -101,9 +99,6 @@ class TicTacToeGameModel: ObservableObject {
         }
         
         if checkForDraw() {
-            draws += 1
-            gameState = .draw
-            messages = "It's a draw!"
             return
         }
         
@@ -123,24 +118,23 @@ class TicTacToeGameModel: ObservableObject {
             title: "Game Reset",
             description: "The game has been reset")
 
-        if Int.random(in: 0...10) <= 3 {
-            // Computer goes first.
-            playersGo = false
-            setComputerState()
-        } else {
-            playersGo = true
-        }
-
+        decideWhoGoesFirst()
         gameState = .active
     }
     
+    /// Game was won/lost/drawn and the player clicked the button for a new game. We
+    /// need to re-initialise the board, reset te=he game state and select who starts first.
     func newGame() {
         initialiseGameBoard()
 
         gameState = .active
-
+        decideWhoGoesFirst()
+    }
+    
+    /// Determine whether the player starts or the computer does. The decision is
+    /// biased in favour of the player over the computer.
+    func decideWhoGoesFirst() {
         if Int.random(in: 0...10) <= 3 {
-            // Computer goes first.
             playersGo = false
             setComputerState()
         } else {
@@ -149,9 +143,17 @@ class TicTacToeGameModel: ObservableObject {
     }
     
     /// Check for a draw - this is where all tiles have been set but no winner has
-    /// been found.
+    /// been found. We can assume that, if the player or computer won, we won't ever
+    /// get to this code, so we can assume a full board is a drawn board.
     private func checkForDraw() -> Bool {
-        return gameBoard.filter({$0.state == .empty}).count == 0
+        if gameBoard.filter({$0.state == .empty}).count == 0 {
+            draws += 1
+            gameState = .draw
+            messages = "It's a draw"
+            
+            return true
+        }
+        return false
     }
     
     /// The game board is a 3x3 array of tiles. To keep the code uncomplocated, we
@@ -219,7 +221,6 @@ extension TicTacToeGameModel {
 
         // No winning move
         return nil
-
     }
     
     /// 3. Check if any of the corners (spaces 1, 3, 7, or 9) are free. If no
@@ -247,6 +248,15 @@ extension TicTacToeGameModel {
         return nil
     }
     
+    /// Checks whether we have a potential willing move. This is determined by checking
+    /// whether there are two tiles for the selected player with an empty tile on the same
+    /// winning line.
+    ///
+    /// - Parameters:
+    ///   - cells: The array of three tiles that represent apotential willing line.
+    ///   - state: Indicates whether we are looking for player wins or computer wins.
+    ///
+    /// - Returns: The tile to select for a winning line or nil of there is no willing move.
     private func checkCells(_ cells: [PuzzleTile], state: TileState) -> Int? {
         if cells.filter({ $0.state == state }).count == 2
         && cells.filter({ $0.state == .empty }).count == 1 {
@@ -280,10 +290,15 @@ extension TicTacToeGameModel {
     var rightDiagonal: [PuzzleTile] { [ gameBoard[0], gameBoard[4], gameBoard[8] ] }
     var leftDiagonal: [PuzzleTile] { [ gameBoard[2], gameBoard[4], gameBoard[6] ] }
     
-    // Corner Cells
+    // Corner Cells and side cells.
     var corners: [PuzzleTile] { [ gameBoard[0], gameBoard[2], gameBoard[6], gameBoard[8]] }
     var sides: [PuzzleTile] { [ gameBoard[1], gameBoard[3], gameBoard[5], gameBoard[7]] }
     
+    /// Checks whether the player or computer has won the game.
+    ///
+    /// - Parameter player: Indicates whether we are checking for player or computer wins.
+    /// 
+    /// - Returns: True if the selected player has won, else false.
     func checkForWin(_ player: TileState) -> Bool {
         return topRow.allSatisfy({ $0.state == player})
         || middleRow.allSatisfy({ $0.state == player})

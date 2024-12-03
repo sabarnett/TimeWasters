@@ -24,18 +24,13 @@ public struct TicTacToeView: View {
     public var body: some View {
         ZStack {
             VStack {
-                topBarAndButtons
-                    .padding(8)
+                topBarAndButtons.padding(8)
                 Spacer()
 
                 HStack {
-                    GameGrid(model: model)
-                        .frame(width: 380)
-                    
+                    GameGrid(model: model).frame(width: 380)
                     Spacer()
-                    
-                    ScoreView(model: model)
-                        .frame(maxWidth: 200)
+                    ScoreView(model: model).frame(maxWidth: 200)
                 }
                 
                 Text(model.messages)
@@ -57,9 +52,6 @@ public struct TicTacToeView: View {
         .frame(width: 580)
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
-        }
-        .onChange(of: model.gameState) { state in
-            
         }
     }
     

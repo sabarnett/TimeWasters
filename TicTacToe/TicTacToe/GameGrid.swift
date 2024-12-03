@@ -31,6 +31,17 @@ struct GameGrid: View {
         }
     }
     
+    /// Handle the player clicking a tile.
+    ///
+    /// - Parameter tile: The tile they clicked
+    ///
+    /// We want to set the tile to the players icon. However, we also need to
+    /// ensure that the tileis empty, or we're reassigning a tile which is not
+    /// allowed.
+    ///
+    /// Once the player tile has been set, we fire off the code to select the
+    /// computers move. We can do this regardless of whether the game
+    /// has been won or lost as the view model will deal with that situation.
     func handleTileSelect(_ tile: PuzzleTile) {
         withAnimation(.bouncy) {
             if model.setPlayerState(tile) {
