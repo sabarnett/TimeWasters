@@ -12,6 +12,13 @@
 import SwiftUI
 import SharedComponents
 
+enum GameState {
+    case active
+    case draw
+    case playerWin
+    case computerWin
+}
+
 class TicTacToeGameModel: ObservableObject {
     
     @Published var gameBoard: [PuzzleTile] = []
@@ -22,6 +29,7 @@ class TicTacToeGameModel: ObservableObject {
     @Published var playersGo: Bool = true
 
     @Published var showGamePlay: Bool = false
+    @Published var gameState: GameState = .active
     
     private var notify = PopupNotificationCentre.shared
 
@@ -44,6 +52,7 @@ class TicTacToeGameModel: ObservableObject {
     /// Assuming it hasn't, we tell the user that it's the computers turn and drop out.
     ///
     func setPlayerState(_ tile: PuzzleTile) -> Bool {
+        guard gameState == .active else { return false }
         guard tile.state == .empty else { return false }
         guard playersGo else { return false }
         
@@ -51,8 +60,19 @@ class TicTacToeGameModel: ObservableObject {
         objectWillChange.send()
 
         tile.state = .player
-        checkForWin(.player)
-        
+        if checkForWin(.player) {
+            playerWins += 1
+            gameState = .playerWin
+            messages = "You win!!!"
+            return false
+        }
+        if checkForDraw() {
+            draws += 1
+            gameState = .draw
+            messages = "It's a draw"
+            return false
+        }
+
         messages = "My turn... thinking..."
         return true
     }
@@ -68,10 +88,25 @@ class TicTacToeGameModel: ObservableObject {
     /// it's their turn and drop out.
     ///
     func setComputerState() {
+        guard gameState == .active else { return }
+
         let computersGo = computerTry()
         gameBoard[computersGo].state = .computer
         
-        checkForWin(.computer)
+        if checkForWin(.computer) {
+            computerWins += 1
+            gameState = .computerWin
+            messages = "You lost!"
+            return
+        }
+        
+        if checkForDraw() {
+            draws += 1
+            gameState = .draw
+            messages = "It's a draw!"
+            return
+        }
+        
         playersGo.toggle()
         messages = "Your turn..."
     }
@@ -95,12 +130,28 @@ class TicTacToeGameModel: ObservableObject {
         } else {
             playersGo = true
         }
+
+        gameState = .active
     }
     
-    private func checkForWin(_ winner: TileState) {
-        if isWinner(winner) {
-            print("\(winner) Won")
+    func newGame() {
+        initialiseGameBoard()
+
+        gameState = .active
+
+        if Int.random(in: 0...10) <= 3 {
+            // Computer goes first.
+            playersGo = false
+            setComputerState()
+        } else {
+            playersGo = true
         }
+    }
+    
+    /// Check for a draw - this is where all tiles have been set but no winner has
+    /// been found.
+    private func checkForDraw() -> Bool {
+        return gameBoard.filter({$0.state == .empty}).count == 0
     }
     
     /// The game board is a 3x3 array of tiles. To keep the code uncomplocated, we
@@ -233,7 +284,7 @@ extension TicTacToeGameModel {
     var corners: [PuzzleTile] { [ gameBoard[0], gameBoard[2], gameBoard[6], gameBoard[8]] }
     var sides: [PuzzleTile] { [ gameBoard[1], gameBoard[3], gameBoard[5], gameBoard[7]] }
     
-    func isWinner(_ player: TileState) -> Bool {
+    func checkForWin(_ player: TileState) -> Bool {
         return topRow.allSatisfy({ $0.state == player})
         || middleRow.allSatisfy({ $0.state == player})
         || bottomRow.allSatisfy({ $0.state == player})
@@ -242,6 +293,5 @@ extension TicTacToeGameModel {
         || columnThree.allSatisfy({ $0.state == player})
         || rightDiagonal.allSatisfy({ $0.state == player})
         || leftDiagonal.allSatisfy({ $0.state == player})
-
     }
 }

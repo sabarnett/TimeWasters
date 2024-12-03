@@ -22,30 +22,45 @@ public struct TicTacToeView: View {
     }
     
     public var body: some View {
-        VStack {
-            topBarAndButtons
-                .padding(8)
-            Spacer()
-
-            HStack {
-                GameGrid(model: model)
-                    .frame(width: 380)
-                
+        ZStack {
+            VStack {
+                topBarAndButtons
+                    .padding(8)
                 Spacer()
+
+                HStack {
+                    GameGrid(model: model)
+                        .frame(width: 380)
+                    
+                    Spacer()
+                    
+                    ScoreView(model: model)
+                        .frame(maxWidth: 200)
+                }
                 
-                ScoreView(model: model)
-                    .frame(maxWidth: 200)
+                Text(model.messages)
+                    .font(.title)
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
+            .disabled(model.gameState != .active)
             
-            Text(model.messages)
-                .font(.title)
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .center)
+            if model.gameState != .active {
+                GameOverView(state: model.gameState) {
+                    withAnimation {
+                        model.newGame()
+                    }
+                }
+            }
+
         }
+        .frame(width: 580)
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
-        .frame(width: 580)
+        .onChange(of: model.gameState) { state in
+            
+        }
     }
     
     var topBarAndButtons: some View {
