@@ -21,10 +21,11 @@ enum GameState {
 
 class TicTacToeGameModel: ObservableObject {
     
+    @AppStorage(Constants.PlayerWins) var playerWins = 0
+    @AppStorage(Constants.ComputerWins) var computerWins = 0
+    @AppStorage(Constants.DrawsCount) var draws = 0
+
     @Published var gameBoard: [PuzzleTile] = []
-    @Published var playerWins = 0
-    @Published var computerWins = 0
-    @Published var draws = 0
     @Published var messages: String = "Your Move"
     @Published var playersGo: Bool = true
 
