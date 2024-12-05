@@ -49,10 +49,10 @@ public struct TicTacToeView: View {
             }
 
         }
-        .frame(width: 580)
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
+        .frame(width: 580)
     }
     
     var topBarAndButtons: some View {

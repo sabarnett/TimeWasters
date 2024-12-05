@@ -75,7 +75,9 @@ struct GamesControllerApp: App {
         WindowGroup(id: "ticTacToe", for: Game.self) { $game in
             TicTacToeView(gameData: gameList.game(for: "ticTacToe")!)
         }
-        
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+
         Settings {
             SettingsView()
         }
