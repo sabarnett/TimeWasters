@@ -160,14 +160,14 @@ public class Games: ObservableObject {
       title: "Tic Tac Toe",
       tagLine: "Can you beat the computer?",
            description: textBlock(
-              "One",
-              "Two",
-              "Three"
+              "Better known to some of us oldies as 'Noughts and Crosses', Tic-Tac-Toe is a classic game that has been played for centuries. It is a simple game that can be played by two people or, in our case, one player against a a fiendish computer.",
+              "The game is played on a 3x3 grid, and each player takes turns placing their mark in a square. The player who gets three in a row horizontally, vertically, or diagonally wins the game.",
+              "The game is simple, but quite hard to win against the AI built into the computer. Can you beat the computer?"
            ),
            gamePlay: textBlock(
-              "GP 1",
-              "GP 2",
-              "GP 3"
+              "The player and computer take turns picking a square. Click on a square and it will be turned over and the computer will analyse the board and pick a move of it's own.",
+              "You are trying to get a line of three squares in a row (horizontally or vertically) or diagonally across the board. The computer is doing the same thing.",
+              "You can stop a player winning by selecting a square that stops the other player from getting a row of three. It's not as easy as it sounds!"
                               ),
       credits: "Steven Barnett",
       link: "http://www.sabarnett.co.uk"
