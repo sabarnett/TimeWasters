@@ -3,15 +3,16 @@ I've never been one for games on computers. The sad fact is I have arthritis in 
 
 The purpose of this app is to get some practice in creating simple to play games. The kind of thing we used to play before computers became graphic processing work-horses.
 
-At present, this Mac app contains five games;
+At present, this Mac app contains six games;
 
 * Minesweeper
 * WordCraft
 * Snake
 * Pyramid of Doom
 * Number Combinations
+* Tic Tac Toe
 
-Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. Snake and Number Combinations are mine. Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game. 
+Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. Snake, Number Combinations and Tic Tac Toe are mine. Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game. 
 
 More will be added at some point. This is just a starter project.
 
@@ -59,7 +60,7 @@ Decades ago, when I was coding in Z80 assembler on the TRS-80, Scott Adams creat
 
 This is my variant, written in Swift/SwiftUI. It took a long time to translate the original C code to Swift and a lot of debugging to makwe sure I was loading the original game files correctly. The result is Pyramid of Doom:
 
-![timeWaasters](./Images/pyramidOfDoom.png)
+![timeWasters](./Images/pyramidOfDoom.png)
 
 This is currently a work in progress. It has some minor glitches (such as the game continues when you die!) and it needs some UI changes. However, it is very playable and quite difficult to master at first.
 
@@ -86,6 +87,20 @@ The main failing of the game at the moment is that divisions are integer divisio
   * Hard - basically the moderate level but with 1 minute to solve the formula.
   * Very Hard - The Hard level with 30 seconds to solve the formula.
 * Game levels also gives me an opening for a scoring mechanism.
+
+## Tic Tac Toe
+
+Better known to some of us oldies as 'Noughts and Crosses', Tic-Tac-Toe is a classic game that has been played for centuries. It is a simple game that can be played by two people or, in our case, one player against a a fiendish computer.
+
+The game is played on a 3x3 grid, and each player takes turns placing their mark in a square. The player who gets three in a row horizontally, vertically, or diagonally wins the game.
+
+The game is simple, but quite hard to win against the AI built into the computer. Can you beat the computer?"
+
+![Tic Tac Toe](./Images/TicTacToe.png)
+
+This is a relatively simple game, but includes an AI that calculates the computers move. This is a simplease but very effective AI that leaves just enough space to allow the player to occasionally win. Draw's tend to be the usual result.
+
+Scores are saved across invocations of the app, but can be reset using the reset icon on the tool bar.
 
 ## Overviews
 
