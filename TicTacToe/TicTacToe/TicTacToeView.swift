@@ -71,11 +71,11 @@ public struct TicTacToeView: View {
             .buttonStyle(.plain)
             .help("Reset the game")
 
-//            Button(action: { model.toggleSounds() }) {
-//                Image(systemName: model.speakerIcon)
-//            }
-//            .buttonStyle(.plain)
-//            .help("Toggle sound effects")
+            Button(action: { model.toggleSounds() }) {
+                Image(systemName: model.speakerIcon)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sound effects")
         }
         .monospacedDigit()
         .font(.largeTitle)

@@ -15,4 +15,11 @@ struct Constants {
     public static let PlayerWins = "tttPlayerWins"
     public static let ComputerWins = "tttComputerWins"
     public static let DrawsCount = "tttDraws"
+    public static let PlaySounds = "tttPlaySounds"
+    
+    public static let PlayerWinSound = "youWin"
+    public static let ComputerWinSound = "iWin"
+    public static let DrawSound = "draw"
+    public static let PlayerClickSound = "playerClick"
+    public static let ComputerClickSound = "computerClick"
 }

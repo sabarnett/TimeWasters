@@ -11,6 +11,7 @@
 
 import SwiftUI
 import SharedComponents
+import AVKit
 
 enum GameState {
     case active
@@ -24,6 +25,7 @@ class TicTacToeGameModel: ObservableObject {
     @AppStorage(Constants.PlayerWins) var playerWins = 0
     @AppStorage(Constants.ComputerWins) var computerWins = 0
     @AppStorage(Constants.DrawsCount) var draws = 0
+    @AppStorage(Constants.PlaySounds) var playSounds: Bool = true
 
     @Published var gameBoard: [PuzzleTile] = []
     @Published var messages: String = "Your Move"
@@ -32,10 +34,13 @@ class TicTacToeGameModel: ObservableObject {
     @Published var showGamePlay: Bool = false
     @Published var gameState: GameState = .active
     
+    @Published var speakerIcon: String = "speaker.fill"
+
     private var notify = PopupNotificationCentre.shared
 
     init() {
         initialiseGameBoard()
+        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
     }
     
     /// Accept the players move
@@ -60,9 +65,11 @@ class TicTacToeGameModel: ObservableObject {
         playersGo.toggle()
         objectWillChange.send()
 
+        playPlayerClick()
         tile.state = .player
         if checkForWin(.player) {
             playerWins += 1
+            playPlayerWins()
             gameState = .playerWin
             messages = "You win!!!"
             return false
@@ -89,11 +96,13 @@ class TicTacToeGameModel: ObservableObject {
     func setComputerState() {
         guard gameState == .active else { return }
 
+        playComputerClick()
         let computersGo = computerTry()
         gameBoard[computersGo].state = .computer
         
         if checkForWin(.computer) {
             computerWins += 1
+            playComputerWins()
             gameState = .computerWin
             messages = "You lost!"
             return
@@ -149,6 +158,7 @@ class TicTacToeGameModel: ObservableObject {
     private func checkForDraw() -> Bool {
         if gameBoard.filter({$0.state == .empty}).count == 0 {
             draws += 1
+            playDraw()
             gameState = .draw
             messages = "It's a draw"
             
@@ -165,6 +175,63 @@ class TicTacToeGameModel: ObservableObject {
             gameBoard.append(PuzzleTile(state: .empty))
         }
     }
+    
+    // MARK: - Sound functions
+    
+    private var sounds: AVAudioPlayer!
+    private var playerWinURL: URL { soundFile(named: Constants.PlayerWinSound) }
+    private var computerWinURL: URL { soundFile(named: Constants.ComputerWinSound) }
+    private var drawURL: URL { soundFile(named: Constants.DrawSound) }
+    private var playerClickURL: URL { soundFile(named: Constants.PlayerClickSound) }
+    private var computerClickURL: URL { soundFile(named: Constants.ComputerClickSound) }
+    
+    /// If the background music is playing, stop it.
+    func stopSounds() {
+        if sounds != nil {
+            sounds.stop()
+        }
+    }
+
+    /// Play the tile drop sound while the new tiles enter into the game play area. This
+    /// will play over the top of the background sound.
+    func playPlayerWins() { playSound(playerWinURL) }
+    func playComputerWins() { playSound(computerWinURL) }
+    func playDraw() { playSound(drawURL) }
+    func playPlayerClick() { playSound(playerClickURL) }
+    func playComputerClick() { playSound(computerClickURL) }
+
+    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
+    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
+    /// any other sound, so this is a safe bet.
+    func toggleSounds() {
+        playSounds.toggle()
+
+        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
+
+        if !playSounds {
+            sounds.stop()
+        }
+    }
+    
+    /// Creates the URL of a sound file. The file must exist within the minesweeper project
+    /// bundle.
+    private func soundFile(named file: String) -> URL {
+        let bun = Bundle(for: TicTacToeGameModel.self)
+        let sound = bun.path(forResource: file, ofType: "mp3")
+        return URL(fileURLWithPath: sound!)
+    }
+
+    /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
+    /// disabled, we do nothing.
+    private func playSound(_ url: URL) {
+        guard playSounds else { return }
+        if sounds != nil { sounds.stop() }
+        
+        sounds = try! AVAudioPlayer(contentsOf: url)
+        sounds.numberOfLoops = 0
+        self.sounds.play()
+    }
+
 }
 
 extension TicTacToeGameModel {
