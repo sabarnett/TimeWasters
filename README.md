@@ -40,9 +40,7 @@ You also cannot use the same word twice!
 
 ![timeWaasters](./Images/wordCraft.png)
 
-#### To do?
-
-* The game comes with a reasonably latge word list, but it is missing quite a lot of common words. I would like to expand the word list. I have one with around 110,000 words in it, but need to find an opportunity to put this into the app.
+Since the original development, I have increased the work count from around 60,000 words to over 102,000 words, giving you a getter chance to match a word. It would be very difficult to create a complete word list for all english words, so the 102,000 count is a compromise.
 
 ## Snake
 

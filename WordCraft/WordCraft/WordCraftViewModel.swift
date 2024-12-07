@@ -46,7 +46,11 @@ class WordCraftViewModel {
             fatalError("Couldn't load dictionary.txt")
         }
 
-        return Set(contents.components(separatedBy: .newlines))
+        // Build the list taking only words getween 3 and 12 letters. This gives us
+        // around 102,000 words to check against.
+        return Set(contents.components(separatedBy: .newlines)
+            .filter({ $0.count > 2 && $0.count < 13})
+        )
     }()
 
     init() {

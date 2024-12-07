@@ -77,13 +77,13 @@ public class Games: ObservableObject {
              tagLine: "Can you beat the word challenges?",
              description: textBlock(
                 "WordCraft is a game where you have to use a limited number of letters to create a word. To make the game more challenging, you will be given a challenge to meet, such as a word with a specific number of letters or a word that starts with a specific letter.",
-                "There is no time limit to complete the challenge, but you must meet the challenge and you cannot use the same work more than once.",
+                "There is no time limit to complete the challenge, but you must meet the challenge and you cannot use the same word more than once.",
                 "Letters you use to successfully create a word will be removed from the game board and replaced with a random set of replacement letters."
                                     ),
              gamePlay: textBlock(
                 "You can select specific letters by click on them in the grid. To submit your word for testing, you click the same letter twice. This will validate that the challenge has been met, that the word has not been used before and that it is in the games dictionary. If these are all met, the letters will be removed from the game and replacements generated.",
                 "If you click on a previously selected letter, it will become the last letter and any letters selected after it will be removed from your word. This gives you a quick way to remove multiple letters.",
-                "All words must be three or more letters.",
+                "All words must be between 3 and 12 letters long.",
                 "As an alternative, you can use the  keyboard to select letters. If you do this, the game will randomly select a tile for you. Pressing return will submit your word for testing and backspace will remove letters from the word."),
              credits: "Paul Hudson - Hacking With Swift+",
              link: "https://www.hackingwithswift.com/plus")
