@@ -56,6 +56,8 @@ class MinesweeperGame {
     public var isPlaying: Bool { gameState == .playing }
     public var isWaiting: Bool { gameState == .waiting }
     
+    public var leaderBoard: LeaderBoard = LeaderBoard()
+    
     public var playingAreaWidth: CGFloat {
         let (cellWidth, paddingWidth) = switch mineGameDifficulty {
         case .beginner:  (60.0, 35.0)
@@ -182,7 +184,8 @@ class MinesweeperGame {
 
     func checkForWin() {
         if revealedSquares.count == allSquares.count - minedSquares.count {
-            gameState = .won
+            gameState = .won            
+            leaderBoard.addLeader(score: secondsElapsed, forLevel: mineGameDifficulty)
         }
     }
 

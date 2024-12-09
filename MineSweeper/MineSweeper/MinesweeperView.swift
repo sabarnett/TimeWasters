@@ -22,6 +22,7 @@ public struct MinesweeperView: View {
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var ticking: AVAudioPlayer!
     @State private var showGamePlay: Bool = false
+    @State private var showLeaderBoard: Bool = false
     
     private var tickingURL: URL { soundFile(named: "ticking") }
     private var explosionURL: URL { soundFile(named: "explosion") }
@@ -101,6 +102,9 @@ public struct MinesweeperView: View {
         .sheet(isPresented: $showGamePlay) {
             GamePlayView(game: gameData)
         }
+        .sheet(isPresented: $showLeaderBoard) {
+            LeaderBoardView(leaderBoard: game.leaderBoard)
+        }
         
         .frame(maxWidth: game.playingAreaWidth)
     }
@@ -112,6 +116,12 @@ public struct MinesweeperView: View {
         HStack {
             Button(action: { showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
+                    .scaleEffect(2)
+                    .padding(5)
+            }.buttonStyle(.plain)
+            
+            Button(action: { showLeaderBoard.toggle() }) {
+                Image(systemName: "trophy.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
             }.buttonStyle(.plain)
