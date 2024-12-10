@@ -126,24 +126,31 @@ public struct MinesweeperView: View {
                 Image(systemName: "questionmark.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
-            }.buttonStyle(.plain)
-            
+            }
+            .buttonStyle(.plain)
+            .help("Show the game play")
+
             Button(action: {
                 ticking.stop()
                 showLeaderBoard.toggle()
             }) {
-                Image(systemName: "trophy.circle")
+                Image(systemName: "trophy.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
-            }.buttonStyle(.plain)
-            
+            }
+            .buttonStyle(.plain)
+            .help("Show the leader board")
+
             Spacer()
             
             Button(action: { toggleSounds() }) {
                 Image(systemName: minePlaySounds ? "speaker.slash.fill" : "speaker.fill")
                     .scaleEffect(2)
                     .padding(5)
-            }.buttonStyle(.plain)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sounds")
+
         }.padding([.horizontal,.top])
     }
     

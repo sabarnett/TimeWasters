@@ -28,9 +28,7 @@ Minesweeper is the classic game from the early days of computing. You are presen
 
 ![timeWaasters](./Images/minesweeper.png)
 
-#### To do?
-
-* I'd like to create a leader board at some stage. Perhaps the best scores at each of the game difficulty levels.
+10-Dec-2024: There is a leader board for this game now. It displays a leader board for each of the three game board sizes.
 
 ## WordCraft
 
@@ -40,7 +38,7 @@ You also cannot use the same word twice!
 
 ![timeWaasters](./Images/wordCraft.png)
 
-Since the original development, I have increased the work count from around 60,000 words to over 102,000 words, giving you a getter chance to match a word. It would be very difficult to create a complete word list for all english words, so the 102,000 count is a compromise.
+04-Dec-2024: Since the original development, I have increased the work count from around 60,000 words to over 102,000 words, giving you a getter chance to match a word. It would be very difficult to create a complete word list for all english words, so the 102,000 count is a compromise.
 
 ## Snake
 
@@ -48,9 +46,7 @@ This is a very old, low res, style of game where you have to move the snake arou
 
 ![timeWaasters](./Images/snakeGame.png)
 
-#### To do?
-
-* Games are separate, so there is no real competitive edge to it. I need to maintain a list of the best 10 scores to give you something to aim for.
+10-Dec-2024: I have added a leader board to this game that displays the length of the snake based on the game play board size.
 
 ## Pyramid of Doom
 
@@ -76,15 +72,7 @@ There is an option to display the formula if you're really stuck.
 
 The main failing of the game at the moment is that divisions are integer divisions so, dividing 3 by 2 results in 1. This isn't ideal and can be used to solve most formulae. I want to address this at some point, but it's not a priority right now.
 
-#### To do?
-
-* It's hard to come up with a scoring system for this one. Best I have come up with is to award points for completing the formula and take points away for giving up and asking for a new puzzle. I need to give this one more thought.
-* Game levels. I'm thinking of four levels:
-  * Easy - where the game gives you as much time as you like to solve the formula (as it does now)
-  * Moderate - where you get a 2 minute count down. If you solve the formula you get points and a new puzzle is generated with a new countdown. If you do not solve the formula, a new one is generated and you lose points.
-  * Hard - basically the moderate level but with 1 minute to solve the formula.
-  * Very Hard - The Hard level with 30 seconds to solve the formula.
-* Game levels also gives me an opening for a scoring mechanism.
+10-Dec-2024: I haver added a leader board to the app that displays the amount of time (in seconds) each puzzle takes to complete.
 
 ## Tic Tac Toe
 

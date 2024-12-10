@@ -55,7 +55,7 @@ class LeaderBoard {
     }
     
     private func addScoreToMedium(score: Int) -> Bool {
-        if leaderboard.mediumLeaderBoard.count == 5 {
+        if leaderBoard.mediumLeaderBoard.count == 5 {
             if let maxScore = leaderBoard.mediumLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
                 if score >= maxScore.gameScore { return false }
             }
