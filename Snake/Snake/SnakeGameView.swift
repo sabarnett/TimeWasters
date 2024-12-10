@@ -140,7 +140,7 @@ public struct SnakeGameView: View {
                 pause = true
                 showLeaderBoard = true
             }) {
-                Image(systemName: "trophy.circle.fill")
+                Image(systemName: "trophy.circle")
                     .padding(5)
             }.buttonStyle(.plain)
                 .help("Show the leader board")

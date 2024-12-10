@@ -103,18 +103,12 @@ public struct MinesweeperView: View {
             if minePlaySounds {
                 playSound(tickingURL, repeating: true)
             }
-        }) {
-            let _ = ticking.stop()
-            GamePlayView(game: gameData)
-        }
+        }) { GamePlayView(game: gameData) }
         .sheet(isPresented: $showLeaderBoard, onDismiss: {
             if minePlaySounds {
                 playSound(tickingURL, repeating: true)
             }
-        }) {
-            let _ = ticking.stop()
-            LeaderBoardView(leaderBoard: game.leaderBoard)
-        }
+        }) { LeaderBoardView(leaderBoard: game.leaderBoard) }
         
         .frame(maxWidth: game.playingAreaWidth)
     }
@@ -124,14 +118,20 @@ public struct MinesweeperView: View {
     /// buttons we have in the buttons area.
     private var toggleButtons : some View {
         HStack {
-            Button(action: { showGamePlay.toggle() }) {
+            Button(action: {
+                ticking.stop()
+                showGamePlay.toggle()
+            }) {
                 Image(systemName: "questionmark.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
             }.buttonStyle(.plain)
             
-            Button(action: { showLeaderBoard.toggle() }) {
-                Image(systemName: "trophy.circle.fill")
+            Button(action: {
+                ticking.stop()
+                showLeaderBoard.toggle()
+            }) {
+                Image(systemName: "trophy.circle")
                     .scaleEffect(2)
                     .padding(5)
             }.buttonStyle(.plain)
