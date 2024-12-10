@@ -27,6 +27,7 @@ public struct SnakeGameView: View {
     @State private var game = SnakeGame()
     @State private var timer: Timer?
     @State private var pause: Bool = true
+    @State private var showLeaderBoard: Bool = false
     
     let cellSize: CGFloat = 20
     
@@ -117,17 +118,33 @@ public struct SnakeGameView: View {
         .sheet(isPresented: $game.showGamePlay) {
             GamePlayView(game: gameData)
         }
+        .sheet(isPresented: $showLeaderBoard) {
+            LeaderBoardView(leaderBoard: game.leaderBoard,
+                            initialTab: game.snakeGameSize)
+        }
     }
     
     var topBarAndButtons: some View {
         HStack {
-            Button(action: { game.showGamePlay.toggle() }) {
+            Button(action: {
+                pause = true
+                game.showGamePlay = true
+            }) {
                 Image(systemName: "questionmark.circle.fill")
                     .padding(5)
             }
             .buttonStyle(.plain)
             .help("Show game rules")
             
+            Button(action: {
+                pause = true
+                showLeaderBoard = true
+            }) {
+                Image(systemName: "trophy.circle.fill")
+                    .padding(5)
+            }.buttonStyle(.plain)
+                .help("Show the leader board")
+
             Spacer()
             
             Text(game.snake.count.formatted(.number.precision(.integerLength(3))))

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80B9BF72D08837E006814B7 /* LeaderBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B9BF62D08837E006814B7 /* LeaderBoard.swift */; };
+		E80B9BF92D08852C006814B7 /* LeaderBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80B9BF82D08852C006814B7 /* LeaderBoardView.swift */; };
 		E856958A2CBEB1B200BC1730 /* SnakeGameSpeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */; };
 		E856958C2CBEBA1D00BC1730 /* SnakeGameSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E856958B2CBEBA1D00BC1730 /* SnakeGameSize.swift */; };
 		E86B7BFB2CC69BDC00F3FCDC /* SnakeGame.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86B7BFA2CC69BDC00F3FCDC /* SnakeGame.xcassets */; };
@@ -49,6 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E80B9BF62D08837E006814B7 /* LeaderBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoard.swift; sourceTree = "<group>"; };
+		E80B9BF82D08852C006814B7 /* LeaderBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardView.swift; sourceTree = "<group>"; };
 		E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameSpeed.swift; sourceTree = "<group>"; };
 		E856958B2CBEBA1D00BC1730 /* SnakeGameSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnakeGameSize.swift; sourceTree = "<group>"; };
 		E86B7BFA2CC69BDC00F3FCDC /* SnakeGame.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SnakeGame.xcassets; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				E89324762CBD5067005B30BC /* Snake.h */,
 				E85695892CBEB1B200BC1730 /* SnakeGameSpeed.swift */,
 				E856958B2CBEBA1D00BC1730 /* SnakeGameSize.swift */,
+				E80B9BF62D08837E006814B7 /* LeaderBoard.swift */,
+				E80B9BF82D08852C006814B7 /* LeaderBoardView.swift */,
 			);
 			path = Snake;
 			sourceTree = "<group>";
@@ -262,6 +268,8 @@
 				E893247E2CBD5067005B30BC /* GameOverView.swift in Sources */,
 				E893247F2CBD5067005B30BC /* NSApplication+Extension.swift in Sources */,
 				E89324802CBD5067005B30BC /* SnakeGame.swift in Sources */,
+				E80B9BF92D08852C006814B7 /* LeaderBoardView.swift in Sources */,
+				E80B9BF72D08837E006814B7 /* LeaderBoard.swift in Sources */,
 				E856958A2CBEB1B200BC1730 /* SnakeGameSpeed.swift in Sources */,
 				E856958C2CBEBA1D00BC1730 /* SnakeGameSize.swift in Sources */,
 				E89324812CBD5067005B30BC /* SnakeGameView.swift in Sources */,

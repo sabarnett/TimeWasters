@@ -25,15 +25,18 @@ struct Position: Equatable, Hashable {
 class SnakeGame {
     
     @ObservationIgnored
-    @AppStorage(Constants.snakePlaySounds) private var snakePlaySounds = true {
+    @AppStorage(Constants.snakePlaySounds) var snakePlaySounds = true {
         didSet {
             updateSounds()
         }
     }
     
     @ObservationIgnored
-    @AppStorage(Constants.snakeGameSize) private var snakeGameSize: SnakeGameSize = .medium
+    @AppStorage(Constants.snakeGameSize) var snakeGameSize: SnakeGameSize = .medium
 
+    @ObservationIgnored
+    var leaderBoard: LeaderBoard = LeaderBoard()
+    
     var showGamePlay: Bool = false
     var snake: [Position] = []
     var food: Position = Position(x: 0, y: 0)
@@ -70,6 +73,7 @@ class SnakeGame {
         // Check for wall collision
         if newHead.x < 0 || newHead.x >= gridSize || newHead.y < 0 || newHead.y >= gridSize {
             isGameOver = true
+            leaderBoard.addLeader(score: snake.count, forLevel: snakeGameSize)
             stopSounds()
             return
         }
@@ -77,6 +81,7 @@ class SnakeGame {
         // Check for self collision
         if snake.contains(newHead) {
             isGameOver = true
+            leaderBoard.addLeader(score: snake.count, forLevel: snakeGameSize)
             stopSounds()
             return
         }
