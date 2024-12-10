@@ -63,6 +63,9 @@ struct LeaderBoardItemHeader: View {
         HStack {
             Text("Date")
                 .font(.headline)
+                .frame(minWidth: 160, maxWidth: 160, alignment: .leading)
+            Text("Player")
+                .font(.headline)
             Spacer()
             Text("Seconds")
                 .font(.headline)
@@ -84,6 +87,8 @@ struct LeaderBoardItemView: View {
     var body: some View {
         HStack {
             Text(dateFormatter.string(from: leaderItem.gameDate))
+                .frame(minWidth: 160, maxWidth: 160, alignment: .leading)
+            Text(leaderItem.playerName)
             Spacer()
             Text("\(leaderItem.gameScore)")
         }

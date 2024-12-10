@@ -91,7 +91,7 @@ public struct MinesweeperView: View {
             }
         }
         .onReceive(timer) { _ in
-            if showGamePlay { return }
+            if showGamePlay || showLeaderBoard { return }
             guard game.isPlaying else { return }
             guard game.secondsElapsed < 999 else { return }
             game.secondsElapsed += 1
@@ -99,10 +99,20 @@ public struct MinesweeperView: View {
         .onAppear() {
             playSound(tickingURL, repeating: true)
         }
-        .sheet(isPresented: $showGamePlay) {
+        .sheet(isPresented: $showGamePlay, onDismiss: {
+            if minePlaySounds {
+                playSound(tickingURL, repeating: true)
+            }
+        }) {
+            let _ = ticking.stop()
             GamePlayView(game: gameData)
         }
-        .sheet(isPresented: $showLeaderBoard) {
+        .sheet(isPresented: $showLeaderBoard, onDismiss: {
+            if minePlaySounds {
+                playSound(tickingURL, repeating: true)
+            }
+        }) {
+            let _ = ticking.stop()
             LeaderBoardView(leaderBoard: game.leaderBoard)
         }
         

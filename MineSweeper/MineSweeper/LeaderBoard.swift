@@ -118,6 +118,7 @@ struct LeaderBoardData: Codable {
 struct LeaderBoardItem: Codable, Identifiable {
     var id: UUID = UUID()
     
+    var playerName: String = NSFullUserName()
     var gameDate: Date
     var gameScore: Int
 }
