@@ -15,7 +15,7 @@ import SwiftUI
 class MinesweeperGame {
     
     @ObservationIgnored
-    @AppStorage(Constants.mineGameDifficulty) private var mineGameDifficulty: GameDifficulty = .beginner
+    @AppStorage(Constants.mineGameDifficulty) var mineGameDifficulty: GameDifficulty = .beginner
 
     private var cellCount: Int {
         get {

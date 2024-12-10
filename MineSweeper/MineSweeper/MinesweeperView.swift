@@ -108,7 +108,8 @@ public struct MinesweeperView: View {
             if minePlaySounds {
                 playSound(tickingURL, repeating: true)
             }
-        }) { LeaderBoardView(leaderBoard: game.leaderBoard) }
+        }) { LeaderBoardView(leaderBoard: game.leaderBoard,
+                             initialTab: game.mineGameDifficulty) }
         
         .frame(maxWidth: game.playingAreaWidth)
     }

@@ -15,6 +15,8 @@ struct LeaderBoardView: View {
     @Environment(\.dismiss) private var dismiss
 
     let leaderBoard: LeaderBoard
+    let initialTab: GameDifficulty
+    
     @State private var gameLevel: GameDifficulty = .beginner
     var leaderItems: [LeaderBoardItem] {
         switch gameLevel {
@@ -55,6 +57,9 @@ struct LeaderBoardView: View {
             }
         }
         .padding()
+        .onAppear {
+            gameLevel = initialTab
+        }
     }
 }
 
@@ -95,5 +100,6 @@ struct LeaderBoardItemView: View {
     }
 }
 #Preview {
-    LeaderBoardView(leaderBoard: LeaderBoard())
+    LeaderBoardView(leaderBoard: LeaderBoard(),
+                    initialTab: .expert)
 }
