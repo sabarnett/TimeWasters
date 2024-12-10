@@ -49,14 +49,21 @@ class CombinationsViewModel {
     /// solution to the puzzle.
     var usedFormula: String = ""
     
-    /// Used to show the game play popover
+    /// Used to show the game play or leader board popovers
     var showGamePlay: Bool = false
+    var showLeaderBoard: Bool = false
     
     /// Indicates that the game has been completed successfully.
     var success: Bool = false
     
     /// Determines which icon we need to use oon the tool bar for toggling the sounds
     var speakerIcon: String = "speaker.fill"
+    
+    /// Tracks the start of the puzzle
+    var gameStart: Date?
+    
+    @ObservationIgnored
+    var leaderBoard = LeaderBoard()
     
     @ObservationIgnored
     var notify = PopupNotificationCentre.shared
@@ -102,6 +109,8 @@ class CombinationsViewModel {
         success = false
         speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
         playBackgroundSound()
+        
+        gameStart = .now
     }
     
     // MARK :- Formula parsing to highlight selected numbers
@@ -111,6 +120,7 @@ class CombinationsViewModel {
     /// display an appropriate message.
     private func validateFormula() {
         if formula.isEmpty { return }
+        if success { return }
 
         let numbers = getFormulaNumbers()
         setInUseIndicators(numbers: numbers)
@@ -138,6 +148,14 @@ class CombinationsViewModel {
             && values.allSatisfy(\.isUsed)
             && formula.count(where: { $0 == "(" }) == formula.count(where: {$0 == ")"}) {
             success = true
+            
+            let gameEnd = Date.now
+            let gameDuration = gameEnd.timeIntervalSince(gameStart!)
+            let gameSeconds = Int(gameDuration)
+            
+            // Log the result in the leader board
+            leaderBoard.addLeader(score: gameSeconds)
+            
             stopSounds()
             playSuccessSound()
         }

@@ -80,6 +80,9 @@ public struct CombinationsView: View {
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }
+        .sheet(isPresented: $model.showLeaderBoard) {
+            LeaderBoardView(leaderBoard: model.leaderBoard)
+        }
         .frame(width: 600, height: 360)
     }
     
@@ -90,6 +93,12 @@ public struct CombinationsView: View {
             }
             .buttonStyle(.plain)
             .help("Show game rules")
+            
+            Button(action: { model.showLeaderBoard.toggle() }) {
+                Image(systemName: "trophy.circle.fill")
+            }
+            .buttonStyle(.plain)
+            .help("Show the leader board")
             
             Spacer()
 
