@@ -41,8 +41,10 @@ class LeaderBoard {
     }
     
     private func addScoreToSmall(score: Int) -> Bool {
-        if let maxScore = leaderBoard.smallLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderBoard.smallLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.smallLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.smallLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))
@@ -53,8 +55,10 @@ class LeaderBoard {
     }
     
     private func addScoreToMedium(score: Int) -> Bool {
-        if let maxScore = leaderBoard.mediumLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderboard.mediumLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.mediumLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.mediumLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))
@@ -65,8 +69,10 @@ class LeaderBoard {
     }
     
     private func addScoreToLarge(score: Int) -> Bool {
-        if let maxScore = leaderBoard.largeLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderBoard.largeLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.largeLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.largeLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))

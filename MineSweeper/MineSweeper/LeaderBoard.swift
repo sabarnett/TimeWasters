@@ -41,8 +41,10 @@ class LeaderBoard {
     }
     
     private func addScoreToBeginners(score: Int) -> Bool {
-        if let maxScore = leaderBoard.beginnerLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderBoard.beginnerLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.beginnerLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.beginnerLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))
@@ -53,8 +55,10 @@ class LeaderBoard {
     }
     
     private func addScoreToIntermediate(score: Int) -> Bool {
-        if let maxScore = leaderBoard.intermediateLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderBoard.intermediateLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.intermediateLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.intermediateLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))
@@ -65,8 +69,10 @@ class LeaderBoard {
     }
     
     private func addScoreToExpert(score: Int) -> Bool {
-        if let maxScore = leaderBoard.expertLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
-            if score >= maxScore.gameScore { return false }
+        if leaderBoard.expertLeaderBoard.count == 5 {
+            if let maxScore = leaderBoard.expertLeaderBoard.max(by: { $0.gameScore < $1.gameScore }) {
+                if score >= maxScore.gameScore { return false }
+            }
         }
         
         leaderBoard.expertLeaderBoard.append(LeaderBoardItem(gameDate: Date.now, gameScore: score))
