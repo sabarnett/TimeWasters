@@ -35,6 +35,10 @@
 		E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8EA115E2C8F3C760078A9A6 /* MineSweeper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8ED460D2CDFA9DB00A90EE5 /* AdventureGame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */; };
 		E8ED460E2CDFA9DB00A90EE5 /* AdventureGame.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8FB1CA72D0C8C3900098A79 /* SettingsViewDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CA62D0C8C3900098A79 /* SettingsViewDefinition.swift */; };
+		E8FB1CA92D0C8C6100098A79 /* SetingsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CA82D0C8C6100098A79 /* SetingsTitle.swift */; };
+		E8FB1CAB2D0C8C9A00098A79 /* SettingsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CAA2D0C8C9A00098A79 /* SettingsSelectionView.swift */; };
+		E8FB1CAD2D0C8CEA00098A79 /* SettingsActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CAC2D0C8CEA00098A79 /* SettingsActionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +156,10 @@
 		E8EA111C2C8F3BA30078A9A6 /* GamesController.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GamesController.entitlements; sourceTree = "<group>"; };
 		E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MineSweeper.xcodeproj; path = ../MineSweeper/MineSweeper.xcodeproj; sourceTree = "<group>"; };
 		E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AdventureGame.xcodeproj; path = ../AdventureGame/AdventureGame.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E8FB1CA62D0C8C3900098A79 /* SettingsViewDefinition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewDefinition.swift; sourceTree = "<group>"; };
+		E8FB1CA82D0C8C6100098A79 /* SetingsTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsTitle.swift; sourceTree = "<group>"; };
+		E8FB1CAA2D0C8C9A00098A79 /* SettingsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelectionView.swift; sourceTree = "<group>"; };
+		E8FB1CAC2D0C8CEA00098A79 /* SettingsActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +183,7 @@
 		E805CA292C90C99F001BD435 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
-				E805CA1E2C90C2BB001BD435 /* SettingsView.swift */,
+				E8FB1C9C2D0C8C1C00098A79 /* Settings */,
 				E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */,
 				E805CA212C90C723001BD435 /* AboutView.swift */,
 			);
@@ -318,6 +326,18 @@
 				E8ED46062CDFA9C100A90EE5 /* AdventureGame.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E8FB1C9C2D0C8C1C00098A79 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E805CA1E2C90C2BB001BD435 /* SettingsView.swift */,
+				E8FB1CAC2D0C8CEA00098A79 /* SettingsActionView.swift */,
+				E8FB1CAA2D0C8C9A00098A79 /* SettingsSelectionView.swift */,
+				E8FB1CA82D0C8C6100098A79 /* SetingsTitle.swift */,
+				E8FB1CA62D0C8C3900098A79 /* SettingsViewDefinition.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -488,10 +508,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FB1CA72D0C8C3900098A79 /* SettingsViewDefinition.swift in Sources */,
 				E805CA242C90C7FA001BD435 /* AppDelegate.swift in Sources */,
+				E8FB1CAB2D0C8C9A00098A79 /* SettingsSelectionView.swift in Sources */,
 				E8EA11162C8F3BA20078A9A6 /* GameIndexView.swift in Sources */,
 				E805CA1F2C90C2BB001BD435 /* SettingsView.swift in Sources */,
+				E8FB1CAD2D0C8CEA00098A79 /* SettingsActionView.swift in Sources */,
 				E891E1DD2C932B0200BDDFC7 /* Menus.swift in Sources */,
+				E8FB1CA92D0C8C6100098A79 /* SetingsTitle.swift in Sources */,
 				E8072E862C90D8A700FCEEDE /* DisplayMode.swift in Sources */,
 				E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */,
 				E805CA222C90C723001BD435 /* AboutView.swift in Sources */,
