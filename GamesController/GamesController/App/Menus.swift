@@ -18,7 +18,6 @@ struct Menus: Commands {
     }
 }
 
-
 /// Override the About This App menu so we can show our own custom window.
 struct SystemMenus: Commands {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

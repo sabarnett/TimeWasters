@@ -27,7 +27,7 @@ struct AboutView: View {
             }
             .padding([.leading, .top, .trailing], 12)
 
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading, spacing: 8) {
                 LabeledContent("Appliation support from") {
                     Link(Constants.homeAddress,
                          destination: Constants.homeUrl )
@@ -42,6 +42,11 @@ struct AboutView: View {
                     Link("pixabay.com",
                          destination: URL(string: "https://pixabay.com")!)
                 }
+                
+                LabeledContent("Some game ideas from Paul Hudson") {
+                    Link("Hacking With Swift+",
+                         destination: URL(string: "https://www.hackingwithswift.com/plus")!)
+                }
             }
             .padding([.leading, .trailing], 20)
 
@@ -50,7 +55,7 @@ struct AboutView: View {
                 Text(Bundle.main.copyright)
                     .font(.system(size: 12, weight: .thin))
                     .multilineTextAlignment(.center)
-                    .padding(.top, 16)
+                    .padding(.top, 32)
                     .padding(.bottom, 8)
                     .padding(.trailing, 12)
             }

@@ -11,6 +11,12 @@
 
 import Foundation
 
+/// DisplayMode
+///
+/// Determines whether we want to display in Light mode, Dark mode or let the app
+/// mirror the current state of the Mac. We define this as Identifiable and CaseIterable
+/// so it can be used to build selection lists. Equatable allows settings to be compared
+/// and CustomStringConvertible gives us the text to display in pickers.
 enum DisplayMode: String, Identifiable, CaseIterable, Equatable, CustomStringConvertible {
     case light
     case dark

@@ -19,5 +19,4 @@ struct Constants {
     // Application level settings keys
     static let displayMode = "displayMode"
     static let autoCloseApp = "closeAppWhenLastWindowCloses"
-
 }

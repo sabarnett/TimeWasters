@@ -29,7 +29,7 @@ struct GameIndexView: View {
         ZStack {
             Image("bgImage")
                 .resizable()
-                .frame(width: 800, height: 457)
+                .frame(width: 800, height: 460)
                 .ignoresSafeArea()
 
             VStack {
@@ -61,11 +61,10 @@ struct GameIndexView: View {
                     Button(action: {
                         NSApp.terminate(nil)
                     }, label: {
-                        Image(systemName: "xmark.circle.fill")
+                        Image(systemName: "xmark.circle")
                             .resizable()
                             .imageScale(.medium)
                             .frame(width: 32, height: 32)
-                            .foregroundStyle(.red)
                     })
                     .buttonStyle(.plain)
                     
@@ -115,4 +114,5 @@ struct GameIndexView: View {
 
 #Preview {
     GameIndexView()
+        .environmentObject(Games())
 }
