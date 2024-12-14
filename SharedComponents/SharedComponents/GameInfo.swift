@@ -20,19 +20,31 @@ public struct GameInfo: View {
         self.gameData = gameData
     }
     
+    var webSiteLink: URL? {
+        guard let targetUrl = URL(string: gameData.link) else { return nil }
+        return targetUrl
+    }
+    
     public var body: some View {
         VStack(alignment: .leading) {
             Text(gameData.title).font(.title)
             Text(gameData.tagLine).font(.subheadline)
             ScrollView {
                 Text(gameData.description)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(6)
             .border(.black, width: 0.5)
             
             Text(gameData.credits)
             HStack {
-                Text(gameData.link)
+                if let link = webSiteLink {
+                    Link(destination: link) {
+                        Text(gameData.link)
+                    }
+                    .foregroundStyle(.primary)
+                    .pointerStyle(.link)
+                }
                 Spacer()
                 Button(role: .cancel,
                        action: { dismiss() },
