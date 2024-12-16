@@ -60,10 +60,13 @@ public class GameDefinitions {
     }
 }
 
+/// The JSON file is just an array of game definition.
 public class GamesList: Codable {
     public var games = [GameDefinition]()
 }
 
+/// There will be one entry foreach game. This defines the name adventure game,
+/// the file that the game can be loaded from and the version of the game.
 public class GameDefinition: Codable, CustomStringConvertible {
     public var description: String {
         get { return title }

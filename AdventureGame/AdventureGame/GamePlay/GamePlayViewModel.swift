@@ -11,6 +11,7 @@
 
 import Foundation
 import SharedComponents
+import Observation
 
 @Observable
 class GamePlayViewModel {
@@ -42,21 +43,11 @@ class GamePlayViewModel {
         game.promptForTurn()        
     }
     
-    var carriedItems: [String] {
-        game.CarriedItems
-    }
-    var carriedItemsCount: Int {
-        game.CarriedItemsCount
-    }
-    var carriedItemsLimit: Int {
-        game.gameHeader.MaximumCarryItems
-    }
-    var treasureItems: [String] {
-        game.Treasures
-    }
-    var treasuresFound: Int {
-        game.TreasuresFound
-    }
+    var carriedItems: [String] { game.CarriedItems }
+    var carriedItemsCount: Int { game.CarriedItemsCount }
+    var carriedItemsLimit: Int { game.gameHeader.MaximumCarryItems }
+    var treasureItems: [String] { game.Treasures }
+    var treasuresFound: Int { game.TreasuresFound }
     
     /// Clear all game state and start the game again
     func restartGame() {
@@ -133,6 +124,5 @@ class GamePlayViewModel {
                 print(error)
             }
         }
-
     }
 }

@@ -89,10 +89,7 @@ public struct AdventureGameView: View {
                         inputFocus = true
                     }
                 }
-                
             }
-            
-            
         }
     }
     
@@ -107,9 +104,7 @@ public struct AdventureGameView: View {
             
             Spacer()
             
-            Button(action: {
-                gameModel.showResetConfirmation = true
-            }) {
+            Button(action: { gameModel.showResetConfirmation = true }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .padding(.vertical, 5)
             }
@@ -123,9 +118,7 @@ public struct AdventureGameView: View {
             .buttonStyle(.plain)
             .help("Save the current game state.")
             
-            Button(action: {
-                gameModel.showReloadConfirmation = true
-            }) {
+            Button(action: { gameModel.showReloadConfirmation = true }) {
                 Image(systemName: "tray.and.arrow.up.fill")
                     .padding(.vertical, 5)
             }

@@ -11,6 +11,14 @@
 
 import Foundation
 
+/// Searches a list (array) of strings for a word. These will be lists of the nouns and
+/// verbs that the program understands. The list may contain entries that are prefixed
+/// by an asterisg, so we need to treat those as special cases.
+///
+/// The program defines a word length which should define how long the strings are, but
+/// practical experience of the game files tells me this is not always correct. So, we
+/// start out assuming thge word length will be correct, but also check without using the
+/// word length.
 public class ListManager {
 
     public static var wordLength: Int = 0
