@@ -23,12 +23,8 @@ public struct OthelloView: View {
     
     public var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text("Toolbar goes here")
-                Button(action: { model.newGame() }, label: { Text("New Game")})
-                Button(action: { model.showHint() }, label: { Text("Hint")})
-            }
-            .disabled(model.gameState != .playerMove)
+            topBarAndButtons
+            Spacer()
             
             HStack(spacing: 2) {
                 GameBoardView(model: model)
@@ -45,6 +41,42 @@ public struct OthelloView: View {
         }
         .padding()
     }
+    
+    var topBarAndButtons: some View {
+        HStack {
+            Button(action: { model.showGamePlay.toggle() }) {
+                Image(systemName: "questionmark.circle.fill")
+            }
+            .buttonStyle(.plain)
+            .help("Show game rules")
+            
+            Spacer()
+
+            Button(action: { model.showHint() }) {
+                Image(systemName: "signpost.right.fill")
+            }
+            .buttonStyle(.plain)
+            .help("Show player moves")
+            .disabled(model.gameState != .playerMove)
+
+            Button(action: { model.newGame() }) {
+                Image(systemName: "arrow.uturn.left.circle.fill")
+            }
+            .buttonStyle(.plain)
+            .help("Start a new game")
+
+//            Button(action: { model.toggleSounds() }) {
+//                Image(systemName: model.speakerIcon)
+//            }
+//            .buttonStyle(.plain)
+//            .help("Toggle sound effects")
+        }
+        .monospacedDigit()
+        .font(.largeTitle)
+        .frame(height: 30)
+        .clipShape(.rect(cornerRadius: 10))
+    }
+
 }
 
 #Preview {
