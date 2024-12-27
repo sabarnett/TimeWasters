@@ -33,7 +33,8 @@ public class Games: ObservableObject {
             snakeGame(),
             pyramidOfDoom(),
             numberCombinations(),
-            ticTacToe()
+            ticTacToe(),
+            othelloGame()
         ]
     }
     
@@ -169,6 +170,27 @@ public class Games: ObservableObject {
               "You are trying to get a line of three squares in a row (horizontally or vertically) or diagonally across the board. The computer is doing the same thing.",
               "You can stop a player winning by selecting a square that stops the other player from getting a row of three. It's not as easy as it sounds!"
                               ),
+      credits: "Steven Barnett",
+      link: "http://www.sabarnett.co.uk"
+           )
+  }
+    
+  private func othelloGame() -> Game {
+      Game(id: "othello",
+      title: "Othello",
+      tagLine: "Tile based logic game",
+           description: textBlock(
+            "Othello is a strategy board game for two players (you and the computer), played on an 8 by 8 board. The game traditionally begins with four discs placed in the middle of the board. The computer will randomly select who goes first. The player always plays black and the computer white. There is no advantage to the colour of the pieces.",
+            "You must place a disc on the board, in such a way that there is at least one straight (horizontal, vertical, or diagonal) occupied line between the new disc and another of your discs, with one or more contiguous computer pieces between them. ",
+            "After placing the disc, the opposition discs flip lying on a straight line between the new disc and any existing discs. All flipped discs are now yours. Now the computer plays. This computer operates under the same rules, with the roles reversed: it lays down a disc, causing your discs to flip.",
+            "Where there are no moves available, you or the computer skips their move and control reverts to the other player. The game ends when the board is full or neither player can move. At this time, the winner is determined by who has the most face up discs."
+                ),
+           gamePlay: textBlock(
+              "The first four moves are already on the board in one of the four squares in the middle of the board and no pieces are captured or reversed.",
+              "Each piece played must be laid adjacent to an opponent's piece so that the opponent's piece or a row of opponent's pieces is flanked by the new piece and another piece of the player's colour. All of the opponent's pieces between these two pieces are 'captured' and turned over to match the player's colour.",
+              "It can happen that a piece is played so that pieces or rows of pieces in more than one direction are trapped between the new piece played and other pieces of the same colour. In this case, all the pieces in all viable directions are turned over.",
+              "The game is over when neither player has a legal move (i.e. a move that captures at least one opposing piece) or when the board is full. At this time, the winner is determined by who has the most face up discs."
+            ),
       credits: "Steven Barnett",
       link: "http://www.sabarnett.co.uk"
            )

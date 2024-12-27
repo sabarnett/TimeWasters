@@ -17,6 +17,7 @@ import Snake
 import AdventureGame
 import NumberCombinations
 import TicTacToe
+import Othello
 
 @main
 struct GamesControllerApp: App {
@@ -74,6 +75,12 @@ struct GamesControllerApp: App {
 
         WindowGroup(id: "ticTacToe", for: Game.self) { $game in
             TicTacToeView(gameData: gameList.game(for: "ticTacToe")!)
+        }
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+
+        WindowGroup(id: "othello", for: Game.self) { $game in
+            OthelloView(gameData: gameList.game(for: "othello")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)

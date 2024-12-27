@@ -39,6 +39,8 @@
 		E8FB1CA92D0C8C6100098A79 /* SetingsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CA82D0C8C6100098A79 /* SetingsTitle.swift */; };
 		E8FB1CAB2D0C8C9A00098A79 /* SettingsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CAA2D0C8C9A00098A79 /* SettingsSelectionView.swift */; };
 		E8FB1CAD2D0C8CEA00098A79 /* SettingsActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB1CAC2D0C8CEA00098A79 /* SettingsActionView.swift */; };
+		E8FD2C532D1F08070088E906 /* Othello.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FD2C522D1F08070088E906 /* Othello.framework */; };
+		E8FD2C542D1F08070088E906 /* Othello.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8FD2C522D1F08070088E906 /* Othello.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,7 @@
 				E82186612CEC98890023FA01 /* NumberCombinations.framework in Embed Frameworks */,
 				E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */,
 				E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */,
+				E8FD2C542D1F08070088E906 /* Othello.framework in Embed Frameworks */,
 				E8ED460E2CDFA9DB00A90EE5 /* AdventureGame.framework in Embed Frameworks */,
 				E872D6D02C9B19B10011FE38 /* WordCraft.framework in Embed Frameworks */,
 				E83037872CF7601800C46A77 /* TicTacToe.framework in Embed Frameworks */,
@@ -160,6 +163,8 @@
 		E8FB1CA82D0C8C6100098A79 /* SetingsTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsTitle.swift; sourceTree = "<group>"; };
 		E8FB1CAA2D0C8C9A00098A79 /* SettingsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSelectionView.swift; sourceTree = "<group>"; };
 		E8FB1CAC2D0C8CEA00098A79 /* SettingsActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsActionView.swift; sourceTree = "<group>"; };
+		E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Othello.xcodeproj; path = ../Othello/Othello.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E8FD2C522D1F08070088E906 /* Othello.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Othello.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +176,7 @@
 				E82186602CEC98890023FA01 /* NumberCombinations.framework in Frameworks */,
 				E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */,
 				E8EA115F2C8F3C950078A9A6 /* MineSweeper.framework in Frameworks */,
+				E8FD2C532D1F08070088E906 /* Othello.framework in Frameworks */,
 				E8ED460D2CDFA9DB00A90EE5 /* AdventureGame.framework in Frameworks */,
 				E872D6CF2C9B19B10011FE38 /* WordCraft.framework in Frameworks */,
 				E83037862CF7601800C46A77 /* TicTacToe.framework in Frameworks */,
@@ -263,6 +269,7 @@
 				E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */,
 				E821861F2CEC96830023FA01 /* NumberCombinations.xcodeproj */,
 				E83037732CF75F3B00C46A77 /* TicTacToe.xcodeproj */,
+				E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */,
 				E8EA11112C8F3BA20078A9A6 /* Products */,
 				E8EA11432C8F3C360078A9A6 /* Frameworks */,
 			);
@@ -303,6 +310,7 @@
 		E8EA11432C8F3C360078A9A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8FD2C522D1F08070088E906 /* Othello.framework */,
 				E83037852CF7601800C46A77 /* TicTacToe.framework */,
 				E821865F2CEC98890023FA01 /* NumberCombinations.framework */,
 				E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */,
