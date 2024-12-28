@@ -27,6 +27,12 @@ struct GameBoardView: View {
                     }
                 }
             }
+            .onChange(of: model.gameState) { old, new in
+                if new == .noValidMove {
+                    // Player had no valid move, so play the computer again
+                    model.computerMove()
+                }
+            }
     }
     
     private func playersMove(_ tile: Tile) {

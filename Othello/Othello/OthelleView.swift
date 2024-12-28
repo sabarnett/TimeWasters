@@ -17,27 +17,44 @@ public struct OthelloView: View {
     @State public var gameData: Game
     @StateObject private var model: OthelloViewModel = OthelloViewModel()
 
+    @State private var isGameOver: Bool = false
+
     public init(gameData: Game) {
         self.gameData = gameData
     }
     
     public var body: some View {
-        VStack(alignment: .leading) {
-            topBarAndButtons
-            Spacer()
-            
-            HStack(spacing: 2) {
-                GameBoardView(model: model)
-                    .disabled(model.gameState != .playerMove)
-                ScoresView(model: model)
+        ZStack {
+            VStack(alignment: .leading) {
+                topBarAndButtons
+                    .padding()
+                Spacer()
+                
+                HStack(spacing: 2) {
+                    GameBoardView(model: model)
+                        .disabled(model.gameState != .playerMove)
+                    ScoresView(model: model)
+                }
+                
+                Text(model.statusMessage)
+                    .font(.title)
+                    .padding()
+            }
+            .sheet(isPresented: $model.showGamePlay) {
+                GamePlayView(game: gameData)
             }
             
-            Text(model.statusMessage)
-                .font(.title)
-                .padding()
+            if isGameOver {
+                GameOverView(state: model.gameState, restart: {
+                    isGameOver = false
+                    model.newGame()
+                })
+            }
         }
-        .sheet(isPresented: $model.showGamePlay) {
-            GamePlayView(game: gameData)
+        .onChange(of: model.gameState) { old, new in
+            if new == .playerWin || new == .computerWin {
+                isGameOver = true
+            }
         }
         .padding()
     }

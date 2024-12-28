@@ -107,6 +107,13 @@
 			remoteGlobalIDString = E8DE7E3E2CD3BDD600847B82;
 			remoteInfo = AdventureGame;
 		};
+		E8F3F8522D200C3B0030C5BC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8FD2C2C2D1F07A20088E906;
+			remoteInfo = Othello;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -336,6 +343,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E8F3F84C2D200C3B0030C5BC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8F3F8532D200C3B0030C5BC /* Othello.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E8FB1C9C2D0C8C1C00098A79 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +422,10 @@
 				{
 					ProductGroup = E89D35792CECC2E1008D8B28 /* Products */;
 					ProjectRef = E821861F2CEC96830023FA01 /* NumberCombinations.xcodeproj */;
+				},
+				{
+					ProductGroup = E8F3F84C2D200C3B0030C5BC /* Products */;
+					ProjectRef = E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */;
 				},
 				{
 					ProductGroup = E8595CB42CDFB0C800FDCC26 /* Products */;
@@ -494,6 +513,13 @@
 			fileType = wrapper.framework;
 			path = AdventureGame.framework;
 			remoteRef = E8ED46052CDFA9C100A90EE5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E8F3F8532D200C3B0030C5BC /* Othello.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Othello.framework;
+			remoteRef = E8F3F8522D200C3B0030C5BC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

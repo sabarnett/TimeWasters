@@ -10,6 +10,7 @@
 //
 
 import Foundation
+import SharedComponents
 
 enum GameState {
     case playerMove
@@ -38,6 +39,8 @@ class OthelloViewModel: ObservableObject {
     @Published var gameState: GameState = .playerMove
     @Published var showGamePlay: Bool = false
     
+    private var notify = PopupNotificationCentre.shared
+    
     private var allTiles: [Tile] { gameBoard.flatMap({$0}) }
     
     init() {
@@ -57,10 +60,16 @@ class OthelloViewModel: ObservableObject {
         gameBoard[3][4].state = .computer
         gameBoard[4][3].state = .computer
         gameBoard[4][4].state = .player
-
+        
+        playerScore = 2
+        computerScore = 2
+        
         // who goes first; player or computer?
         if Int.random(in: 0..<3) == 0 {
             computerMove()
+        } else {
+            statusMessage = "You go first!"
+            gameState = .playerMove
         }
     }
     
@@ -77,35 +86,35 @@ class OthelloViewModel: ObservableObject {
         resetHints()
         
         objectWillChange.send()
-        for col in 0..<boardWidth {
-            for row in 0..<boardHeight {
-                if gameBoard[col][row].id == selectedTile.id {
-                    if !makeMove(board: gameBoard, tileState: .player, xPos: col, yPos: row) {
-                        statusMessage = "Invalid move, please try again."
-                        gameState = .playerMove
-                        return false
-                    } else {
-                        
-                        let scores = getScores(board: gameBoard)
-                        self.playerScore = scores.player
-                        self.computerScore = scores.computer
-
-                        statusMessage = "My move... thinking..."
-                        return true
-                    }
-                }
-            }
+        
+        let position = findTile(selectedTile.id)
+        if !makeMove(board: gameBoard, tileState: .player, xPos: position.xPos, yPos: position.yPos) {
+            statusMessage = "Invalid move, please try again."
+            gameState = .playerMove
+            return false
         }
-        return false
+        
+        updateScores()
+        statusMessage = "My move... thinking..."
+        return true
     }
     
     /// Calculate the computers move. Assuming the computer can move, we place the
     /// computer tile, flip any that need flipping and update the scores.
     func computerMove() {
-        
+        gameState = .computerMove
         guard let computer = getComputerMove() else {
-            statusMessage = "I cannot move, you win..."
-            // TODO: Present message to player
+            notify.showPopup(systemImage: "circle.slash.fill",
+                             title: "I have no moves",
+                             description: "I cannot move, your turn again")
+            statusMessage = "I cannot move, you get the next turn..."
+            
+            if canPlayerMove() {
+                gameState = .playerMove
+                return
+            }
+            
+            endOfGameCheck()
             return
         }
         makeMove(board: gameBoard, tileState: .computer, xPos: computer.xPos, yPos: computer.yPos)
@@ -115,20 +124,40 @@ class OthelloViewModel: ObservableObject {
         self.computerScore = scores.computer
         
         // Can the player move?
-        let boardCopy = getBoardCopy(gameBoard)
-        let possibleMoves = getValidMoves(board: boardCopy, tileState: .player)
-        print("Possible moves: \(possibleMoves)")
-        if possibleMoves.isEmpty {
+        if !canPlayerMove() {
             statusMessage = "You cannot move, game over..."
-            // TODO: End the game
+            notify.showPopup(systemImage: "circle.slash.fill",
+                             title: "You cannot move",
+                             description: "You cannot move, my turn again")
+            gameState = .noValidMove
         }
 
         gameState = .playerMove
         statusMessage = "Your move..."
         
-        // TODO: Check for end of game
+        endOfGameCheck()
     }
     
+    /// Checks whether the player has any possible moves.
+    ///
+    /// - Returns: Truie if the player has valid moves else false
+    private func canPlayerMove() -> Bool {
+        let boardCopy = getBoardCopy(gameBoard)
+        let possibleMoves = getValidMoves(board: boardCopy, tileState: .player)
+        
+        return !possibleMoves.isEmpty
+    }
+    
+    /// Checks whether the computer has any possible moves.
+    ///
+    /// - Returns: Truie if the computer has valid moves else false
+    private func canComputerMove() -> Bool {
+        let boardCopy = getBoardCopy(gameBoard)
+        let possibleMoves = getValidMoves(board: boardCopy, tileState: .computer)
+        
+        return !possibleMoves.isEmpty
+    }
+
     /// Create an empty board. This is an array of arrays of Tile objects.
     private func createBoard() -> GameBoard {
         var board = GameBoard()
@@ -344,5 +373,41 @@ class OthelloViewModel: ObservableObject {
         }
         
         return copy
+    }
+    
+    /// Calculate and update the scores for the game board
+    private func updateScores() {
+        let scores = getScores(board: gameBoard)
+        self.playerScore = scores.player
+        self.computerScore = scores.computer
+    }
+    
+    /// Find a tile, given it's id. We can assume that the tile exists somewhere and we want the
+    /// x/y position in the grid.
+    ///
+    /// - Parameter tileId: The id of the tile to find
+    /// - Returns: The location on the gameBoard where this tile exists
+    private func findTile(_ tileId: UUID) -> BoardLocation {
+        for col in 0..<boardWidth {
+            for row in 0..<boardHeight {
+                if gameBoard[col][row].id == tileId {
+                    return BoardLocation(xPos: col, yPos: row)
+                }
+            }
+        }
+        fatalError("Could not find tile with id \(tileId)")
+    }
+    
+    private func endOfGameCheck() {
+        // No tiles left, set end of game state
+        if allTiles.filter({$0.state == .empty}).count > 0
+            || canPlayerMove()
+            || canComputerMove() {
+            return
+        }
+
+        // If we get here, the checks are complete and the game is over
+        statusMessage = "Game over!"
+        gameState = playerScore > computerScore ? .playerWin : .computerWin
     }
 }
