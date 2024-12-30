@@ -9,8 +9,9 @@
 // Copyright © 2024 Steven Barnett. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import SharedComponents
+import AVKit
 
 enum GameState {
     case playerMove
@@ -32,12 +33,20 @@ class OthelloViewModel: ObservableObject {
     let boardWidth = 8
     let boardHeight = 8
     
+    
+    @AppStorage(Constants.othelloPlaySounds) private var othelloPlaySounds = true {
+        didSet {
+            updateSounds()
+        }
+    }
+
     @Published var gameBoard = GameBoard()
     @Published var playerScore = 0
     @Published var computerScore = 0
     @Published var statusMessage = " "
     @Published var gameState: GameState = .playerMove
     @Published var showGamePlay: Bool = false
+    @Published var speakerIcon = ""
     
     private var notify = PopupNotificationCentre.shared
     
@@ -45,6 +54,10 @@ class OthelloViewModel: ObservableObject {
     
     init() {
         newGame()
+        speakerIcon = othelloPlaySounds ? "speaker.slash.fill" : "speaker.fill"
+        if othelloPlaySounds {
+            playBackgroundSound()
+        }
     }
     
     /// Starts a new game. This involves creating a new game board, setting
@@ -410,4 +423,59 @@ class OthelloViewModel: ObservableObject {
         statusMessage = "Game over!"
         gameState = playerScore > computerScore ? .playerWin : .computerWin
     }
+    
+    // MARK: - Souond functions
+    
+    private var sounds: AVAudioPlayer!
+    private var tileDrop: AVAudioPlayer!
+    private var backgroundURL: URL { soundFile(named: "background") }
+
+    /// Play the background music
+    func playBackgroundSound() {
+        playSound(backgroundURL, repeating: true)
+    }
+    
+    /// If the background music is playing, stop it.
+    func stopSounds() {
+        if sounds != nil {
+            sounds.stop()
+        }
+    }
+    
+    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
+    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
+    /// any other sound, so this is a safe bet.
+    func toggleSounds() {
+        othelloPlaySounds.toggle()
+    }
+    
+    private func updateSounds() {
+        speakerIcon = othelloPlaySounds ? "speaker.slash.fill" : "speaker.fill"
+
+        if othelloPlaySounds {
+            playSound(backgroundURL, repeating: true)
+        } else {
+            sounds.stop()
+        }
+    }
+    
+    /// Creates the URL of a sound file. The file must exist within the minesweeper project
+    /// bundle.
+    private func soundFile(named file: String) -> URL {
+        let bun = Bundle(for: OthelloViewModel.self)
+        let sound = bun.path(forResource: file, ofType: "mp3")
+        return URL(fileURLWithPath: sound!)
+    }
+
+    /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
+    /// disabled, we do nothing.
+    private func playSound(_ url: URL, repeating: Bool = false) {
+        guard othelloPlaySounds else { return }
+        if sounds != nil { sounds.stop() }
+        
+        sounds = try! AVAudioPlayer(contentsOf: url)
+        sounds.numberOfLoops = repeating ? -1 : 0
+        self.sounds.play()
+    }
+
 }

@@ -82,18 +82,17 @@ public struct OthelloView: View {
             .buttonStyle(.plain)
             .help("Start a new game")
 
-//            Button(action: { model.toggleSounds() }) {
-//                Image(systemName: model.speakerIcon)
-//            }
-//            .buttonStyle(.plain)
-//            .help("Toggle sound effects")
+            Button(action: { model.toggleSounds() }) {
+                Image(systemName: model.speakerIcon)
+            }
+            .buttonStyle(.plain)
+            .help("Toggle sound effects")
         }
         .monospacedDigit()
         .font(.largeTitle)
         .frame(height: 30)
         .clipShape(.rect(cornerRadius: 10))
     }
-
 }
 
 #Preview {

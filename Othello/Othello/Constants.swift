@@ -16,4 +16,6 @@ struct Constants {
     static let computerColor = Color.white
     
     static let gamePieceSystemImage = "circle.inset.filled"
+    
+    static let othelloPlaySounds = "othelloPlaySounds"
 }
