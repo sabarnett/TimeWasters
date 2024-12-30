@@ -25,6 +25,8 @@ struct GameIndexView: View {
     private var columns: [GridItem] { Array.init(repeating: GridItem(), count: 2) }
     private var games: [Game] { gameList.games }
     
+    @State private var imageId: UUID = UUID()
+    
     var body: some View {
         ZStack {
             Image("bgImage")
@@ -87,6 +89,14 @@ struct GameIndexView: View {
             }
             .frame(height: 0)
         }
+        // Temp code to reload the view. This just makes it easier
+        // when I want to record a video of the opening screen for
+        // the web site and for github. It serves no other purpose.
+        .id(imageId)
+        .onTapGesture {
+            imageId = UUID()
+        }
+
         .sheet(item: $selectedGame) { game in
             GameInfo(gameData: game)
         }
