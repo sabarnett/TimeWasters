@@ -3,7 +3,7 @@ I've never been one for games on computers. The sad fact is I have arthritis in 
 
 The purpose of this app is to get some practice in creating simple to play games. The kind of thing we used to play before computers became graphic processing work-horses.
 
-At present, this Mac app contains six games;
+At present, this Mac app contains seven games;
 
 * Minesweeper
 * WordCraft
@@ -11,10 +11,17 @@ At present, this Mac app contains six games;
 * Pyramid of Doom
 * Number Combinations
 * Tic Tac Toe
+* Othello
 
-Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. Snake, Number Combinations and Tic Tac Toe are mine. Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game. 
+These are a mixture of games I have adapted and games I have written myself. 
 
-More will be added at some point. This is just a starter project.
+* Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. 
+
+* Snake, Number Combinations, Tic Tac Toe and Othello are mine. I've picked up the basic logic from web articles but have written the code myself.
+
+* Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game, taken from the original C code and ported to Swift. I then added a SwiftUI front end as the original game was a console line game.
+
+More will be added at some point, as and when I come across something I like the look of.
 
 The opening screen animates a button for each game we have created:
 
@@ -87,6 +94,25 @@ The game is simple, but quite hard to win against the AI built into the computer
 This is a relatively simple game, but includes an AI that calculates the computers move. This is a simplease but very effective AI that leaves just enough space to allow the player to occasionally win. Draw's tend to be the usual result.
 
 Scores are saved across invocations of the app, but can be reset using the reset icon on the tool bar.
+
+## Othello
+
+Othello is a strategy board game for two players (you and the computer), played on an 8 by 8 board. The game traditionally begins with four discs placed in the middle of the board. The computer will randomly select who goes first. The player always plays black and the computer white. There is no advantage to the colour of the pieces.
+
+You must place a disc on the board, in such a way that there is at least one straight (horizontal, vertical, or diagonal) occupied line between the new disc and another of your discs, with one or more contiguous computer pieces between them.
+
+After placing the disc, the opposition discs flip lying on a straight line between the new disc and any existing discs. All flipped discs are now yours. Now the computer plays. This computer operates under the same rules, with the roles reversed: it lays down a disc, causing your discs to flip.
+
+Where there are no moves available, you or the computer skips their move and control reverts to the other player. The game ends when the board is full or neither player can move. At this time, the winner is determined by who has the most face up discs.
+
+![Tic Tac Toe](./Images/othello.png)
+
+The game is deceptively simple to play but quite hard to win at. The computer will favour capturing corners where it can and will go for the highest scoring move after that. It's not a perfect algorithm, but it makes for a difficult game but not an unbeatable one. No one wants a game where they always lose.
+
+### To Do:
+
+* I want to add sounds to this app and invent a high score mechanism.
+* I have a 'feature' where the computer will tell you it does not have a move when the game has actually finished. I need to fix that.
 
 ## Overviews
 
