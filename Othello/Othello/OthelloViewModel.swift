@@ -47,6 +47,7 @@ class OthelloViewModel: ObservableObject {
     @Published var gameState: GameState = .playerMove
     @Published var showGamePlay: Bool = false
     @Published var speakerIcon = ""
+    @Published var leaderBoard = LeaderBoard()
     
     private var notify = PopupNotificationCentre.shared
     
@@ -421,7 +422,14 @@ class OthelloViewModel: ObservableObject {
 
         // If we get here, the checks are complete and the game is over
         statusMessage = "Game over!"
-        gameState = playerScore > computerScore ? .playerWin : .computerWin
+        
+        if playerScore > computerScore {
+            gameState = .playerWin
+            leaderBoard.addLeader(score: playerScore, for: .player)
+        } else {
+            gameState = .computerWin
+            leaderBoard.addLeader(score: computerScore, for: .computer)
+        }
     }
     
     // MARK: - Souond functions
