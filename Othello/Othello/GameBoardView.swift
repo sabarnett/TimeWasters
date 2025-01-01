@@ -36,6 +36,7 @@ struct GameBoardView: View {
     }
     
     private func playersMove(_ tile: Tile) {
+        guard model.gameState == .playerMove else { return }
         let thinkingTime = Double.random(in: 0.7...2.0)
         withAnimation {
             if model.select(tile: tile) {   

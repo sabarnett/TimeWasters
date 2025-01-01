@@ -33,7 +33,6 @@ public struct OthelloView: View {
                 
                 HStack(spacing: 2) {
                     GameBoardView(model: model)
-                        .disabled(model.gameState != .playerMove)
                     ScoresView(model: model)
                 }
                 
