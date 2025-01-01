@@ -20,30 +20,22 @@ struct LeaderBoardView: View {
     @State var gameLevel: LeaderBoardScoreFor = .player
     
     var leaderItems: [LeaderBoardItem] {
-        switch gameLevel {
-        case .player:
-            return leaderBoard.leaderBoard.playerLeaderBoard
-        case .computer:
-            return leaderBoard.leaderBoard.computerLeaderBoard
-        }
+        let leaders = leaderBoard.leaderBoard.playerLeaderBoard + leaderBoard.leaderBoard.computerLeaderBoard
+        
+        return leaders.sorted(by: { $0.gameScore > $1.gameScore })
     }
     
     var body: some View {
         VStack(alignment: .leading) {
             Text("Leader Board").font(.title)
-            
-            Picker("", selection: $gameLevel) {
-                Text("Player").tag(LeaderBoardScoreFor.player)
-                Text("Computer").tag(LeaderBoardScoreFor.computer)
+            HStack {
+                List {
+                    LeaderBoardItemHeader()
+                    ForEach(leaderItems) { leaderItem in
+                        LeaderBoardItemView(leaderItem: leaderItem)
+                    }
+                }.frame(minHeight: 200)
             }
-            .pickerStyle(SegmentedPickerStyle())
-            
-            List {
-                LeaderBoardItemHeader()
-                ForEach(leaderItems) { leaderItem in
-                    LeaderBoardItemView(leaderItem: leaderItem)
-                }
-            }.frame(minHeight: 200)
             
             HStack {
                 Spacer()
