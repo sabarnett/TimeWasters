@@ -80,6 +80,7 @@ class OthelloViewModel: ObservableObject {
         
         // who goes first; player or computer?
         if Int.random(in: 0..<3) == 0 {
+            gameState = .computerMove
             computerMove()
         } else {
             statusMessage = "You go first!"
@@ -109,16 +110,17 @@ class OthelloViewModel: ObservableObject {
         }
         
         playChime()
-        
         updateScores()
         statusMessage = "My move... thinking..."
+
+        endOfGameCheck()
         return true
     }
     
     /// Calculate the computers move. Assuming the computer can move, we place the
     /// computer tile, flip any that need flipping and update the scores.
     func computerMove() {
-        gameState = .computerMove
+        guard gameState == .computerMove else { return }
         guard let computer = getComputerMove() else {
             notify.showPopup(systemImage: "circle.slash.fill",
                              title: "I have no moves",
