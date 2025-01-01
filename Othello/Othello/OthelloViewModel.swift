@@ -108,6 +108,8 @@ class OthelloViewModel: ObservableObject {
             return false
         }
         
+        playChime()
+        
         updateScores()
         statusMessage = "My move... thinking..."
         return true
@@ -435,12 +437,21 @@ class OthelloViewModel: ObservableObject {
     // MARK: - Souond functions
     
     private var sounds: AVAudioPlayer!
-    private var tileDrop: AVAudioPlayer!
+    private var chimeSound: AVAudioPlayer!
     private var backgroundURL: URL { soundFile(named: "background") }
+    private var chimeURL: URL { soundFile(named: "chime") }
 
     /// Play the background music
     func playBackgroundSound() {
         playSound(backgroundURL, repeating: true)
+    }
+    
+    func playChime() {
+        guard othelloPlaySounds else { return }
+        
+        chimeSound = try! AVAudioPlayer(contentsOf: chimeURL)
+        chimeSound.numberOfLoops = 0
+        self.chimeSound.play()
     }
     
     /// If the background music is playing, stop it.
