@@ -36,9 +36,10 @@ struct GameBoardView: View {
     }
     
     private func playersMove(_ tile: Tile) {
+        let thinkingTime = Double.random(in: 0.7...2.0)
         withAnimation {
             if model.select(tile: tile) {   
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + thinkingTime) {
                     withAnimation(.bouncy) {
                         model.computerMove()
                     }
