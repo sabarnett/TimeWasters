@@ -18,4 +18,6 @@ struct Constants {
     static let gamePieceSystemImage = "circle.inset.filled"
     
     static let othelloPlaySounds = "othelloPlaySounds"
+    
+    static let leaderBoardFileName = "OthelloLeaderBoard"
 }

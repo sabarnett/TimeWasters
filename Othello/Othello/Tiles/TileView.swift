@@ -58,7 +58,7 @@ struct TileView: View {
 }
 
 #Preview {
-    TileView(tile: .constant(Tile(column: 0))) {
+    TileView(tile: .constant(Tile())) {
         print("Tile tapped")
     }
 }

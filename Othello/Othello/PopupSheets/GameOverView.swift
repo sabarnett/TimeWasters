@@ -14,16 +14,10 @@ import SwiftUI
 struct GameOverView: View {
     var state: GameState
     var restart: () -> Void
-
+    
+    /// Winner message. state can only be playerWin or computerWin
     var message: String {
-        switch state {
-        case .playerWin:
-            return "You win!"
-        case .computerWin:
-            return "I win this time"
-        default:
-            return "Que?"
-        }
+        state == .playerWin ? "😀 You win!" : "🤖 I win this time."
     }
     
     var body: some View {

@@ -20,14 +20,15 @@ struct LeaderBoardView: View {
     @State var gameLevel: LeaderBoardScoreFor = .player
     
     var leaderItems: [LeaderBoardItem] {
-        let leaders = leaderBoard.leaderBoard.playerLeaderBoard + leaderBoard.leaderBoard.computerLeaderBoard
-        
-        return leaders.sorted(by: { $0.gameScore > $1.gameScore })
+        leaderBoard
+            .allLeaderBoard
+            .sorted(by: { $0.gameScore > $1.gameScore })
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Leader Board").font(.title)
+            headerView()
+            
             HStack {
                 List {
                     LeaderBoardItemHeader()
@@ -37,55 +38,37 @@ struct LeaderBoardView: View {
                 }.frame(minHeight: 200)
             }
             
-            HStack {
-                Spacer()
-                Button(role: .cancel,
-                       action: { dismiss() },
-                       label: { Text("Close") })
-                .buttonStyle(.borderedProminent)
-                .tint(.accentColor)
-            }
+            footerView()
         }
         .padding()
         .onAppear {
             gameLevel = initialTab
         }
     }
-}
-
-struct LeaderBoardItemHeader: View {
-    var body: some View {
-        HStack {
-            Text("Date")
-                .font(.headline)
-                .frame(minWidth: 160, maxWidth: 160, alignment: .leading)
-            Text("Player")
-                .font(.headline)
-            Spacer()
-            Text("Score")
-                .font(.headline)
-        }.foregroundStyle(.orange.opacity(0.85))
-    }
-}
-
-struct LeaderBoardItemView: View {
-    var leaderItem: LeaderBoardItem
-    let dateFormatter: DateFormatter
     
-    init(leaderItem: LeaderBoardItem) {
-        self.leaderItem = leaderItem
-        dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+    func headerView() -> some View {
+        HStack {
+            Text("Leader Board")
+                .font(.title)
+            Spacer()
+            Button(action: {
+                leaderBoard.clearScores()
+            }, label: {
+                Image(systemName: "square.stack.3d.up.slash.fill")
+            })
+            .buttonStyle(.plain)
+            .help("Clear the leader board scores")
+        }
     }
     
-    var body: some View {
+    func footerView() -> some View {
         HStack {
-            Text(dateFormatter.string(from: leaderItem.gameDate))
-                .frame(minWidth: 160, maxWidth: 160, alignment: .leading)
-            Text(leaderItem.playerName)
             Spacer()
-            Text("\(leaderItem.gameScore)")
+            Button(role: .cancel,
+                   action: { dismiss() },
+                   label: { Text("Close") })
+            .buttonStyle(.borderedProminent)
+            .tint(.accentColor)
         }
     }
 }

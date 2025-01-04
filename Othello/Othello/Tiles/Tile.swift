@@ -26,18 +26,13 @@ class Tile: Identifiable, ObservableObject {
     }
     
     @Published var state: TileState = .empty
-    @Published var column: Int
-    
-    init(column: Int) {
-        self.column = column
-    }
     
     var foregroundColor: Color {
         switch state {
         case .empty: return Color.clear
         case .player: return Constants.playerColor
         case .computer: return Constants.computerColor
-        case .potentialPlayerMove: return Color.red
+        case .potentialPlayerMove: return Constants.playerColor
         }
     }
     

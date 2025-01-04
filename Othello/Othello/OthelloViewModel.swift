@@ -180,10 +180,10 @@ class OthelloViewModel: ObservableObject {
     private func createBoard() -> GameBoard {
         var board = GameBoard()
         
-        for col in 0..<boardWidth {
+        for _ in 0..<boardWidth {
             var row = [Tile]()
             for _ in 0..<boardHeight {
-                row.append(Tile(column: col))
+                row.append(Tile())
             }
             board.append(row)
         }
