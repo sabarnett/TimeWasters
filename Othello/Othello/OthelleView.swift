@@ -40,6 +40,7 @@ public struct OthelloView: View {
                     .font(.title)
                     .padding()
             }
+            .disabled(isGameOver)
             .sheet(isPresented: $model.showGamePlay) {
                 GamePlayView(game: gameData)
             }
@@ -61,7 +62,6 @@ public struct OthelloView: View {
             LeaderBoardView(leaderBoard: model.leaderBoard,
                             initialTab: .player)
         }
-
     }
     
     var topBarAndButtons: some View {
@@ -71,13 +71,9 @@ public struct OthelloView: View {
             }
             .buttonStyle(.plain)
             .help("Show game rules")
-            
-            
-            Button(action: {
-                showLeaderBoard = true
-            }) {
+                        
+            Button(action: { showLeaderBoard = true }) {
                 Image(systemName: "trophy.circle.fill")
-                    .padding(5)
             }
             .buttonStyle(.plain)
             .help("Show the leader board")

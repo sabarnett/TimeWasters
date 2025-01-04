@@ -28,8 +28,9 @@ struct GameBoardView: View {
                 }
             }
             .onChange(of: model.gameState) { old, new in
+                // If the player has no valid moves, the computer
+                // moves again.
                 if new == .noValidMove {
-                    // Player had no valid move, so play the computer again
                     model.computerMove()
                 }
             }

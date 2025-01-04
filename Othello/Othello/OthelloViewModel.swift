@@ -33,7 +33,6 @@ class OthelloViewModel: ObservableObject {
     let boardWidth = 8
     let boardHeight = 8
     
-    
     @AppStorage(Constants.othelloPlaySounds) private var othelloPlaySounds = true {
         didSet {
             updateSounds()
@@ -120,7 +119,7 @@ class OthelloViewModel: ObservableObject {
     /// Calculate the computers move. Assuming the computer can move, we place the
     /// computer tile, flip any that need flipping and update the scores.
     func computerMove() {
-        guard gameState == .computerMove else { return }
+        guard gameState == .computerMove || gameState == .noValidMove else { return }
         guard let computer = getComputerMove() else {
             notify.showPopup(systemImage: "circle.slash.fill",
                              title: "I have no moves",
@@ -136,22 +135,18 @@ class OthelloViewModel: ObservableObject {
             return
         }
         makeMove(board: gameBoard, tileState: .computer, xPos: computer.xPos, yPos: computer.yPos)
-
-        let scores = getScores(board: gameBoard)
-        self.playerScore = scores.player
-        self.computerScore = scores.computer
+        updateScores()
         
-        // Can the player move?
         if !canPlayerMove() {
-            statusMessage = "You cannot move, game over..."
+            statusMessage = "You cannot move, my try again..."
             notify.showPopup(systemImage: "circle.slash.fill",
                              title: "You cannot move",
                              description: "You cannot move, my turn again")
             gameState = .noValidMove
+        } else {
+            gameState = .playerMove
+            statusMessage = "Your move..."
         }
-
-        gameState = .playerMove
-        statusMessage = "Your move..."
         
         endOfGameCheck()
     }
@@ -191,6 +186,8 @@ class OthelloViewModel: ObservableObject {
         return board
     }
     
+    /// Mark the cells the player could potentially select. After they have been on
+    /// the scteen for 3.5 seconds, clear them away again.
     func showHint() {
         objectWillChange.send()
         markPlayerPotentialMoves()
@@ -200,6 +197,8 @@ class OthelloViewModel: ObservableObject {
         }
     }
     
+    /// If there are cells highlighted as potential user moves, reset them back to empty. This
+    /// will remove them from the game board.
     private func resetHints() {
         let marked = allTiles.filter({$0.state == .potentialPlayerMove})
         if marked.count == 0 { return }
@@ -498,5 +497,4 @@ class OthelloViewModel: ObservableObject {
         sounds.numberOfLoops = repeating ? -1 : 0
         self.sounds.play()
     }
-
 }
