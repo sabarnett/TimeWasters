@@ -281,6 +281,11 @@ class OthelloViewModel: ObservableObject {
     private func getValidMoves(board: GameBoard, tileState: TileState) -> [BoardLocation] {
         var validMoves: [BoardLocation] = []
         
+        // We must have at least one of the selected tiles on the board
+        // in order to be able to compute valid moves.
+        let hasTiles = board.flatMap({$0}).filter({$0.state == tileState}).count != 0
+        if !hasTiles { return validMoves }
+        
         for x in 0..<boardWidth {
             for y in 0..<boardHeight {
                 if let _ = isValidMove(board: board, tileState: tileState, xPos: x, yPos: y) {
