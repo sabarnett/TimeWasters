@@ -47,7 +47,6 @@ public struct TicTacToeView: View {
                     }
                 }
             }
-
         }
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
