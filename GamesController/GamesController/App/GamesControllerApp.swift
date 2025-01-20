@@ -18,6 +18,7 @@ import AdventureGame
 import NumberCombinations
 import TicTacToe
 import Othello
+import MatchedPairs
 
 @main
 struct GamesControllerApp: App {
@@ -81,6 +82,12 @@ struct GamesControllerApp: App {
 
         WindowGroup(id: "othello", for: Game.self) { $game in
             OthelloView(gameData: gameList.game(for: "othello")!)
+        }
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+
+        WindowGroup(id: "matchedPairs", for: Game.self) { $game in
+            MatchedPairsView(gameData: gameList.game(for: "matchedPairs")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)

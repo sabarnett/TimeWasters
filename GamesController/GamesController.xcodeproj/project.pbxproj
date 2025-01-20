@@ -14,6 +14,8 @@
 		E805CA282C90C8A7001BD435 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA272C90C8A7001BD435 /* Constants.swift */; };
 		E805CA2D2C90CB12001BD435 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA2C2C90CB12001BD435 /* GameButton.swift */; };
 		E8072E862C90D8A700FCEEDE /* DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8072E852C90D8A700FCEEDE /* DisplayMode.swift */; };
+		E807E7992D3E983400B5684D /* MatchedPairs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E807E7982D3E983400B5684D /* MatchedPairs.framework */; };
+		E807E79A2D3E983400B5684D /* MatchedPairs.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E807E7982D3E983400B5684D /* MatchedPairs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E80CE2C02C90D60F00F68FCD /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */; };
 		E82186602CEC98890023FA01 /* NumberCombinations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E821865F2CEC98890023FA01 /* NumberCombinations.framework */; };
 		E82186612CEC98890023FA01 /* NumberCombinations.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E821865F2CEC98890023FA01 /* NumberCombinations.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -123,6 +125,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E807E79A2D3E983400B5684D /* MatchedPairs.framework in Embed Frameworks */,
 				E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */,
 				E82186612CEC98890023FA01 /* NumberCombinations.framework in Embed Frameworks */,
 				E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */,
@@ -145,6 +148,8 @@
 		E805CA272C90C8A7001BD435 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E805CA2C2C90CB12001BD435 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		E8072E852C90D8A700FCEEDE /* DisplayMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayMode.swift; sourceTree = "<group>"; };
+		E807E7812D3E97FA00B5684D /* MatchedPairs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MatchedPairs.xcodeproj; path = ../MatchedPairs/MatchedPairs.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E807E7982D3E983400B5684D /* MatchedPairs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MatchedPairs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80CE2BF2C90D60F00F68FCD /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		E821861F2CEC96830023FA01 /* NumberCombinations.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NumberCombinations.xcodeproj; path = ../NumberCombinations/NumberCombinations.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E821865F2CEC98890023FA01 /* NumberCombinations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = NumberCombinations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E807E7992D3E983400B5684D /* MatchedPairs.framework in Frameworks */,
 				E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */,
 				E82186602CEC98890023FA01 /* NumberCombinations.framework in Frameworks */,
 				E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */,
@@ -277,6 +283,7 @@
 				E821861F2CEC96830023FA01 /* NumberCombinations.xcodeproj */,
 				E83037732CF75F3B00C46A77 /* TicTacToe.xcodeproj */,
 				E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */,
+				E807E7812D3E97FA00B5684D /* MatchedPairs.xcodeproj */,
 				E8EA11112C8F3BA20078A9A6 /* Products */,
 				E8EA11432C8F3C360078A9A6 /* Frameworks */,
 			);
@@ -317,6 +324,7 @@
 		E8EA11432C8F3C360078A9A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E807E7982D3E983400B5684D /* MatchedPairs.framework */,
 				E8FD2C522D1F08070088E906 /* Othello.framework */,
 				E83037852CF7601800C46A77 /* TicTacToe.framework */,
 				E821865F2CEC98890023FA01 /* NumberCombinations.framework */,
