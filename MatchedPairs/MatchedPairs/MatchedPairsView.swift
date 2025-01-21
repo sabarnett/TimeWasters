@@ -18,6 +18,7 @@ public struct MatchedPairsView: View {
     
     @State private var showGamePlay: Bool = false
     @State private var showLeaderBoard: Bool = false
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var gamePlayColumns: [GridItem] {
         Array(repeating: GridItem(.fixed(80.00), spacing: 3), count: model.columns)
@@ -71,6 +72,13 @@ public struct MatchedPairsView: View {
             Text("Leader Board")
 //            LeaderBoardView(leaderBoard: game.leaderBoard,
 //                            initialTab: game.mineGameDifficulty)
+        }
+        
+        .onReceive(timer) { _ in
+//            if showGamePlay || showLeaderBoard { return }
+            guard model.gameState == .playing else { return }
+            guard model.time < 999 else { return }
+            model.time += 1
         }
     }
     
