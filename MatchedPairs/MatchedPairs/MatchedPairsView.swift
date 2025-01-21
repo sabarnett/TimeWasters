@@ -133,6 +133,7 @@ public struct MatchedPairsView: View {
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)
+                .help("Number of moves so far.")
             
             Text("♦️")
             
@@ -141,6 +142,7 @@ public struct MatchedPairsView: View {
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)
+                .help("Time taken, so far.")
         }
         .monospacedDigit()
         .font(.largeTitle)
