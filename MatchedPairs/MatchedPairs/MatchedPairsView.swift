@@ -103,6 +103,14 @@ public struct MatchedPairsView: View {
 
             Spacer()
             
+            Button(action: { model.newGame() }) {
+                Image(systemName: "arrow.uturn.left.circle.fill")
+                    .scaleEffect(2)
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Start a new game")
+
             Button(action: { toggleSounds() }) {
                 Image(systemName: true ? "speaker.slash.fill" : "speaker.fill")
                     .scaleEffect(2)
@@ -121,7 +129,7 @@ public struct MatchedPairsView: View {
     private var gameStatusDisplay : some View {
         HStack(spacing: 0) {
             // Matched items
-            Text(0.formatted(.number.precision(.integerLength(3))))
+            Text(model.moves.formatted(.number.precision(.integerLength(3))))
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)
@@ -129,7 +137,7 @@ public struct MatchedPairsView: View {
             Text("♦️")
             
             // Seconds elapsed
-            Text(10.formatted(.number.precision(.integerLength(3))))
+            Text(model.time.formatted(.number.precision(.integerLength(3))))
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)
