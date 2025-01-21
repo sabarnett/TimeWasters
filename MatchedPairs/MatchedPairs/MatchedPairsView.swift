@@ -75,7 +75,7 @@ public struct MatchedPairsView: View {
         }
         
         .onReceive(timer) { _ in
-//            if showGamePlay || showLeaderBoard { return }
+            if showGamePlay || showLeaderBoard { return }
             guard model.gameState == .playing else { return }
             guard model.time < 999 else { return }
             model.time += 1
