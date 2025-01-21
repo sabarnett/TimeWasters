@@ -42,6 +42,7 @@ public struct MatchedPairsView: View {
                                 model.select(tile)
                             }
                         }
+                        .environment(model)
                     }
                 }
                 .padding()

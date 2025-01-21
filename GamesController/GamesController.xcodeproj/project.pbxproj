@@ -46,6 +46,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E853DEBD2D3FDF74009E3421 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E807E7812D3E97FA00B5684D /* MatchedPairs.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E807E7762D3E97FA00B5684D;
+			remoteInfo = MatchedPairs;
+		};
 		E8595CBA2CDFB0C800FDCC26 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */;
@@ -227,6 +234,14 @@
 				E805CA252C90C857001BD435 /* Bundle+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E853DEB92D3FDF74009E3421 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E853DEBE2D3FDF74009E3421 /* MatchedPairs.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E8595CB42CDFB0C800FDCC26 /* Products */ = {
@@ -424,6 +439,10 @@
 					ProjectRef = E8ED45FF2CDFA9C100A90EE5 /* AdventureGame.xcodeproj */;
 				},
 				{
+					ProductGroup = E853DEB92D3FDF74009E3421 /* Products */;
+					ProjectRef = E807E7812D3E97FA00B5684D /* MatchedPairs.xcodeproj */;
+				},
+				{
 					ProductGroup = E8EA115A2C8F3C760078A9A6 /* Products */;
 					ProjectRef = E8EA11592C8F3C760078A9A6 /* MineSweeper.xcodeproj */;
 				},
@@ -460,6 +479,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		E853DEBE2D3FDF74009E3421 /* MatchedPairs.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MatchedPairs.framework;
+			remoteRef = E853DEBD2D3FDF74009E3421 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E8595CBB2CDFB0C800FDCC26 /* SharedComponents.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;

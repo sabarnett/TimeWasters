@@ -13,6 +13,8 @@ import SwiftUI
 
 struct TileView: View {
     
+    @Environment(MatchedPairsGameModel.self) var model
+    
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
     var tile: Tile
     var onTap: (() -> Void)
@@ -27,12 +29,12 @@ struct TileView: View {
                 if tile.isMatched {
                     Text("👍")
                         .font(.system(size: 35))
-                        .frame(width: 70, height: 70)
+                        .frame(width: 80, height: 70)
                 } else {
-                    Image(tile.isMatched ? tile.face : "back_01", bundle: myBundle)
+                    Image(tile.isMatched ? tile.face : model.cardBackground, bundle: myBundle)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 70)
+                        .frame(width: 80)
 
                         .rotation3DEffect(.degrees(tile.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
                         .opacity(tile.isFaceUp ? 0 : 1)
@@ -47,7 +49,7 @@ struct TileView: View {
                 Image(tile.face, bundle: myBundle)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 70)
+                    .frame(width: 80)
                     .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
                     .opacity(tile.isFaceUp ? 1 : -1)
                     .accessibility(hidden: !tile.isFaceUp)

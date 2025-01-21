@@ -22,22 +22,23 @@ class MatchedPairsGameModel {
     var columns: Int = 6       // Hard = 10, medium = 8, easy = 6
     var rows: Int = 4           // Hard = 6, medium = 5, easy = 4
     var gameState: GameState = .playing
+    var cardBackground: String = "back_01"
     
     init() {
         newGame()
     }
     
     func newGame() {
-        tiles = []
-        var cardNames: [String] = []
-        
-        for suit in ["heart", "club", "diamond", "spade"] {
-            for value in 1..<13 {
-                cardNames.append("\(suit)_\(String(format: "%02d", value))")
-            }
-        }
-        cardNames.shuffle()
-        
+        tiles.removeAll(keepingCapacity: true)
+        tiles = gameTiles()
+
+        cardBackground = randomBackground()
+        gameState = .playing
+    }
+
+    private func gameTiles() -> [Tile] {
+        let cardNames: [String] = allPotentialCards()
+
         // 10x6 grid of tiles
         var tileSetup: [Tile] = []
         for i in 0..<(columns*rows)/2 {
@@ -47,8 +48,24 @@ class MatchedPairsGameModel {
             tileSetup.append(tileCopy)
         }
         
-        tiles = tileSetup.shuffled()
-        gameState = .playing
+        return tileSetup.shuffled()
+    }
+    
+    private func allPotentialCards() -> [String] {
+        var cardNames: [String] = []
+        
+        for suit in ["heart", "club", "diamond", "spade"] {
+            for value in 1..<13 {
+                cardNames.append("\(suit)_\(String(format: "%02d", value))")
+            }
+        }
+        
+        return cardNames.shuffled()
+    }
+
+    private func randomBackground() -> String {
+        let background = Int.random(in: 1...5)
+        return "back_\(String(format: "%02d", background))"
     }
     
     /// Player selected a tile on the game board. Make sure the game is still playing and that
