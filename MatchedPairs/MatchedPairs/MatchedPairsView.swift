@@ -59,15 +59,15 @@ public struct MatchedPairsView: View {
             }
         }
         .sheet(isPresented: $showGamePlay, onDismiss: {
-//            if minePlaySounds {
-//                playSound(tickingURL, repeating: true)
-//            }
+            if model.playSounds {
+                model.playBackgroundSound()
+            }
         }) { GamePlayView(game: gameData) }
         
         .sheet(isPresented: $showLeaderBoard, onDismiss: {
-//            if minePlaySounds {
-//                playSound(tickingURL, repeating: true)
-//            }
+            if model.playSounds {
+                model.playBackgroundSound()
+            }
         }) {
             Text("Leader Board")
 //            LeaderBoardView(leaderBoard: game.leaderBoard,
@@ -88,7 +88,7 @@ public struct MatchedPairsView: View {
     private var toggleButtons : some View {
         HStack {
             Button(action: {
-//                ticking.stop()
+                model.stopSounds()
                 showGamePlay.toggle()
             }) {
                 Image(systemName: "questionmark.circle.fill")
@@ -99,7 +99,7 @@ public struct MatchedPairsView: View {
             .help("Show the game play")
 
             Button(action: {
-//                ticking.stop()
+                model.stopSounds()
                 showLeaderBoard.toggle()
             }) {
                 Image(systemName: "trophy.circle.fill")
@@ -120,14 +120,15 @@ public struct MatchedPairsView: View {
             .help("Start a new game")
 
             Button(action: { toggleSounds() }) {
-                Image(systemName: true ? "speaker.slash.fill" : "speaker.fill")
+                Image(systemName: model.speakerIcon)
                     .scaleEffect(2)
                     .padding(5)
             }
             .buttonStyle(.plain)
             .help("Toggle sounds")
 
-        }.padding([.horizontal,.top])
+        }
+        .padding([.horizontal,.top])
     }
     
     /// Displays the current selected bomb count and the number of seconds elapsed. It also

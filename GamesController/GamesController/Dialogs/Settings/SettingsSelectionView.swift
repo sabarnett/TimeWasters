@@ -35,6 +35,8 @@ struct SettingsSelectionView: View {
                     .tag(SettingsTabs.snake)
                 Label("Number Combo", systemImage: "squareshape.split.2x2.dotted")
                     .tag(SettingsTabs.numbercombinations)
+                Label("Matched Pairs", systemImage: "square.and.line.vertical.and.square")
+                    .tag(SettingsTabs.matchedPairs)
             }
         }
     }

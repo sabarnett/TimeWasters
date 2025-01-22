@@ -17,6 +17,7 @@ enum SettingsTabs {
     case wordcraft
     case snake
     case numbercombinations
+    case matchedPairs
 }
 
 struct SettingsView: View {

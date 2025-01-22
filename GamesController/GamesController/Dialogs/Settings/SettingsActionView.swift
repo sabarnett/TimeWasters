@@ -14,6 +14,7 @@ import MineSweeper
 import WordCraft
 import Snake
 import NumberCombinations
+import MatchedPairs
 
 struct SettingsActionView: View {
     @Binding var selectedOption: SettingsTabs
@@ -46,6 +47,13 @@ struct SettingsActionView: View {
                 .settingsViewDefinition(
                     title: "Number Combinations settings",
                     icon: "squareshape.split.2x2.dotted")
+            
+        case .matchedPairs:
+            MatchedPairsSettingsView()
+                .settingsViewDefinition(
+                    title: "Matched Pairs settings",
+                    icon: "square.and.line.vertical.and.square")
+
         }
     }
 }
