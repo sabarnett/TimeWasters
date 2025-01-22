@@ -70,6 +70,8 @@ class MatchedPairsGameModel {
     @ObservationIgnored
     @AppStorage(Constants.gameDifficulty) var gameDifficulty: GameDifficulty = .easy
 
+    var leaderBoard = LeaderBoard()
+
     var tiles: [Tile] = []
     
     var columns: Int = 6
@@ -83,6 +85,7 @@ class MatchedPairsGameModel {
     
     init() {
         newGame()
+        updateSounds()
     }
     
     /// Starts a new game, generating a new card deck and a new card background. It
@@ -190,6 +193,7 @@ class MatchedPairsGameModel {
         if tiles[indexes[0]].face != tiles[indexes[1]].face { return }
         
         // We have a match - update both cards
+        playMatchSound()
         tiles[indexes[0]].match()
         tiles[indexes[1]].match()
     }
@@ -197,8 +201,8 @@ class MatchedPairsGameModel {
     /// Check for the end of the game. That's when all cards are marked as matched
     private func checkForEndOfGame() {
         if tiles.allSatisfy({$0.isMatched}) {
-            // Game over
             gameState = .gameOver
+            leaderBoard.addLeader(score: time, for: gameDifficulty)
         }
     }
     
@@ -219,15 +223,16 @@ class MatchedPairsGameModel {
     /// If the background music is playing, stop it.
     func stopSounds() {
         guard playSounds else { return }
-        guard sounds else { return }
+        guard sounds != nil else { return }
         sounds.stop()
     }
 
     /// Play the tile drop sound while the new tiles enter into the game play area. This
     /// will play over the top of the background sound.
-    func playBiteSound() {
+    func playMatchSound() {
         guard playSounds else { return }
         matchSound = try? AVAudioPlayer(contentsOf: matchURL)
+        matchSound.volume = 0.5
         matchSound.play()
     }
     
@@ -244,7 +249,7 @@ class MatchedPairsGameModel {
         if playSounds {
             playSound(backgroundURL, repeating: true)
         } else {
-            sounds.stop()
+            sounds?.stop()
         }
     }
     

@@ -69,9 +69,8 @@ public struct MatchedPairsView: View {
                 model.playBackgroundSound()
             }
         }) {
-            Text("Leader Board")
-//            LeaderBoardView(leaderBoard: game.leaderBoard,
-//                            initialTab: game.mineGameDifficulty)
+            LeaderBoardView(leaderBoard: model.leaderBoard,
+                            initialTab: model.gameDifficulty)
         }
         
         .onReceive(timer) { _ in
@@ -164,12 +163,12 @@ public struct MatchedPairsView: View {
     /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
     /// any other sound, so this is a safe bet.
     private func toggleSounds() {
-//        minePlaySounds.toggle()
-//        if minePlaySounds {
-//            playSound(tickingURL, repeating: true)
-//        } else {
-//            ticking.stop()
-//        }
+        model.playSounds.toggle()
+        if model.playSounds {
+            model.playBackgroundSound()
+        } else {
+            model.stopSounds()
+        }
     }
 }
 
