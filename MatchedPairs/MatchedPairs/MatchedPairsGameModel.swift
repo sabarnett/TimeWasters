@@ -85,7 +85,6 @@ class MatchedPairsGameModel {
     
     init() {
         newGame()
-        updateSounds()
     }
     
     /// Starts a new game, generating a new card deck and a new card background. It
@@ -103,6 +102,7 @@ class MatchedPairsGameModel {
         time = 0
         
         gameState = .playing
+        updateSounds()
     }
     
     /// Creates the tiles for a new game. Each tile will be generated with a card face
@@ -203,6 +203,7 @@ class MatchedPairsGameModel {
         if tiles.allSatisfy({$0.isMatched}) {
             gameState = .gameOver
             leaderBoard.addLeader(score: time, for: gameDifficulty)
+            stopSounds()
         }
     }
     
@@ -222,9 +223,7 @@ class MatchedPairsGameModel {
     
     /// If the background music is playing, stop it.
     func stopSounds() {
-        guard playSounds else { return }
-        guard sounds != nil else { return }
-        sounds.stop()
+        sounds?.stop()
     }
 
     /// Play the tile drop sound while the new tiles enter into the game play area. This
