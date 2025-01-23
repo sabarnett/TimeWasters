@@ -118,7 +118,7 @@ public struct MatchedPairsView: View {
             .buttonStyle(.plain)
             .help("Start a new game")
 
-            Button(action: { toggleSounds() }) {
+            Button(action: { model.toggleSounds() }) {
                 Image(systemName: model.speakerIcon)
                     .scaleEffect(2)
                     .padding(5)
@@ -157,18 +157,6 @@ public struct MatchedPairsView: View {
         .background(.black)
         .clipShape(.rect(cornerRadius: 10))
         .padding(.top)
-    }
-
-    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
-    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
-    /// any other sound, so this is a safe bet.
-    private func toggleSounds() {
-        model.playSounds.toggle()
-        if model.playSounds {
-            model.playBackgroundSound()
-        } else {
-            model.stopSounds()
-        }
     }
 }
 
