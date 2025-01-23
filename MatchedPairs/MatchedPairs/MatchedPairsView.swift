@@ -24,6 +24,10 @@ public struct MatchedPairsView: View {
         Array(repeating: GridItem(.fixed(80.00), spacing: 3), count: model.columns)
     }
     
+    var windowWidth: Double {
+        (83.0 * Double(model.columns)) + 16.0
+    }
+    
     public init(gameData: Game) {
         self.gameData = gameData
         self.model = MatchedPairsGameModel()
@@ -79,6 +83,8 @@ public struct MatchedPairsView: View {
             guard model.time < 999 else { return }
             model.time += 1
         }
+        
+        .frame(width: windowWidth)
     }
     
     /// Handles any toggle buttons to display in the scores area. We do these separately to
