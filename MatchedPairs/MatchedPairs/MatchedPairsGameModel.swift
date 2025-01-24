@@ -246,7 +246,7 @@ class MatchedPairsGameModel {
         speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
 
         if playSounds {
-            playSound(backgroundURL, repeating: true)
+            playBackgroundSound()
         } else {
             sounds?.stop()
         }
