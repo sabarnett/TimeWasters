@@ -69,6 +69,9 @@ class MatchedPairsGameModel {
     
     @ObservationIgnored
     @AppStorage(Constants.gameDifficulty) var gameDifficulty: GameDifficulty = .easy
+    
+    @ObservationIgnored
+    @AppStorage(Constants.cardBackground) private var cardBg: CardBackgrounds = .one
 
     var leaderBoard = LeaderBoard()
 
@@ -78,7 +81,9 @@ class MatchedPairsGameModel {
     var rows: Int = 4
     
     var gameState: GameState = .playing
-    var cardBackground: String = "back_01"
+    var cardBackground: String {
+        cardBg.cardImage
+    }
     
     var moves: Int = 0
     var time: Int = 0
@@ -95,8 +100,6 @@ class MatchedPairsGameModel {
         
         tiles.removeAll(keepingCapacity: true)
         tiles = gameTiles()
-
-        cardBackground = randomBackground()
         
         moves = 0
         time = 0
@@ -223,7 +226,11 @@ class MatchedPairsGameModel {
     
     /// If the background music is playing, stop it.
     func stopSounds() {
-        sounds?.stop()
+        guard sounds != nil,
+                  sounds.isPlaying else { return }
+        
+        sounds.stop()
+        sounds = nil
     }
 
     /// Play the tile drop sound while the new tiles enter into the game play area. This
@@ -248,7 +255,7 @@ class MatchedPairsGameModel {
         if playSounds {
             playBackgroundSound()
         } else {
-            sounds?.stop()
+            stopSounds()
         }
     }
     
@@ -269,7 +276,7 @@ class MatchedPairsGameModel {
         sounds = try! AVAudioPlayer(contentsOf: url)
         sounds.numberOfLoops = repeating ? -1 : 0
         if volume != 1 { sounds.volume = volume }
-        self.sounds.play()
+        sounds.play()
     }
 
 }

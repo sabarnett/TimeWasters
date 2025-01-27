@@ -20,10 +20,6 @@ public struct MatchedPairsView: View {
     @State private var showLeaderBoard: Bool = false
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    var gamePlayColumns: [GridItem] {
-        Array(repeating: GridItem(.fixed(80.00), spacing: 3), count: model.columns)
-    }
-    
     var windowWidth: Double {
         (83.0 * Double(model.columns)) + 16.0
     }
@@ -40,20 +36,11 @@ public struct MatchedPairsView: View {
                     toggleButtons
                     gameStatusDisplay
                 }
-                LazyVGrid(columns: gamePlayColumns) {
-                    ForEach(model.tiles) { tile in
-                        TileView(tile: tile) {
-                            withAnimation {
-                                model.select(tile)
-                            }
-                        }
-                        .environment(model)
-                    }
-                }
-                .padding()
-                .disabled(model.gameState != .playing)
+                GameGridView(model: model)
+                    .padding()
+                    .disabled(model.gameState != .playing)
             }
-
+            
             if model.gameState == .gameOver {
                 GameOverView() {
                     withAnimation {
@@ -76,7 +63,7 @@ public struct MatchedPairsView: View {
             LeaderBoardView(leaderBoard: model.leaderBoard,
                             initialTab: model.gameDifficulty)
         }
-        
+    
         .onReceive(timer) { _ in
             if showGamePlay || showLeaderBoard { return }
             guard model.gameState == .playing else { return }
@@ -84,6 +71,13 @@ public struct MatchedPairsView: View {
             model.time += 1
         }
         
+        .onChange(of: model.gameState) { _, newState in
+            if newState == .gameOver {
+                print("Stopping sounds")
+                model.stopSounds()
+            }
+        }
+    
         .frame(width: windowWidth)
     }
     
@@ -102,7 +96,7 @@ public struct MatchedPairsView: View {
             }
             .buttonStyle(.plain)
             .help("Show the game play")
-
+            
             Button(action: {
                 model.stopSounds()
                 showLeaderBoard.toggle()
@@ -113,7 +107,7 @@ public struct MatchedPairsView: View {
             }
             .buttonStyle(.plain)
             .help("Show the leader board")
-
+            
             Spacer()
             
             Button(action: { model.newGame() }) {
@@ -123,7 +117,7 @@ public struct MatchedPairsView: View {
             }
             .buttonStyle(.plain)
             .help("Start a new game")
-
+            
             Button(action: { model.toggleSounds() }) {
                 Image(systemName: model.speakerIcon)
                     .scaleEffect(2)
@@ -131,7 +125,7 @@ public struct MatchedPairsView: View {
             }
             .buttonStyle(.plain)
             .help("Toggle sounds")
-
+            
         }
         .padding([.horizontal,.top])
     }

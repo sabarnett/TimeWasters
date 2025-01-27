@@ -14,4 +14,5 @@ import Foundation
 struct Constants {
     static let playSound = "MatchedPairsPlaySound"
     static let gameDifficulty = "MatchedPairsDifficulty"
+    static let cardBackground = "MatchedPairCardBackground"
 }
