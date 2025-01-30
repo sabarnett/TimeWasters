@@ -50,13 +50,8 @@ struct GameButton: View {
                         Text(game.title)
                             .font(.system(size: 16))
                             .bold()
-                            .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
-                            .padding(.leading, 40)
-                        Text(game.tagLine)
-                            .font(.system(size: 12))
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(1)
-                            .frame(minWidth: 200, maxWidth: 200, alignment: .leading)
+                            .frame(minWidth: 200, maxWidth: 200,
+                                   minHeight: 30, alignment: .leading)
                             .padding(.leading, 40)
                     }
                     .padding(.vertical, 3)
