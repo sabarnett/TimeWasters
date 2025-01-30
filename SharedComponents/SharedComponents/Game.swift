@@ -202,12 +202,14 @@ public class Games: ObservableObject {
       title: "Matched Pairs",
       tagLine: "How good is your memory",
            description: textBlock(
-            "Matched Pairs...",
-            "Move matched pairs"
+            "This is a game of memory. The game will randomly select cards from a deck and present them to you face down. There are two of each card on the game board and your job is to match them up.",
+            "You click on a card to turn it over. If you click on two cards that match, they are removed from the game board. If not, they will turn back down and you will need to pick another two cards.",
+            "The aim is to find all the matched pairs in as short a times as possible. Yuo can vary the difficulty of the game through the settings window."
                 ),
            gamePlay: textBlock(
-              "Pick a card, any card",
-              "Click it"
+              "Click on a card to turn it over. Then click on a second card to see if it matches the first.",
+              "If the cards match, they are taken out of the game. If they do not match, when you click on the next card, the two you previously selected will be turned face down.",
+              "The game is complete when you have matched all card pairs."
             ),
       credits: "Steven Barnett",
       link: "http://www.sabarnett.co.uk"
