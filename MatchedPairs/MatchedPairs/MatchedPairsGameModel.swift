@@ -175,6 +175,18 @@ class MatchedPairsGameModel {
         checkForEndOfGame()
     }
     
+    /// Locates the selected card and turns it face down.
+    ///
+    /// - Parameter tile: The tile to change
+    func turnFaceDown(_ tile: Tile) {
+        guard gameState == .playing,
+                tile.isMatched == false,
+                tile.isFaceUp == true,
+                let tileIndex = tiles.firstIndex(where: {$0.id == tile.id}) else { return }
+
+        tiles[tileIndex].isFaceUp = false
+    }
+    
     /// If the user has two cards face up and taps a third card, the previous
     /// two cards must be turned face down.
     private func turnCardsDownIfRequired() {

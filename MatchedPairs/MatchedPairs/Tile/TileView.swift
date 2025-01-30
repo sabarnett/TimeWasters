@@ -14,6 +14,7 @@ import SwiftUI
 struct TileView: View {
     
     @Environment(MatchedPairsGameModel.self) var model
+    @State var beginCountdown: Bool = false
     
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
     var tile: Tile
@@ -32,11 +33,11 @@ struct TileView: View {
                         .font(.system(size: 35))
                         .frame(width: 80, height: 70)
                 } else {
-                    Image(tile.isMatched ? tile.face : model.cardBackground, bundle: myBundle)
+                    Image(model.cardBackground, bundle: myBundle)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 80)
-
+                    
                         .rotation3DEffect(.degrees(tile.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
                         .opacity(tile.isFaceUp ? 0 : 1)
                         .accessibility(hidden: tile.isFaceUp)
@@ -47,13 +48,40 @@ struct TileView: View {
             Button(action: {
                 onTap()
             }, label: {
-                Image(tile.face, bundle: myBundle)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 80)
-                    .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
-                    .opacity(tile.isFaceUp ? 1 : -1)
-                    .accessibility(hidden: !tile.isFaceUp)
+                ZStack {
+                    Image(tile.face, bundle: myBundle)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 80)
+                        .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
+                        .opacity(tile.isFaceUp ? 1 : -1)
+                        .accessibility(hidden: !tile.isFaceUp)
+                    
+                    HStack {
+                        ZStack(alignment: .bottomLeading) {
+                            Rectangle()
+                                .fill(beginCountdown ? Color.white : Color.clear)
+                                .frame(width: 60 , height: 8, alignment: .leading)
+                            Rectangle()
+                                .fill(beginCountdown ? Color.black : Color.clear)
+                                .frame(width: beginCountdown ? 0 : 60 , height: 8, alignment: .leading)
+                        }.offset(y: 41)
+                    }
+
+                }
+                .onChange(of: tile.isFaceUp) { _, newValue in
+                    if newValue == true {
+                        withAnimation(.linear(duration: 5)) {
+                            beginCountdown = true
+                        } completion: {
+                            model.turnFaceDown(tile)
+                            beginCountdown = false
+                        }
+                    } else {
+                        beginCountdown = false
+                    }
+                }
+
             })
             .buttonStyle(PlainButtonStyle())
         }
