@@ -27,7 +27,8 @@ struct TileView: View {
                 }
             }, label: {
                 if tile.isMatched {
-                    Text("👍")
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
                         .font(.system(size: 35))
                         .frame(width: 80, height: 70)
                 } else {
