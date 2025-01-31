@@ -62,6 +62,7 @@ public struct OthelloView: View {
             LeaderBoardView(leaderBoard: model.leaderBoard,
                             initialTab: .player)
         }
+        .frame(width: 700, height: 590)
     }
     
     var topBarAndButtons: some View {

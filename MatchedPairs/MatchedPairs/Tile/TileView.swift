@@ -74,8 +74,10 @@ struct TileView: View {
                         withAnimation(.linear(duration: 5)) {
                             beginCountdown = true
                         } completion: {
-                            model.turnFaceDown(tile)
-                            beginCountdown = false
+                            withAnimation {
+                                beginCountdown = false
+                                model.turnFaceDown(tile)
+                            }
                         }
                     } else {
                         beginCountdown = false

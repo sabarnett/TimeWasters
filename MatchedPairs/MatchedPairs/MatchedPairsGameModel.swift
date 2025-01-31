@@ -10,7 +10,7 @@
 //
 
 import SwiftUI
-import AVKit
+import AVFoundation
 
 enum GameState {
     case playing

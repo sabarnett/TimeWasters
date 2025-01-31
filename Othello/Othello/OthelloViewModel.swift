@@ -449,13 +449,12 @@ class OthelloViewModel: ObservableObject {
 
     /// Play the background music
     func playBackgroundSound() {
-        print("OTH: Playing background sound")
         playSound(backgroundURL, repeating: true)
     }
     
     func playChime() {
         guard othelloPlaySounds else { return }
-        print("OTH: Playing chime sound")
+
         chimeSound = try! AVAudioPlayer(contentsOf: chimeURL)
         chimeSound.numberOfLoops = 0
         self.chimeSound.play()
@@ -464,7 +463,6 @@ class OthelloViewModel: ObservableObject {
     /// If the background music is playing, stop it.
     func stopSounds() {
         if sounds != nil {
-            print("OTH: Stopping sounds")
             sounds.stop()
         }
     }
@@ -473,14 +471,12 @@ class OthelloViewModel: ObservableObject {
     /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
     /// any other sound, so this is a safe bet.
     func toggleSounds() {
-        print("OTH: Toggling sounds")
         othelloPlaySounds.toggle()
     }
     
     private func updateSounds() {
         speakerIcon = othelloPlaySounds ? "speaker.slash.fill" : "speaker.fill"
 
-        print("OTH: Updating sounds")
         if othelloPlaySounds {
             playSound(backgroundURL, repeating: true)
         } else {
@@ -501,11 +497,9 @@ class OthelloViewModel: ObservableObject {
     private func playSound(_ url: URL, repeating: Bool = false) {
         guard othelloPlaySounds else { return }
         if sounds != nil {
-            print("OTH: Stopping sound in playSound")
             sounds.stop()
         }
         
-        print("OTH: Playing sound")
         sounds = try! AVAudioPlayer(contentsOf: url)
         sounds.numberOfLoops = repeating ? -1 : 0
         self.sounds.play()
