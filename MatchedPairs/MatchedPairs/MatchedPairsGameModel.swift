@@ -87,9 +87,17 @@ class MatchedPairsGameModel {
     
     var moves: Int = 0
     var time: Int = 0
-    
+
+    /// Determines which icon we need to use oon the tool bar for toggling the sounds
+    var speakerIcon: String = "speaker.fill"
+
     init() {
         newGame()
+        
+        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
+        if playSounds {
+            playBackgroundSound()
+        }
     }
     
     /// Starts a new game, generating a new card deck and a new card background. It
@@ -105,7 +113,7 @@ class MatchedPairsGameModel {
         time = 0
         
         gameState = .playing
-        updateSounds()
+        playBackgroundSound()
     }
     
     /// Creates the tiles for a new game. Each tile will be generated with a card face
@@ -208,7 +216,7 @@ class MatchedPairsGameModel {
         if tiles[indexes[0]].face != tiles[indexes[1]].face { return }
         
         // We have a match - update both cards
-        playMatchSound()
+        playChime()
         tiles[indexes[0]].match()
         tiles[indexes[1]].match()
     }
@@ -221,37 +229,32 @@ class MatchedPairsGameModel {
             stopSounds()
         }
     }
-    
+
     // MARK: - Souond functions
     
     private var sounds: AVAudioPlayer!
-    private var matchSound: AVAudioPlayer!
+    private var tileDrop: AVAudioPlayer!
     private var backgroundURL: URL { soundFile(named: "background") }
-    private var matchURL: URL { soundFile(named: "match") }
-    var speakerIcon: String = "speaker.fill"
+    private var successURL: URL { soundFile(named: "match") }
 
     /// Play the background music
     func playBackgroundSound() {
-        guard playSounds else { return }
-        playSound(backgroundURL, repeating: true, volume: 0.3)
+        playSound(backgroundURL, repeating: true)
     }
     
     /// If the background music is playing, stop it.
     func stopSounds() {
-        guard sounds != nil,
-                  sounds.isPlaying else { return }
-        
-        sounds.stop()
-        sounds = nil
+        if sounds != nil {
+            sounds.stop()
+        }
     }
 
     /// Play the tile drop sound while the new tiles enter into the game play area. This
     /// will play over the top of the background sound.
-    func playMatchSound() {
+    func playChime() {
         guard playSounds else { return }
-        matchSound = try? AVAudioPlayer(contentsOf: matchURL)
-        matchSound.volume = 0.5
-        matchSound.play()
+        tileDrop = try? AVAudioPlayer(contentsOf: successURL)
+        tileDrop.play()
     }
     
     /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
@@ -265,9 +268,9 @@ class MatchedPairsGameModel {
         speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
 
         if playSounds {
-            playBackgroundSound()
+            playSound(backgroundURL, repeating: true)
         } else {
-            stopSounds()
+            sounds.stop()
         }
     }
     
@@ -281,14 +284,12 @@ class MatchedPairsGameModel {
 
     /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
     /// disabled, we do nothing.
-    private func playSound(_ url: URL, repeating: Bool = false, volume: Float = 1) {
+    private func playSound(_ url: URL, repeating: Bool = false) {
         guard playSounds else { return }
         if sounds != nil { sounds.stop() }
         
         sounds = try! AVAudioPlayer(contentsOf: url)
         sounds.numberOfLoops = repeating ? -1 : 0
-        if volume != 1 { sounds.volume = volume }
-        sounds.play()
+        self.sounds.play()
     }
-
 }
