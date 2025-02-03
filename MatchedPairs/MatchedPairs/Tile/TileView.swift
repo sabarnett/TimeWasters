@@ -14,6 +14,10 @@ import SwiftUI
 struct TileView: View {
     
     @Environment(MatchedPairsGameModel.self) var model
+
+    @AppStorage(Constants.autoFlip) private var autoFlip: Bool = false
+    @AppStorage(Constants.autoFlipDelay) private var autoFlipDelay: Double = 5
+
     @State var beginCountdown: Bool = false
     
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
@@ -57,21 +61,22 @@ struct TileView: View {
                         .opacity(tile.isFaceUp ? 1 : -1)
                         .accessibility(hidden: !tile.isFaceUp)
                     
-                    HStack {
-                        ZStack(alignment: .bottomLeading) {
-                            Rectangle()
-                                .fill(beginCountdown ? Color.white : Color.clear)
-                                .frame(width: 60 , height: 8, alignment: .leading)
-                            Rectangle()
-                                .fill(beginCountdown ? Color.black : Color.clear)
-                                .frame(width: beginCountdown ? 0 : 60 , height: 8, alignment: .leading)
-                        }.offset(y: 41)
+                    if autoFlip {
+                        HStack {
+                            ZStack(alignment: .bottomLeading) {
+                                Rectangle()
+                                    .fill(beginCountdown ? Color.white : Color.clear)
+                                    .frame(width: 60 , height: 8, alignment: .leading)
+                                Rectangle()
+                                    .fill(beginCountdown ? Color.black : Color.clear)
+                                    .frame(width: beginCountdown ? 0 : 60 , height: 8, alignment: .leading)
+                            }.offset(y: 45)
+                        }
                     }
-
                 }
                 .onChange(of: tile.isFaceUp) { _, newValue in
-                    if newValue == true {
-                        withAnimation(.linear(duration: 5)) {
+                    if newValue == true && autoFlip {
+                        withAnimation(.linear(duration: autoFlipDelay)) {
                             beginCountdown = true
                         } completion: {
                             withAnimation {

@@ -54,19 +54,37 @@ public struct MatchedPairsSettingsView: View {
     @AppStorage(Constants.gameDifficulty) private var gameDifficulty: GameDifficulty = .easy
     @AppStorage(Constants.cardBackground) private var cardBackground: CardBackgrounds = .one
     
+    @AppStorage(Constants.autoFlip) private var autoFlip: Bool = false
+    @AppStorage(Constants.autoFlipDelay) private var autoFlipDelay: Double = 5
+    
+    var formattedDelay: String {
+        autoFlipDelay.formatted(.number.precision(.integerLength(2)))
+    }
+    
     public init() { }
     
     public var body: some View {
         Form {
             Toggle("Play sounds", isOn: $playSounds)
-            
+                .padding(.bottom, 8)
+
             Picker("Game difficulty", selection: $gameDifficulty) {
                 ForEach(GameDifficulty.allCases) { difficulty in
                     Text(difficulty.description)
                         .tag(difficulty)
                 }
             }
-            
+            .padding(.bottom, 8)
+
+            Toggle("Auto Flip", isOn: $autoFlip)
+            HStack {
+                Slider(value: $autoFlipDelay, in: 2...20, step: 1.0)
+                Text(" (\(formattedDelay) (seconds)")
+                    .font(.caption)
+            }
+            .disabled(!autoFlip)
+            .padding(.bottom, 8)
+
             LabeledContent("Card Background") {
                 List(selection: $cardBackground) {
                     ForEach(CardBackgrounds.allCases) { background in
@@ -83,6 +101,7 @@ public struct MatchedPairsSettingsView: View {
                 }
                 .frame(height: 200)
             }
+            .padding(.bottom, 8)
         }
         .frame(width: 350)
         .padding()
