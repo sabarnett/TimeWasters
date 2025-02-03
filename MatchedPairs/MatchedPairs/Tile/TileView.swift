@@ -19,6 +19,8 @@ struct TileView: View {
     @AppStorage(Constants.autoFlipDelay) private var autoFlipDelay: Double = 5
 
     @State var beginCountdown: Bool = false
+    @State var countdownRed: Color = Color.clear
+    @State var countdownBlack: Color = Color.clear
     
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
     var tile: Tile
@@ -26,72 +28,94 @@ struct TileView: View {
     
     var body: some View {
         ZStack {
-            Button(action: {
-                if !tile.isMatched {
-                    onTap()
-                }
-            }, label: {
-                if tile.isMatched {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
-                        .font(.system(size: 35))
-                        .frame(width: 80, height: 70)
-                } else {
-                    Image(model.cardBackground, bundle: myBundle)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80)
-                    
-                        .rotation3DEffect(.degrees(tile.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
-                        .opacity(tile.isFaceUp ? 0 : 1)
-                        .accessibility(hidden: tile.isFaceUp)
-                }
-            })
-            .buttonStyle(PlainButtonStyle())
-
-            Button(action: {
-                onTap()
-            }, label: {
-                ZStack {
-                    Image(tile.face, bundle: myBundle)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 80)
-                        .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
-                        .opacity(tile.isFaceUp ? 1 : -1)
-                        .accessibility(hidden: !tile.isFaceUp)
-                    
-                    if autoFlip {
-                        HStack {
-                            ZStack(alignment: .bottomLeading) {
-                                Rectangle()
-                                    .fill(beginCountdown ? Color.white : Color.clear)
-                                    .frame(width: 60 , height: 8, alignment: .leading)
-                                Rectangle()
-                                    .fill(beginCountdown ? Color.black : Color.clear)
-                                    .frame(width: beginCountdown ? 0 : 60 , height: 8, alignment: .leading)
-                            }.offset(y: 45)
-                        }
-                    }
-                }
-                .onChange(of: tile.isFaceUp) { _, newValue in
-                    if newValue == true && autoFlip {
-                        withAnimation(.linear(duration: autoFlipDelay)) {
-                            beginCountdown = true
-                        } completion: {
-                            withAnimation {
-                                beginCountdown = false
-                                model.turnFaceDown(tile)
-                            }
-                        }
-                    } else {
-                        beginCountdown = false
-                    }
-                }
-
-            })
-            .buttonStyle(PlainButtonStyle())
+            cardFaceDownButton
+            cardFaceUpButton
         }
+        .onChange(of: tile.isFaceUp) { _, newValue in
+            if newValue == true && autoFlip {
+                withAnimation(.linear(duration: autoFlipDelay)) {
+                    startCountdown()
+                } completion: {
+                    withAnimation {
+                        stopCountdown()
+                        model.turnFaceDown(tile)
+                    }
+                }
+            } else if beginCountdown {
+                stopCountdown()
+            }
+        }
+    }
+    
+    var cardFaceDownButton: some View {
+        Button(action: {
+            if !tile.isMatched {
+                onTap()
+            }
+        }, label: {
+            if tile.isMatched {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                    .font(.system(size: 35))
+                    .frame(width: 80, height: 70)
+            } else {
+                Image(model.cardBackground, bundle: myBundle)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80)
+                
+                    .rotation3DEffect(.degrees(tile.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
+                    .opacity(tile.isFaceUp ? 0 : 1)
+                    .accessibility(hidden: tile.isFaceUp)
+            }
+        })
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    var cardFaceUpButton: some View {
+        Button(action: {
+            onTap()
+        }, label: {
+            ZStack {
+                Image(tile.face, bundle: myBundle)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80)
+                    .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
+                    .opacity(tile.isFaceUp ? 1 : -1)
+                    .accessibility(hidden: !tile.isFaceUp)
+                
+                if autoFlip {
+                    countdownBar
+                }
+            }
+        })
+        .buttonStyle(PlainButtonStyle())
+    }
+    
+    var countdownBar: some View {
+        HStack {
+            ZStack(alignment: .bottomLeading) {
+                Rectangle()
+                    .fill(countdownRed)
+                    .frame(width: 60 , height: 8, alignment: .leading)
+                Rectangle()
+                    .fill(countdownBlack)
+                    .frame(width: beginCountdown ? 0 : 60 , height: 8, alignment: .leading)
+            }.offset(y: 45)
+        }
+    }
+    
+    func startCountdown() {
+        countdownRed = .red
+        countdownBlack = .black
+        beginCountdown = true
+    }
+    
+    func stopCountdown() {
+        countdownRed = .clear
+        countdownBlack = .clear
+        beginCountdown = false
     }
 }
 
