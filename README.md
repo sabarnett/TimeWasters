@@ -12,12 +12,13 @@ At present, this Mac app contains seven games;
 * Number Combinations
 * Tic Tac Toe
 * Othello
+* Matched Pairs
 
 These are a mixture of games I have adapted and games I have written myself. 
 
 * Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. 
 
-* Snake, Number Combinations, Tic Tac Toe and Othello are mine. I've picked up the basic logic from web articles but have written the code myself.
+* Snake, Number Combinations, Tic Tac Toe, Othello and Matched Pairs are mine. I've picked up the basic logic from web articles but have written the code myself.
 
 * Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game, taken from the original C code and ported to Swift. I then added a SwiftUI front end as the original game was a console line game.
 
@@ -109,10 +110,19 @@ Where there are no moves available, you or the computer skips their move and con
 
 The game is deceptively simple to play but quite hard to win at. The computer will favour capturing corners where it can and will go for the highest scoring move after that. It's not a perfect algorithm, but it makes for a difficult game but not an unbeatable one. No one wants a game where they always lose.
 
-### To Do:
+## Matched Pairs
 
-* I want to add sounds to this app and invent a high score mechanism.
-* I have a 'feature' where the computer will tell you it does not have a move when the game has actually finished. I need to fix that.
+I have logic games, numerical games and word game, so it seemed about time I had a memory game. Matched Pairs is it.
+
+![Matched Pairs](./Images/matchedPairs.png)
+
+The premise of the game is simple. You are presented with a grid of face down playing cards and your job is to match pairs of cards. Click ona card and it turns face up. Click a second card and that turns face up too. If they match, the cards are removed from the game. If they don't match, they remain face up until you click a third card. At that point, the previous two turn face down. 
+
+All you have to do is remember what card was where in the grid.
+
+As an added fun factor, the game can be configured such that the cards will automatically be turned face down after a set time (between 2 and 20 seconds). There are also easy, medium and hard levels where the number of cards changes, so testing your memory.
+
+There is a leader board for all three levels which is based on the time it takes to match all of the cards.
 
 ## Overviews
 
