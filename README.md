@@ -26,7 +26,7 @@ More will be added at some point, as and when I come across something I like the
 
 The opening screen animates a button for each game we have created:
 
-![timeWaasters](./Images/timeWaasters.gif)
+![timeWaasters](./Images/timeWasters.gif)
 
 If you click on one of the buttons, the game will open.
 
