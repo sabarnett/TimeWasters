@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8001D212D57471400FAE6B5 /* Felipa-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8001D1F2D57471400FAE6B5 /* Felipa-Regular.ttf */; };
+		E8001D302D57473E00FAE6B5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8001D2F2D57473E00FAE6B5 /* Font+Extension.swift */; };
 		E805CA1F2C90C2BB001BD435 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA1E2C90C2BB001BD435 /* SettingsView.swift */; };
 		E805CA222C90C723001BD435 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA212C90C723001BD435 /* AboutView.swift */; };
 		E805CA242C90C7FA001BD435 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E805CA232C90C7FA001BD435 /* AppDelegate.swift */; };
@@ -148,6 +150,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E8001D1F2D57471400FAE6B5 /* Felipa-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Felipa-Regular.ttf"; sourceTree = "<group>"; };
+		E8001D2F2D57473E00FAE6B5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		E8001D312D57481600FAE6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E805CA1E2C90C2BB001BD435 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E805CA212C90C723001BD435 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		E805CA232C90C7FA001BD435 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +211,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8001D2E2D57471B00FAE6B5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E8001D1F2D57471400FAE6B5 /* Felipa-Regular.ttf */,
+				E8001D2F2D57473E00FAE6B5 /* Font+Extension.swift */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		E805CA292C90C99F001BD435 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +329,8 @@
 		E8EA11122C8F3BA20078A9A6 /* GamesController */ = {
 			isa = PBXGroup;
 			children = (
+				E8001D312D57481600FAE6B5 /* Info.plist */,
+				E8001D2E2D57471B00FAE6B5 /* Fonts */,
 				E805CA2A2C90C9B9001BD435 /* App */,
 				E805CA2B2C90C9C3001BD435 /* Extensions */,
 				E8EA11152C8F3BA20078A9A6 /* GameIndexView.swift */,
@@ -566,6 +582,7 @@
 				E872D6D22C9B1A1C0011FE38 /* dictionary.txt in Resources */,
 				E8EA111B2C8F3BA30078A9A6 /* Preview Assets.xcassets in Resources */,
 				E8EA11182C8F3BA30078A9A6 /* Assets.xcassets in Resources */,
+				E8001D212D57471400FAE6B5 /* Felipa-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +607,7 @@
 				E80CE2C02C90D60F00F68FCD /* GeneralSettingsView.swift in Sources */,
 				E805CA262C90C857001BD435 /* Bundle+Extensions.swift in Sources */,
 				E805CA2D2C90CB12001BD435 /* GameButton.swift in Sources */,
+				E8001D302D57473E00FAE6B5 /* Font+Extension.swift in Sources */,
 				E805CA282C90C8A7001BD435 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +750,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GamesController/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (c) Steven Barnett 2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -760,6 +779,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GamesController/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright (c) Steven Barnett 2024";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

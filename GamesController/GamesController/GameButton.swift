@@ -48,11 +48,11 @@ struct GameButton: View {
                     Spacer().frame(width: 25, height: 1)
                     VStack(alignment: .leading) {
                         Text(game.title)
-                            .font(.system(size: 16))
-                            .bold()
+                            .font(.felipa(size: 22))
                             .frame(minWidth: 200, maxWidth: 200,
                                    minHeight: 30, alignment: .leading)
                             .padding(.leading, 40)
+                            .help(game.tagLine)
                     }
                     .padding(.vertical, 3)
                     .foregroundStyle(.black.opacity(0.5))
