@@ -57,6 +57,8 @@ public struct MatchedPairsSettingsView: View {
     @AppStorage(Constants.autoFlip) private var autoFlip: Bool = false
     @AppStorage(Constants.autoFlipDelay) private var autoFlipDelay: Double = 5
     
+    @State private var bgID: Int? = 0
+    
     var formattedDelay: String {
         autoFlipDelay.formatted(.number.precision(.integerLength(2)))
     }
@@ -76,7 +78,7 @@ public struct MatchedPairsSettingsView: View {
             }
             .padding(.bottom, 8)
 
-            Toggle("Auto Flip", isOn: $autoFlip)
+            Toggle("Auto-flip", isOn: $autoFlip)
             HStack {
                 Slider(value: $autoFlipDelay, in: 2...20, step: 1.0)
                 Text(" (\(formattedDelay) (seconds)")
@@ -86,25 +88,23 @@ public struct MatchedPairsSettingsView: View {
             .padding(.bottom, 8)
 
             LabeledContent("Card Background") {
-                List(selection: $cardBackground) {
-                    ForEach(CardBackgrounds.allCases) { background in
-                        HStack(alignment: .top) {
-                            Image(background.cardImage, bundle: myBundle)
-                                .resizable()
-                                .frame(width: 80, height: 125)
-                            Text(background.cardTitle)
-                                .font(.body)
-                            Spacer()
-                        }
-                        .id(background)
-                    }
+                VStack(spacing: 4) {
+                    ScrollViewCarouselView(scrollID: $bgID)
+                    Text("Scroll to select card background")
+                        .font(.caption)
                 }
-                .frame(height: 200)
+                
             }
             .padding(.bottom, 8)
         }
         .frame(width: 350)
         .padding()
+        .onAppear {
+            bgID = cardBackground.id
+        }
+        .onDisappear {
+            cardBackground = CardBackgrounds.allCases.first(where: {$0.id == bgID })!
+        }
     }
 
 }
