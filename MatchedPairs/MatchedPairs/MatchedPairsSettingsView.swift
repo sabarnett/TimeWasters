@@ -87,15 +87,14 @@ public struct MatchedPairsSettingsView: View {
             .disabled(!autoFlip)
             .padding(.bottom, 8)
 
+            // This is a fudge. If I apply tghe label to the ScrollViewCarouselView
+            // the label aligns with the bottom. So I apply the label to the
+            // instructions and put the control after it without a label.
             LabeledContent("Card Background") {
-                VStack(spacing: 4) {
-                    ScrollViewCarouselView(scrollID: $bgID)
                     Text("Scroll to select card background")
-                        .font(.caption)
-                }
-                
             }
-            .padding(.bottom, 8)
+            ScrollViewCarouselView(scrollID: $bgID)
+                .padding(.bottom, 8)
         }
         .frame(width: 350)
         .padding()
