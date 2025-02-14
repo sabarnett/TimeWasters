@@ -16,7 +16,7 @@ struct GameGridView: View {
     var model: MatchedPairsGameModel
     
     var gamePlayColumns: [GridItem] {
-        Array(repeating: GridItem(.fixed(80.00), spacing: 3), count: model.columns)
+        Array(repeating: GridItem(.fixed(85.00), spacing: 3), count: model.columns)
     }
 
     var body: some View {
@@ -27,6 +27,7 @@ struct GameGridView: View {
                         model.select(tile)
                     }
                 }
+                
                 .environment(model)
             }
         }

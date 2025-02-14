@@ -58,6 +58,8 @@ struct TileView: View {
                     .foregroundStyle(.green)
                     .font(.system(size: 35))
                     .frame(width: 80, height: 70)
+                    .shadow(color: Color(red: 0.50, green: 0.50, blue: 0.50),
+                                           radius: 10.00, x: 5.00, y: 5.00)
             } else {
                 Image(model.cardBackground, bundle: myBundle)
                     .resizable()
@@ -67,6 +69,8 @@ struct TileView: View {
                     .rotation3DEffect(.degrees(tile.isFaceUp ? 180 : 0), axis: (x: 0, y: 1, z: 0))
                     .opacity(tile.isFaceUp ? 0 : 1)
                     .accessibility(hidden: tile.isFaceUp)
+                    .shadow(color: Color(red: 0.50, green: 0.50, blue: 0.50),
+                                           radius: 10.00, x: 5.00, y: 5.00)
             }
         })
         .buttonStyle(PlainButtonStyle())
@@ -84,7 +88,9 @@ struct TileView: View {
                     .rotation3DEffect(.degrees(tile.isFaceUp ? 0 : -180), axis: (x: 0, y: 1, z: 0))
                     .opacity(tile.isFaceUp ? 1 : -1)
                     .accessibility(hidden: !tile.isFaceUp)
-                
+                    .shadow(color: Color(red: 0.50, green: 0.50, blue: 0.50),
+                                           radius: 10.00, x: 5.00, y: 5.00)
+
                 if autoFlip {
                     countdownBar
                 }

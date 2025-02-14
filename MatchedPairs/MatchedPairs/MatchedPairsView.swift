@@ -21,7 +21,7 @@ public struct MatchedPairsView: View {
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var windowWidth: Double {
-        (83.0 * Double(model.columns)) + 16.0
+        (87.0 * Double(model.columns)) + 16.0
     }
     
     public init(gameData: Game) {
