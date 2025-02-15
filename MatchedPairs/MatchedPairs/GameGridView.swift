@@ -13,6 +13,8 @@ import SwiftUI
 
 struct GameGridView: View {
     
+    @State private var showDelay: CGFloat = 0
+    
     var model: MatchedPairsGameModel
     
     var gamePlayColumns: [GridItem] {
@@ -22,12 +24,13 @@ struct GameGridView: View {
     var body: some View {
         LazyVGrid(columns: gamePlayColumns) {
             ForEach(model.tiles) { tile in
-                TileView(tile: tile) {
+                let index = model.tiles.firstIndex(where: { $0.id == tile.id})
+                let delay = Double(index!) * 0.1
+                TileView(tile: tile, delay: delay) {
                     withAnimation {
                         model.select(tile)
                     }
                 }
-                
                 .environment(model)
             }
         }

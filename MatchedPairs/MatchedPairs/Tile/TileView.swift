@@ -13,23 +13,33 @@ import SwiftUI
 
 struct TileView: View {
     
-    @Environment(MatchedPairsGameModel.self) var model
+    @Environment(MatchedPairsGameModel.self) private var model
 
     @AppStorage(Constants.autoFlip) private var autoFlip: Bool = false
     @AppStorage(Constants.autoFlipDelay) private var autoFlipDelay: Double = 5
 
-    @State var beginCountdown: Bool = false
-    @State var countdownRed: Color = Color.clear
-    @State var countdownBlack: Color = Color.clear
+    @State private var beginCountdown: Bool = false
+    @State private var countdownRed: Color = Color.clear
+    @State private var countdownBlack: Color = Color.clear
     
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
     var tile: Tile
+    var delay: Double
     var onTap: (() -> Void)
+    
+    @State private var fadeIn: Bool = false
     
     var body: some View {
         ZStack {
             cardFaceDownButton
+                .scaleEffect(fadeIn ? 1 : 0)
             cardFaceUpButton
+                .scaleEffect(fadeIn ? 1 : 0)
+        }
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.5).delay(delay)) {
+                fadeIn = true
+            }
         }
         .onChange(of: tile.isFaceUp) { _, newValue in
             if newValue == true && autoFlip {
@@ -126,6 +136,5 @@ struct TileView: View {
 }
 
 #Preview {
-    TileView(tile: Tile(face: "diamond_01")) {}
-//    TileView(tile: .constant(Tile(face: "diamond_01"))) {}
+    TileView(tile: Tile(face: "diamond_01"), delay: 0.2) {}
 }
