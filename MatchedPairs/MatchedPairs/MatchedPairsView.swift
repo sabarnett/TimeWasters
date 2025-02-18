@@ -73,7 +73,6 @@ public struct MatchedPairsView: View {
         
         .onChange(of: model.gameState) { _, newState in
             if newState == .gameOver {
-                print("Stopping sounds")
                 model.stopSounds()
             }
         }

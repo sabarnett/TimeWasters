@@ -21,6 +21,13 @@ class LeaderBoard {
         loadLeaderBoard()
     }
     
+    /// Adds a score to the leader board at the game difficulty level if it is better than
+    /// one of the existing high scores. The best five scores are retained for each of
+    /// the game levels.
+    ///
+    /// - Parameters:
+    ///   - score: The score to be added if it beats one of the saved scores.
+    ///   - level: The game difficulty level to add the score to.
     func addLeader(score: Int, for level: GameDifficulty) {
         var requiresSave = false
 
@@ -41,13 +48,26 @@ class LeaderBoard {
         }
     }
     
+    /// Emptys the saved leader board scores.
     func clearScores() {
         leaderBoard.mediumLeaderBoard.removeAll()
         leaderBoard.easyLeaderBoard.removeAll()
         leaderBoard.hardLeaderBoard.removeAll()
         saveLoaderBoard()
     }
-
+    
+    /// Check the passed scores array to see if the new score should be added or discarded. If
+    /// it should be added (i.e. it's a better score than one of the existing ones), then add the score
+    /// and truncate the leader board arry to five items.
+    ///
+    /// If there are less than five items in the current list, the score will be added without any checks.
+    ///
+    /// - Parameters:
+    ///   - score: The score to be potentially added.
+    ///   - scores: The current array of leader board scores.
+    ///
+    /// - Returns: A bool value; true if the score was added so the list needs to be saved
+    /// else false if no save is required.
     private func addLeaderBoard(score: Int, to scores: inout [LeaderBoardItem]) -> Bool {
         if scores.count == 5 {
             if let maxScore = scores.max(by: { $0.gameScore > $1.gameScore }) {
@@ -70,7 +90,7 @@ class LeaderBoard {
     /// we assume that no scores have been saved, so we go with the default
     /// initialisation.
     private func loadLeaderBoard() {
-        let loadFileUrl = fileUrl(file: "MatchedPairsLeaderBoard")
+        let loadFileUrl = fileUrl(file: Constants.leaderBoardFileName)
         
         guard let gameData = try? Data(contentsOf: loadFileUrl) else { return }
         guard let decodedData = try? JSONDecoder().decode(LeaderBoardData.self, from: gameData) else { return }
@@ -80,7 +100,7 @@ class LeaderBoard {
     
     /// Save the leader board to a JSON file.
     private func saveLoaderBoard() {
-        let saveFileUrl = fileUrl(file: "MatchedPairsLeaderBoard")
+        let saveFileUrl = fileUrl(file: Constants.leaderBoardFileName)
 
         // Json encode and save the file
         let encoded = try! JSONEncoder().encode(leaderBoard)

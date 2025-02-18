@@ -35,9 +35,9 @@ struct LeaderBoardView: View {
             headerView()
             
             Picker("", selection: $gameLevel) {
-                Text("Easy").tag(GameDifficulty.easy)
-                Text("Medium").tag(GameDifficulty.medium)
-                Text("Hard").tag(GameDifficulty.hard)
+                pickerItem(.easy)
+                pickerItem(.medium)
+                pickerItem(.hard)
             }
             .pickerStyle(SegmentedPickerStyle())
             
@@ -54,6 +54,10 @@ struct LeaderBoardView: View {
         .onAppear {
             gameLevel = initialTab
         }
+    }
+    
+    func pickerItem(_ difficulty: GameDifficulty) -> some View {
+        Text(difficulty.shortDescription).tag(difficulty)
     }
     
     func headerView() -> some View {

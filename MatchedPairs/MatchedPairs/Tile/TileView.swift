@@ -24,9 +24,16 @@ struct TileView: View {
     
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
     var tile: Tile
-    var delay: Double
     var onTap: (() -> Void)
-    
+
+    /// Defines the delay before a tile should be displayed on the screen. It is
+    /// basically the tile index times 0.1 seconds. This results in the cards being
+    /// dealt onto the screen from top left to bottom right. 
+    var delay: Double {
+        guard let tileIndex = model.tiles.firstIndex(where: { $0.id == tile.id }) else { return 0.1 }
+        return Double(tileIndex) * 0.1
+    }
+
     @State private var fadeIn: Bool = false
     
     var body: some View {
@@ -34,7 +41,6 @@ struct TileView: View {
             cardFaceDownButton
                 .scaleEffect(fadeIn ? 1 : 0)
             cardFaceUpButton
-                .scaleEffect(fadeIn ? 1 : 0)
         }
         .onAppear {
             withAnimation(.easeInOut(duration: 0.5).delay(delay)) {
@@ -136,5 +142,6 @@ struct TileView: View {
 }
 
 #Preview {
-    TileView(tile: Tile(face: "diamond_01"), delay: 0.2) {}
+    TileView(tile: Tile(face: "diamond_01")) {}
+        .environment(MatchedPairsGameModel())
 }

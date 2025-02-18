@@ -17,47 +17,6 @@ enum GameState {
     case gameOver
 }
 
-enum GameDifficulty: String, Identifiable, CaseIterable, CustomStringConvertible {
-    case easy
-    case medium
-    case hard
-    
-    var id: GameDifficulty { self }
-    
-    var description: String {
-        switch self {
-        case .easy:
-            return "Easy (6 columns, 4 rows)"
-        case .medium:
-            return "Medium (8 columns, 5 rows)"
-        case .hard:
-            return "Hard (10 columns, 6 rows)"
-        }
-    }
-    
-    var columns: Int {
-        switch self {
-        case .easy:
-            return 6
-        case .medium:
-            return 8
-        case .hard:
-            return 10
-        }
-    }
-    
-    var rows: Int {
-        switch self {
-        case .easy:
-            return 4
-        case .medium:
-            return 5
-        case .hard:
-            return 6
-        }
-    }
-}
-
 @Observable
 class MatchedPairsGameModel {
     @ObservationIgnored
@@ -74,30 +33,19 @@ class MatchedPairsGameModel {
     @AppStorage(Constants.cardBackground) private var cardBg: CardBackgrounds = .one
 
     var leaderBoard = LeaderBoard()
-
     var tiles: [Tile] = []
-    
     var columns: Int = 6
     var rows: Int = 4
-    
     var gameState: GameState = .playing
-    var cardBackground: String {
-        cardBg.cardImage
-    }
-    
+    var cardBackground: String { cardBg.cardImage }
     var moves: Int = 0
     var time: Int = 0
 
-    /// Determines which icon we need to use oon the tool bar for toggling the sounds
-    var speakerIcon: String = "speaker.fill"
+    /// Determines which icon we need to use on the tool bar for toggling the sounds
+    var speakerIcon: String = Constants.soundsOn
 
     init() {
         newGame()
-        
-        speakerIcon = playSounds ? "speaker.slash.fill" : "speaker.fill"
-        if playSounds {
-            playBackgroundSound()
-        }
     }
     
     /// Starts a new game, generating a new card deck and a new card background. It
@@ -113,6 +61,8 @@ class MatchedPairsGameModel {
         time = 0
         
         gameState = .playing
+
+        speakerIcon = playSounds ? Constants.soundsOff : Constants.soundsOn
         playBackgroundSound()
     }
     
@@ -201,7 +151,6 @@ class MatchedPairsGameModel {
         let indexes = tiles.enumerated().compactMap { $1.isFaceUp ? $0 : nil }
         
         if indexes.count == 2 {
-            // Turn existing cards face down
             for index in indexes {
                 tiles[index].isFaceUp = false
             }

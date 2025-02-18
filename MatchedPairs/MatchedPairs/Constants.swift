@@ -12,9 +12,17 @@
 import Foundation
 
 struct Constants {
+    // AppStoage key names
     static let playSound = "MatchedPairsPlaySound"
     static let gameDifficulty = "MatchedPairsDifficulty"
     static let cardBackground = "MatchedPairCardBackground"
     static let autoFlip = "MatchedPairsAutoFlip"
     static let autoFlipDelay = "MatchedPairsAutoFlipDelay"
+    
+    // Leader board
+    static let leaderBoardFileName = "MatchedPairsLeaderBoard"
+    
+    // Sounds
+    static let soundsOn = "speaker.fill"
+    static let soundsOff = "speaker.slash.fill"
 }

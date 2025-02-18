@@ -11,43 +11,9 @@
 
 import SwiftUI
 
-enum CardBackgrounds: Int, Identifiable, CaseIterable {
-    case one, two, three, four, five
-    
-    var id: Int { self.rawValue}
-    
-    var cardImage: String {
-        switch self {
-        case .one:
-            return "back_01"
-        case .two:
-            return "back_02"
-        case .three:
-            return "back_03"
-        case .four:
-            return "back_04"
-        case .five:
-            return "back_05"
-        }
-    }
-    
-    var cardTitle: String {
-        switch self {
-        case .one:
-            return "Black Maze"
-        case .two:
-            return "Red Maze"
-        case .three:
-            return "Brick Diamond"
-        case .four:
-            return "Moon"
-        case .five:
-            return "Stacked Stones"
-        }
-    }
-}
 public struct MatchedPairsSettingsView: View {
     
+    // Images need to be loaded from the current bundle, not the global one
     let myBundle = Bundle(for: MatchedPairsGameModel.self)
 
     @AppStorage(Constants.playSound) private var playSounds = true
@@ -87,7 +53,7 @@ public struct MatchedPairsSettingsView: View {
             .disabled(!autoFlip)
             .padding(.bottom, 8)
 
-            // This is a fudge. If I apply tghe label to the ScrollViewCarouselView
+            // This is a fudge. If I apply the label to the ScrollViewCarouselView
             // the label aligns with the bottom. So I apply the label to the
             // instructions and put the control after it without a label.
             LabeledContent("Card Background") {
@@ -105,7 +71,6 @@ public struct MatchedPairsSettingsView: View {
             cardBackground = CardBackgrounds.allCases.first(where: {$0.id == bgID })!
         }
     }
-
 }
 
 #Preview {

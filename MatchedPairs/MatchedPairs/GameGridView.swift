@@ -24,9 +24,7 @@ struct GameGridView: View {
     var body: some View {
         LazyVGrid(columns: gamePlayColumns) {
             ForEach(model.tiles) { tile in
-                let index = model.tiles.firstIndex(where: { $0.id == tile.id})
-                let delay = Double(index!) * 0.1
-                TileView(tile: tile, delay: delay) {
+                TileView(tile: tile) {
                     withAnimation {
                         model.select(tile)
                     }
