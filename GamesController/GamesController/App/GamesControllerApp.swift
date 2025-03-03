@@ -19,6 +19,7 @@ import NumberCombinations
 import TicTacToe
 import Othello
 import MatchedPairs
+import WordSearch
 
 @main
 struct GamesControllerApp: App {
@@ -88,6 +89,12 @@ struct GamesControllerApp: App {
 
         WindowGroup(id: "matchedPairs", for: Game.self) { $game in
             MatchedPairsView(gameData: gameList.game(for: "matchedPairs")!)
+        }
+        .defaultPosition(.center)
+        .windowResizability(.contentSize)
+
+        WindowGroup(id: "wordSearch", for: Game.self) { $game in
+            WordSearchView(gameData: gameList.game(for: "wordSearch")!)
         }
         .defaultPosition(.center)
         .windowResizability(.contentSize)

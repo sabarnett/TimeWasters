@@ -35,7 +35,8 @@ public class Games: ObservableObject {
             numberCombinations(),
             ticTacToe(),
             othelloGame(),
-            matchedPairsGame()
+            matchedPairsGame(),
+            wordSearchGame()
         ]
     }
     
@@ -210,6 +211,25 @@ public class Games: ObservableObject {
               "Click on a card to turn it over. Then click on a second card to see if it matches the first.",
               "If the cards match, they are taken out of the game. If they do not match, when you click on the next card, the two you previously selected will be turned face down.",
               "The game is complete when you have matched all card pairs."
+            ),
+      credits: "Steven Barnett",
+      link: "http://www.sabarnett.co.uk"
+           )
+  }
+    
+  private func wordSearchGame() -> Game {
+      Game(id: "wordSearch",
+      title: "Word Search",
+      tagLine: "Can you find all the words?",
+           description: textBlock(
+            "This is a game of observation. You will be presented with a grid of seemingly random letters. Hidden in the grid will be a number of words for you to find.",
+            "Your task is to find all of the words in the grid. You do this by seecting the first and last letter of the word, which will cause it to be highlighted in the grid. ",
+            "Words can appear vertically, horizontally or diagonally and, to make things more fun, may also be revresed. as each word is found, it will be removed from the list."
+                ),
+           gamePlay: textBlock(
+              "Choose the word you want to find and click on the first and last letter of that word in the grid.",
+              "If you have selected a correct word, it will be highlighted. If you select a letter that you do not want, click it a second time to de-select it.",
+              "The game is complete when you have found all the words."
             ),
       credits: "Steven Barnett",
       link: "http://www.sabarnett.co.uk"

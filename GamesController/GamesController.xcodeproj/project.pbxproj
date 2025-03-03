@@ -29,6 +29,8 @@
 		E891E1DD2C932B0200BDDFC7 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E891E1DC2C932B0200BDDFC7 /* Menus.swift */; };
 		E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52452CBAB43700C3CFB7 /* Snake.framework */; };
 		E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E89C52452CBAB43700C3CFB7 /* Snake.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8D7FAB72D75F7A000B6BD1B /* WordSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */; };
+		E8D7FAB82D75F7A000B6BD1B /* WordSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; };
 		E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */; };
@@ -138,6 +140,7 @@
 				E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */,
 				E82186612CEC98890023FA01 /* NumberCombinations.framework in Embed Frameworks */,
 				E89C52472CBAB43700C3CFB7 /* Snake.framework in Embed Frameworks */,
+				E8D7FAB82D75F7A000B6BD1B /* WordSearch.framework in Embed Frameworks */,
 				E8EA11602C8F3C950078A9A6 /* MineSweeper.framework in Embed Frameworks */,
 				E8FD2C542D1F08070088E906 /* Othello.framework in Embed Frameworks */,
 				E8ED460E2CDFA9DB00A90EE5 /* AdventureGame.framework in Embed Frameworks */,
@@ -172,6 +175,8 @@
 		E891E1DC2C932B0200BDDFC7 /* Menus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		E89C522B2CBAB24D00C3CFB7 /* Snake.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Snake.xcodeproj; path = ../Snake/Snake.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E89C52452CBAB43700C3CFB7 /* Snake.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Snake.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8D7FA8E2D75F59B00B6BD1B /* WordSearch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = WordSearch.xcodeproj; path = ../WordSearch/WordSearch.xcodeproj; sourceTree = SOURCE_ROOT; };
+		E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WordSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedComponents.xcodeproj; path = ../SharedComponents/SharedComponents.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DCA5282CB572A700DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PyramidOfDoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +205,7 @@
 				E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */,
 				E82186602CEC98890023FA01 /* NumberCombinations.framework in Frameworks */,
 				E89C52462CBAB43700C3CFB7 /* Snake.framework in Frameworks */,
+				E8D7FAB72D75F7A000B6BD1B /* WordSearch.framework in Frameworks */,
 				E8EA115F2C8F3C950078A9A6 /* MineSweeper.framework in Frameworks */,
 				E8FD2C532D1F08070088E906 /* Othello.framework in Frameworks */,
 				E8ED460D2CDFA9DB00A90EE5 /* AdventureGame.framework in Frameworks */,
@@ -313,6 +319,7 @@
 				E83037732CF75F3B00C46A77 /* TicTacToe.xcodeproj */,
 				E8FD2C372D1F07A20088E906 /* Othello.xcodeproj */,
 				E807E7812D3E97FA00B5684D /* MatchedPairs.xcodeproj */,
+				E8D7FA8E2D75F59B00B6BD1B /* WordSearch.xcodeproj */,
 				E8EA11112C8F3BA20078A9A6 /* Products */,
 				E8EA11432C8F3C360078A9A6 /* Frameworks */,
 			);
@@ -355,6 +362,7 @@
 		E8EA11432C8F3C360078A9A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */,
 				E807E7982D3E983400B5684D /* MatchedPairs.framework */,
 				E8FD2C522D1F08070088E906 /* Othello.framework */,
 				E83037852CF7601800C46A77 /* TicTacToe.framework */,

@@ -1,0 +1,23 @@
+//
+// -----------------------------------------
+// Original project: WordSearch
+// Original package: WordSearch
+// Created on: 03/03/2025 by: Steven Barnett
+// Web: http://www.sabarnett.co.uk
+// GitHub: https://www.github.com/sabarnett
+// -----------------------------------------
+// Copyright © 2025 Steven Barnett. All rights reserved.
+//
+
+import SwiftUI
+
+struct Constants {
+    static let tileSize: CGFloat = 46
+    static let tileCountPerRow: Int = 14
+    static let wordListWidth: CGFloat = 180
+    
+    static let wordCount: Int = 14
+    static let cellSpacing: CGFloat = 2
+    static let selectedLineWidth: CGFloat = tileSize * 0.7
+    static let selectedLineColor: Color = .green.opacity(0.3)
+}
