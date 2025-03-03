@@ -67,6 +67,7 @@ struct GameIndexView: View {
                             .resizable()
                             .imageScale(.medium)
                             .frame(width: 32, height: 32)
+                            .foregroundStyle(.white)
                     })
                     .buttonStyle(.plain)
                     

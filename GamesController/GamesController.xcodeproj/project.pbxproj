@@ -78,6 +78,13 @@
 			remoteGlobalIDString = E872D6B42C9B18470011FE38;
 			remoteInfo = WordCraft;
 		};
+		E87AF4CA2D760AA700D4C672 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8D7FA8E2D75F59B00B6BD1B /* WordSearch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E8D7FA832D75F59B00B6BD1B;
+			remoteInfo = WordSearch;
+		};
 		E8958FAB2CF7654900440B21 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E83037732CF75F3B00C46A77 /* TicTacToe.xcodeproj */;
@@ -277,6 +284,14 @@
 			isa = PBXGroup;
 			children = (
 				E872D6C42C9B185D0011FE38 /* WordCraft.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E87AF4BC2D760AA700D4C672 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E87AF4CB2D760AA700D4C672 /* WordSearch.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -494,6 +509,10 @@
 					ProductGroup = E872D6BF2C9B185D0011FE38 /* Products */;
 					ProjectRef = E872D6BE2C9B185D0011FE38 /* WordCraft.xcodeproj */;
 				},
+				{
+					ProductGroup = E87AF4BC2D760AA700D4C672 /* Products */;
+					ProjectRef = E8D7FA8E2D75F59B00B6BD1B /* WordSearch.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -529,6 +548,13 @@
 			fileType = wrapper.framework;
 			path = WordCraft.framework;
 			remoteRef = E872D6C32C9B185D0011FE38 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E87AF4CB2D760AA700D4C672 /* WordSearch.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = WordSearch.framework;
+			remoteRef = E87AF4CA2D760AA700D4C672 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E8958FAC2CF7654900440B21 /* TicTacToe.framework */ = {
