@@ -67,7 +67,7 @@ struct MatchedWordsView: View {
     /// We add 8 to the X position to account for the spacing of the ZStack it is
     /// contained in.
     func transX(x: Int) -> CGFloat {
-        (Constants.tileSize + 2) * CGFloat(x) + 12
+        (Constants.tileSize + 2) * CGFloat(x) + 2
         + (Constants.tileSize / 2)
     }
     
@@ -78,7 +78,7 @@ struct MatchedWordsView: View {
     /// We add 16 to the Y position to account for the padding of the ZStack it is
     /// contained in.
     func transY(y: Int) -> CGFloat {
-        ((Constants.tileSize + 2) * CGFloat(y)) + 16
+        ((Constants.tileSize + 2) * CGFloat(y))
         + (Constants.tileSize / 2)
     }
 }

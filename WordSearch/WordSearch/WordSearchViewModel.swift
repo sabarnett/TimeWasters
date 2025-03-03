@@ -26,6 +26,8 @@ class WordSearchViewModel {
     var gameBoard: [[Letter]] = []
     var matchedWords: [MatchedWord] = []
     var gameState: GameState = .playing
+    var speakerIcon: String = "speaker.fill"
+    var time: Int = 0
     
     init() {
         newGame()
