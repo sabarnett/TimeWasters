@@ -37,6 +37,10 @@ class WordSearchViewModel {
         var gameGenerated: Bool = false
         var safetyNet: Int = 10
         
+        matchedWords = []
+        words = []
+        gameBoard = []
+        
         // Keep trying with a new word list until we generate a working grid
         while gameGenerated == false && safetyNet > 0 {
             generateRandomWords()
