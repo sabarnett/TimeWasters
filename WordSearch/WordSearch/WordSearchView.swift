@@ -18,6 +18,7 @@ public struct WordSearchView: View {
     @State private var game: WordSearchViewModel = .init()
     @State private var showGamePlay: Bool = false
     @State private var showLeaderBoard: Bool = false
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     public init(gameData: Game) {
         self.gameData = gameData
@@ -62,6 +63,12 @@ public struct WordSearchView: View {
             }
             .sheet(isPresented: $showLeaderBoard) {
                 LeaderBoardView(leaderBoard: game.leaderBoard)
+            }
+            .onReceive(timer) { _ in
+                if showGamePlay || showLeaderBoard { return }
+                guard game.gameState == .playing else { return }
+                guard game.secondsElapsed < 9999 else { return }
+                game.secondsElapsed += 1
             }
 
             // Game over view
@@ -134,7 +141,7 @@ public struct WordSearchView: View {
         HStack(spacing: 0) {
             // Matched items
             // Seconds elapsed
-            Text(game.time.formatted(.number.precision(.integerLength(4))))
+            Text(game.secondsElapsed.formatted(.number.precision(.integerLength(4))))
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)

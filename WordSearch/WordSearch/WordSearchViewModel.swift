@@ -27,7 +27,7 @@ class WordSearchViewModel {
     var matchedWords: [MatchedWord] = []
     var gameState: GameState = .playing
     var speakerIcon: String = "speaker.fill"
-    var time: Int = 0
+    var secondsElapsed: Int = 0
     var leaderBoard = LeaderBoard()
     
     init() {
@@ -41,6 +41,7 @@ class WordSearchViewModel {
         matchedWords = []
         words = []
         gameBoard = []
+        secondsElapsed = 0
         
         // Keep trying with a new word list until we generate a working grid
         while gameGenerated == false && safetyNet > 0 {
@@ -249,7 +250,7 @@ class WordSearchViewModel {
     /// Checks whether all words have been found
     private func checkForEndOfGame() {
         if words.count(where: {$0.found == false}) == 0 {
-            leaderBoard.addLeader(score: time)
+            leaderBoard.addLeader(score: secondsElapsed)
             gameState = .endOfGame
         }
     }
