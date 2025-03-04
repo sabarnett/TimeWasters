@@ -29,35 +29,45 @@ public struct WordSearchView: View {
     }
     
     public var body: some View {
-        VStack {
-            ZStack {
-                toggleButtons
-                gameStatusDisplay
-            }
-
-            HStack(spacing: 8) {
+        ZStack {
+            // Game board
+            VStack {
                 ZStack {
-                    GameBoardView(game: game)
-                    MatchedWordsView(game: game)
+                    toggleButtons
+                    gameStatusDisplay
                 }
-                .frame(width: (Constants.tileSize + 2) * CGFloat(Constants.tileCountPerRow))
                 
-                List {
-                    ForEach(game.words, id: \.id) { word in
-                        Text(word.word)
-                            .font(.system(size: 18))
-                            .strikethrough(word.found)
+                HStack(spacing: 8) {
+                    ZStack {
+                        GameBoardView(game: game)
+                        MatchedWordsView(game: game)
                     }
-                    .listRowSeparator(.hidden)
+                    .frame(width: (Constants.tileSize + 2) * CGFloat(Constants.tileCountPerRow))
+                    
+                    List {
+                        ForEach(game.words, id: \.id) { word in
+                            Text(word.word)
+                                .font(.system(size: 18))
+                                .strikethrough(word.found)
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                    .frame(width: Constants.wordListWidth)
                 }
-                .frame(width: Constants.wordListWidth)
+                .padding([.leading, .trailing, .bottom])
             }
-            .padding([.leading, .trailing, .bottom])
-        }
-        .sheet(isPresented: $showGamePlay) {
-            GamePlayView(game: gameData)
-        }
+            .sheet(isPresented: $showGamePlay) {
+                GamePlayView(game: gameData)
+            }
 
+            // Game over view
+            if game.gameState == .endOfGame {
+                GameOverView(restart: {
+                    game.newGame()
+                }, timeExpired: false)
+            }
+            
+        }
         .frame(width: viewWidth)
     }
     
