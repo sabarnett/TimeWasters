@@ -13,9 +13,19 @@ import SwiftUI
 
 struct TileView: View {
     
+    @Environment(\.colorScheme) private var colorScheme
+    
     var tile: Letter
     private var backgroundColour: Color {
-        tile.selected ? .blue.opacity(0.6) : .gray.opacity(0.2)
+        if tile.selected {
+            return .blue.opacity(0.6)
+        }
+        
+        return colorScheme == .dark ? .white.opacity(0.8) : .gray.opacity(0.2)
+    }
+    
+    private var foregroundColour: Color {
+        tile.selected ? .white : .black
     }
     
     var body: some View {
@@ -23,7 +33,7 @@ struct TileView: View {
             .font(.system(size: 24))
             .fontDesign(.rounded)
             .frame(width: Constants.tileSize, height: Constants.tileSize)
-            .foregroundStyle(.black)
+            .foregroundStyle(foregroundColour)
             .background(backgroundColour)
     }
 }
