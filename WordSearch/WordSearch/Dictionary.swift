@@ -20,7 +20,7 @@ struct Dictionary {
     }
     
     private func load() -> Set<String> {
-        guard let url = Bundle.main.url(forResource: "dictionary", withExtension: "txt") else {
+        guard let url = Bundle.main.url(forResource: "shortDictionary", withExtension: "txt") else {
             fatalError("Couldn't locate dictionary.txt")
         }
 

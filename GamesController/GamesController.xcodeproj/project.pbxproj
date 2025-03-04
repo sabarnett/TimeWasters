@@ -33,6 +33,7 @@
 		E8D7FAB82D75F7A000B6BD1B /* WordSearch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8DCA5292CB572A700DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; };
 		E8DCA52A2CB572A700DC873E /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA5282CB572A700DC873E /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E8DDEAC92D76FE6300252DE9 /* shortDictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = E8DDEAC82D76FE6300252DE9 /* shortDictionary.txt */; };
 		E8EA11142C8F3BA20078A9A6 /* GamesControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */; };
 		E8EA11162C8F3BA20078A9A6 /* GameIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11152C8F3BA20078A9A6 /* GameIndexView.swift */; };
 		E8EA11182C8F3BA30078A9A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8EA11172C8F3BA30078A9A6 /* Assets.xcassets */; };
@@ -186,6 +187,7 @@
 		E8D7FAB62D75F7A000B6BD1B /* WordSearch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WordSearch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5152CB5709F00DC873E /* SharedComponents.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SharedComponents.xcodeproj; path = ../SharedComponents/SharedComponents.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E8DCA5282CB572A700DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8DDEAC82D76FE6300252DE9 /* shortDictionary.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = shortDictionary.txt; sourceTree = "<group>"; };
 		E8DE7EAC2CD3C2CB00847B82 /* PyramidOfDoom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PyramidOfDoom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11102C8F3BA20078A9A6 /* A Time Wasters Compendium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "A Time Wasters Compendium.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8EA11132C8F3BA20078A9A6 /* GamesControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesControllerApp.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				E805CA292C90C99F001BD435 /* Dialogs */,
 				E8EA11172C8F3BA30078A9A6 /* Assets.xcassets */,
 				E872D6D12C9B1A1C0011FE38 /* dictionary.txt */,
+				E8DDEAC82D76FE6300252DE9 /* shortDictionary.txt */,
 				E8EA111C2C8F3BA30078A9A6 /* GamesController.entitlements */,
 				E8EA11192C8F3BA30078A9A6 /* Preview Content */,
 			);
@@ -616,6 +619,7 @@
 				E872D6D22C9B1A1C0011FE38 /* dictionary.txt in Resources */,
 				E8EA111B2C8F3BA30078A9A6 /* Preview Assets.xcassets in Resources */,
 				E8EA11182C8F3BA30078A9A6 /* Assets.xcassets in Resources */,
+				E8DDEAC92D76FE6300252DE9 /* shortDictionary.txt in Resources */,
 				E8001D212D57471400FAE6B5 /* Felipa-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
