@@ -20,4 +20,6 @@ struct Constants {
     static let cellSpacing: CGFloat = 2
     static let selectedLineWidth: CGFloat = tileSize * 0.7
     static let selectedLineColor: Color = .green.opacity(0.3)
+    
+    static let leaderBoardFileName: String = "wordSearchLeaderBoard"
 }

@@ -17,6 +17,7 @@ public struct WordSearchView: View {
 
     @State private var game: WordSearchViewModel = .init()
     @State private var showGamePlay: Bool = false
+    @State private var showLeaderBoard: Bool = false
     
     public init(gameData: Game) {
         self.gameData = gameData
@@ -59,6 +60,9 @@ public struct WordSearchView: View {
             .sheet(isPresented: $showGamePlay) {
                 GamePlayView(game: gameData)
             }
+            .sheet(isPresented: $showLeaderBoard) {
+                LeaderBoardView(leaderBoard: game.leaderBoard)
+            }
 
             // Game over view
             if game.gameState == .endOfGame {
@@ -89,7 +93,7 @@ public struct WordSearchView: View {
             
             Button(action: {
                 //model.stopSounds()
-                //showLeaderBoard.toggle()
+                showLeaderBoard.toggle()
             }) {
                 Image(systemName: "trophy.circle.fill")
                     .scaleEffect(2)
