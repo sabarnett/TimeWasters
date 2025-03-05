@@ -46,15 +46,7 @@ public struct WordSearchView: View {
                     }
                     .frame(width: (Constants.tileSize + 2) * CGFloat(Constants.tileCountPerRow))
                     
-                    List {
-                        ForEach(game.words, id: \.id) { word in
-                            Text(word.word)
-                                .font(.system(size: 18))
-                                .strikethrough(word.found)
-                        }
-                        .listRowSeparator(.hidden)
-                    }
-                    .frame(width: Constants.wordListWidth)
+                    TargetWordsList(game: game)
                 }
                 .padding([.leading, .trailing, .bottom])
             }
