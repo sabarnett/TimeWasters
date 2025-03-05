@@ -10,6 +10,7 @@
 //
 
 import Foundation
+import SharedComponents
 
 enum GameState {
     case playing
@@ -19,7 +20,9 @@ enum GameState {
 @Observable
 class WordSearchViewModel {
     
-    private var dictionary: [String] = Array(Dictionary().filtered(wordMinLength: 3, wordMaxLength: 12))
+    @ObservationIgnored
+    private var dictionary: [String]
+    
     private var startSelection: Letter?
     
     var words: [Word] = []
@@ -31,6 +34,7 @@ class WordSearchViewModel {
     var leaderBoard = LeaderBoard()
     
     init() {
+        dictionary = Array(Dictionary(size: .medium).filtered(wordMinLength: 3, wordMaxLength: 12))
         newGame()
     }
     

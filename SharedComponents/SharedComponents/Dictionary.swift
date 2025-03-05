@@ -1,8 +1,8 @@
 //
 // -----------------------------------------
-// Original project: WordSearch
-// Original package: WordSearch
-// Created on: 03/03/2025 by: Steven Barnett
+// Original project: SharedComponents
+// Original package: SharedComponents
+// Created on: 05/03/2025 by: Steven Barnett
 // Web: http://www.sabarnett.co.uk
 // GitHub: https://www.github.com/sabarnett
 // -----------------------------------------
@@ -11,16 +11,22 @@
 
 import Foundation
 
-struct Dictionary {
+public enum DictionarySize {
+    case large
+    case medium
+}
+
+public struct Dictionary {
     
     private var dictionary: Set<String> = []
     
-    init() {
-        dictionary = load()
+    public init(size: DictionarySize = .medium) {
+        let dictionaryFileName = size == .large ? "Dictionary" : "shortDictionary"
+        dictionary = load(fromFile: dictionaryFileName)
     }
     
-    private func load() -> Set<String> {
-        guard let url = Bundle.main.url(forResource: "shortDictionary", withExtension: "txt") else {
+    private func load(fromFile file: String) -> Set<String> {
+        guard let url = Bundle.main.url(forResource: file, withExtension: "txt") else {
             fatalError("Couldn't locate dictionary.txt")
         }
 
@@ -31,11 +37,10 @@ struct Dictionary {
         // Build the list taking only words getween 3 and 12 letters. This gives us
         // around 102,000 words to check against.
         return Set(contents.components(separatedBy: .newlines)
-//            .filter({ $0.count > 2 && $0.count < 13})
        )
     }
                    
-    func filtered(wordMinLength: Int = 3, wordMaxLength: Int = 12) -> Set<String> {
+    public func filtered(wordMinLength: Int = 3, wordMaxLength: Int = 12) -> Set<String> {
         return dictionary.filter {
             $0.count >= wordMinLength && $0.count <= wordMaxLength
         }
