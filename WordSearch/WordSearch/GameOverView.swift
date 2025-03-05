@@ -32,7 +32,7 @@ struct GameOverView: View {
             .foregroundStyle(.white)
 
             Button(action: restart) {
-                Text("Try Again")
+                Text("Play Again")
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .foregroundStyle(.white)
