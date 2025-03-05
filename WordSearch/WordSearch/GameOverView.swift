@@ -19,9 +19,6 @@ struct GameOverView: View {
     var caption: String {
         timeExpired ? "Time's Up!" : "You Win!"
     }
-    var backgroundColor: Color {
-        timeExpired ? .red.opacity(0.7) : .green.opacity(0.7)
-    }
     
     var body: some View {
         VStack(spacing: 10) {
@@ -46,7 +43,7 @@ struct GameOverView: View {
         .padding(.vertical)
         .padding(.bottom, 5)
         .frame(maxWidth: .infinity)
-        .background(backgroundColor.gradient)
+        .background(.black.opacity(0.55).gradient)
     }
 }
 
