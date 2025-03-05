@@ -125,6 +125,20 @@ public struct WordSearchView: View {
         .padding([.horizontal,.top])
     }
     
+    private func secondsFormatted(seconds: Int) -> String {
+        let formatter = NumberFormatter()
+        // locale determines the decimal point (. or ,); English locale has "."
+        formatter.locale = Locale(identifier: "en_US")
+        // you will never get thousands separator as output
+        formatter.groupingSeparator = ""
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 0
+        formatter.numberStyle = .decimal
+        formatter.minimumIntegerDigits = 4
+        
+        return formatter.string(from: NSNumber(value: seconds)) ?? ""
+    }
+    
     /// Displays the current selected bomb count and the number of seconds elapsed. It also
     /// has a button in betweenthe two scores that allows the user to restart the game. It sits
     /// above the game play area, in the middle. Ther may be buttons to the right and
@@ -133,7 +147,7 @@ public struct WordSearchView: View {
         HStack(spacing: 0) {
             // Matched items
             // Seconds elapsed
-            Text(game.secondsElapsed.formatted(.number.precision(.integerLength(4))))
+            Text(secondsFormatted(seconds: game.secondsElapsed))
                 .fixedSize()
                 .padding(.horizontal, 6)
                 .foregroundStyle(.red.gradient)

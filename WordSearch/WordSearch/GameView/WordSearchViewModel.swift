@@ -105,8 +105,8 @@ class WordSearchViewModel {
     
     /// Generates a list of words to place in the grid for the players to find.
     private func generateRandomWords() {
-//        for _ in 0..<Constants.wordCount {
-        for _ in 0..<2 {
+        for _ in 0..<Constants.wordCount {
+//        for _ in 0..<2 {
             if let randomWord = dictionary.randomElement() {
                 words.append(Word(randomWord))
             }
