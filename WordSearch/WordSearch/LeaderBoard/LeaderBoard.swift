@@ -56,7 +56,7 @@ class LeaderBoard {
         let scoreItem = LeaderBoardItem(gameDate: Date.now, gameScore: score)
         
         scores.append(scoreItem)
-        scores.sort(by: {$0.gameScore > $1.gameScore})
+        scores.sort(by: {$0.gameScore < $1.gameScore})
         if scores.count > 5 {
             scores.removeLast()
         }

@@ -18,7 +18,7 @@ struct LeaderBoardView: View {
     
     var leaderItems: [LeaderBoardItem] {
         leaderBoard.playerLeaderBoard
-            .sorted(by: { $0.gameScore > $1.gameScore })
+            .sorted(by: { $0.gameScore < $1.gameScore })
     }
     
     var body: some View {
