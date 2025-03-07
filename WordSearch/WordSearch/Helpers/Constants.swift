@@ -22,4 +22,6 @@ struct Constants {
     static let selectedLineColor: Color = .green.opacity(0.3)
     
     static let leaderBoardFileName: String = "wordSearchLeaderBoard"
+    
+    static let wordsearchPlaySounds: String = "wordsearchPlaySounds"
 }

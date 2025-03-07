@@ -62,11 +62,19 @@ public struct WordSearchView: View {
                 guard game.secondsElapsed < 9999 else { return }
                 game.secondsElapsed += 1
             }
+            .onAppear() {
+                game.playBackgroundSound()
+            }
+            .onDisappear {
+                game.stopSounds()
+            }
 
             // Game over view
             if game.gameState == .endOfGame {
+                let _ = game.stopSounds()
                 GameOverView(restart: {
                     game.newGame()
+                    game.playBackgroundSound()
                 }, timeExpired: false)
             }
             
@@ -111,15 +119,13 @@ public struct WordSearchView: View {
             .buttonStyle(.plain)
             .help("Start a new game")
             
-            Button(action: {
-                //model.toggleSounds()
-            }) {
+            Button(action: { game.toggleSounds() }) {
                 Image(systemName: game.speakerIcon)
                     .scaleEffect(2)
                     .padding(5)
             }
             .buttonStyle(.plain)
-            .help("Toggle sounds")
+            .help("Toggle sound effects")
             
         }
         .padding([.horizontal,.top])

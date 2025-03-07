@@ -9,7 +9,8 @@
 // Copyright © 2025 Steven Barnett. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
+import AVKit
 import SharedComponents
 
 enum GameState {
@@ -20,6 +21,13 @@ enum GameState {
 @Observable
 class WordSearchViewModel {
     
+    @ObservationIgnored
+    @AppStorage(Constants.wordsearchPlaySounds) private var wordsearchPlaySounds = true {
+        didSet {
+            updateSounds()
+        }
+    }
+
     @ObservationIgnored
     private var dictionary: [String]
     
@@ -56,6 +64,7 @@ class WordSearchViewModel {
             safetyNet -= 1
         }
         
+        speakerIcon = wordsearchPlaySounds ? "speaker.slash.fill" : "speaker.fill"
         gameState = .playing
     }
     
@@ -97,6 +106,8 @@ class WordSearchViewModel {
                 gameBoard[startSelection.xPos][startSelection.yPos].selected = false
                 letter.selected = false
                 self.startSelection = nil
+
+                playChimeSound()
 
                 checkForEndOfGame()
             }
@@ -258,6 +269,73 @@ class WordSearchViewModel {
             gameState = .endOfGame
         }
     }
+    
+    
+    // MARK: - Souond functions
+    
+    private var sounds: AVAudioPlayer!
+    private var tileDrop: AVAudioPlayer!
+    private var backgroundURL: URL { soundFile(named: "background") }
+    private var chimeURL: URL { soundFile(named: "chime") }
+
+    /// Play the background music
+    func playBackgroundSound() {
+        if sounds != nil { stopSounds() }
+        playSound(backgroundURL, repeating: true)
+    }
+    
+    /// If the background music is playing, stop it.
+    func stopSounds() {
+        if sounds != nil {
+            sounds.stop()
+        }
+    }
+
+    /// Play the tile drop sound while the new tiles enter into the game play area. This
+    /// will play over the top of the background sound.
+    func playChimeSound() {
+        guard wordsearchPlaySounds else { return }
+        tileDrop = try? AVAudioPlayer(contentsOf: chimeURL)
+        tileDrop.play()
+    }
+    
+    /// Toggle the playing of sounds. If toggled off, the current sound is stopped. If
+    /// toggled on, then we start playing the ticking sound. It is unlikely that we were playing
+    /// any other sound, so this is a safe bet.
+    func toggleSounds() {
+        wordsearchPlaySounds.toggle()
+    }
+    
+    private func updateSounds() {
+        speakerIcon = wordsearchPlaySounds ? "speaker.slash.fill" : "speaker.fill"
+
+        if wordsearchPlaySounds {
+            playSound(backgroundURL, repeating: true)
+        } else {
+            sounds.stop()
+        }
+    }
+    
+    /// Creates the URL of a sound file. The file must exist within the minesweeper project
+    /// bundle.
+    private func soundFile(named file: String) -> URL {
+        let bun = Bundle(for: WordSearchViewModel.self)
+        let sound = bun.path(forResource: file, ofType: "mp3")
+        return URL(fileURLWithPath: sound!)
+    }
+
+    /// Play a sound file. We will be passed the URL of the file in the current bundle. If sounds are
+    /// disabled, we do nothing.
+    private func playSound(_ url: URL, repeating: Bool = false) {
+        guard wordsearchPlaySounds else { return }
+        if sounds != nil { sounds.stop() }
+        
+        sounds = try! AVAudioPlayer(contentsOf: url)
+        sounds.numberOfLoops = repeating ? -1 : 0
+        self.sounds.play()
+    }
+
+
 }
 
 @Observable
