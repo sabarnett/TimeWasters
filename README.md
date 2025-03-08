@@ -13,12 +13,13 @@ At present, this Mac app contains seven games;
 * Tic Tac Toe
 * Othello
 * Matched Pairs
+* Word Search
 
 These are a mixture of games I have adapted and games I have written myself. 
 
 * Minesweeper and WordCraft were created by [Paul Hudson in his Hacking with Swift+ live streams]( https://www.hackingwithswift.com/plus ). I have 'messed' with them to extend the games. 
 
-* Snake, Number Combinations, Tic Tac Toe, Othello and Matched Pairs are mine. I've picked up the basic logic from web articles but have written the code myself.
+* Snake, Number Combinations, Tic Tac Toe, Othello, Matched Pairs and Word Search are mine. I've picked up the basic logic from web articles but have written the code myself.
 
 * Pyramid of Doom is a Stott Adams game from way back when the TRS-80 was still cool - this is my port of that game, taken from the original C code and ported to Swift. I then added a SwiftUI front end as the original game was a console line game.
 
@@ -123,6 +124,16 @@ All you have to do is remember what card was where in the grid.
 As an added fun factor, the game can be configured such that the cards will automatically be turned face down after a set time (between 2 and 20 seconds). There are also easy, medium and hard levels where the number of cards changes, so testing your memory.
 
 There is a leader board for all three levels which is based on the time it takes to match all of the cards.
+
+## Word Search
+
+I've always been fascinated by word search games so it's only logcial that I get one into the compendium. This game presents a 14x14 grid of letters and 14 words to find. The words are between 3 and 12 letters long and may appear in the grid horizontally, vertically or diagonally. Just to add to the fun they may also be presented backwards.
+
+![Matched Pairs](./Images/wordSearch.png)
+
+The player identifies a word by clicking on the first and last letter. Assuming the word selected matches one of the words to be found, it will be highlighted on the game board and in the list. All words will exist somewhere on the grid.
+
+The time taken to find all the wordfs will be recorded and used to maintain a leader board of the five fastest times.
 
 ## Overviews
 
