@@ -127,13 +127,13 @@ There is a leader board for all three levels which is based on the time it takes
 
 ## Word Search
 
-I've always been fascinated by word search games so it's only logcial that I get one into the compendium. This game presents a 14x14 grid of letters and 14 words to find. The words are between 3 and 12 letters long and may appear in the grid horizontally, vertically or diagonally. Just to add to the fun they may also be presented backwards.
+I've always been fascinated by word search games so it's only logical that I get one into the compendium. This game presents a 14x14 grid of letters and 14 words to find. The words are between 3 and 12 letters long and may appear in the grid horizontally, vertically or diagonally. Just to add to the fun they may also be presented backwards.
 
 ![Matched Pairs](./Images/wordSearch.png)
 
 The player identifies a word by clicking on the first and last letter. Assuming the word selected matches one of the words to be found, it will be highlighted on the game board and in the list. All words will exist somewhere on the grid.
 
-The time taken to find all the wordfs will be recorded and used to maintain a leader board of the five fastest times.
+The time taken to find all the words will be recorded and used to maintain a leader board of the five fastest times.
 
 ## Overviews
 
