@@ -14,7 +14,7 @@ import SwiftUI
 struct Constants {
     static let tileSize: CGFloat = 46
     static let tileCountPerRow: Int = 14
-    static let wordListWidth: CGFloat = 180
+    static let wordListWidth: CGFloat = 200
     
     static let wordCount: Int = 14
     static let cellSpacing: CGFloat = 2

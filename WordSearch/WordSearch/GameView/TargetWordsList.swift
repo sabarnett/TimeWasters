@@ -27,20 +27,39 @@ struct TargetWordsList: View {
 }
 
 struct TargetWord: View {
+    @Environment(\.openURL) private var openURL
+    
     var word: Word
+    var dictionaryUrl: URL?
+    
+    init(word: Word) {
+        self.word = word
+        self.dictionaryUrl = URL(string: "https://www.oed.com/search/dictionary/?scope=Entries&q=\(word.word)")
+    }
     
     var body: some View {
-        Text(word.word)
-            .font(.system(size: 20))
-            .padding(4)
-            .frame(maxWidth: .infinity)
-            .background(
-                Capsule()
-                    .strokeBorder(Color.black,lineWidth: 0.8)
-                    .background(word.found ? Color.green : Color.blue)
-                    .clipped()
-            )
-            .clipShape(Capsule())
+        HStack {
+            Text(word.word)
+                .font(.system(size: 20))
+                .padding(4)
+                .padding(.leading, 4)
+            Spacer()
+            if dictionaryUrl != nil {
+                Image(systemName: "link")
+                    .onTapGesture {
+                        openURL(dictionaryUrl!)
+                    }
+                    .padding(.horizontal)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .background(
+            Capsule()
+                .strokeBorder(Color.black,lineWidth: 0.8)
+                .background(word.found ? Color.green : Color.blue)
+                .clipped()
+        )
+        .clipShape(Capsule())
 //            .strikethrough(word.found)
     }
 }
