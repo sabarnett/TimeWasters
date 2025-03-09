@@ -224,11 +224,11 @@ public class Games: ObservableObject {
            description: textBlock(
             "This is a game of observation. You will be presented with a grid of seemingly random letters. Hidden in the grid will be a number of words for you to find.",
             "Your task is to find all of the words in the grid. You do this by seecting the first and last letter of the word, which will cause it to be highlighted in the grid. ",
-            "Words can appear vertically, horizontally or diagonally and, to make things more fun, may also be revresed. as each word is found, it will be removed from the list."
+            "Words can appear vertically, horizontally or diagonally and, to make things more fun, may also be revresed. as each word is found, it will be removed from the list. If you are stuck and the hints option is enabled, you can press a character on the keyboard to briefly highlight all occurences of a single letter. This does, however, come with a 10 second penalty."
                 ),
            gamePlay: textBlock(
               "Choose the word you want to find and click on the first and last letter of that word in the grid.",
-              "If you have selected a correct word, it will be highlighted. If you select a letter that you do not want, click it a second time to de-select it.",
+              "If you have selected a correct word, it will be highlighted. If you select a letter that you do not want, click it a second time to de-select it. If you are stuck and the hints option is enabled, you can press a character on the keyboard to briefly highlight all occurences of a single letter. This does, however, come with a 10 second penalty.",
               "The game is complete when you have found all the words."
             ),
       credits: "Steven Barnett",

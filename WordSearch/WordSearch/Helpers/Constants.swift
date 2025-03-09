@@ -24,4 +24,5 @@ struct Constants {
     static let leaderBoardFileName: String = "wordSearchLeaderBoard"
     
     static let wordsearchPlaySounds: String = "wordsearchPlaySounds"
+    static let wordsearchAllowShowHints: String = "wordsearchAllowShowHints"
 }

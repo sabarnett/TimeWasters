@@ -68,7 +68,12 @@ public struct WordSearchView: View {
             .onDisappear {
                 game.stopSounds()
             }
-
+            .overlay(
+                KeyEventHandlingView { event in
+                    handleKeyPress(event)
+                }
+                .frame(width: 0, height: 0)  // Invisible but captures keyboard input
+            )
             // Game over view
             if game.gameState == .endOfGame {
                 let _ = game.stopSounds()
@@ -111,6 +116,14 @@ public struct WordSearchView: View {
             
             Spacer()
             
+            Button(action: { game.allowHints() }) {
+                Image(systemName: game.hintsIcon)
+                    .scaleEffect(2)
+                    .padding(5)
+            }
+            .buttonStyle(.plain)
+            .help("Allow hints")
+            
             Button(action: { game.newGame() }) {
                 Image(systemName: "arrow.uturn.left.circle.fill")
                     .scaleEffect(2)
@@ -118,7 +131,7 @@ public struct WordSearchView: View {
             }
             .buttonStyle(.plain)
             .help("Start a new game")
-            
+
             Button(action: { game.toggleSounds() }) {
                 Image(systemName: game.speakerIcon)
                     .scaleEffect(2)
@@ -129,6 +142,11 @@ public struct WordSearchView: View {
             
         }
         .padding([.horizontal,.top])
+    }
+    
+    private func handleKeyPress(_ key: NSEvent) {
+        guard let chars = key.characters else { return }
+        game.hilightLetter(letter: chars.first!)
     }
     
     private func secondsFormatted(seconds: Int) -> String {

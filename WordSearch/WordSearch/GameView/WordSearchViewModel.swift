@@ -27,6 +27,9 @@ class WordSearchViewModel {
             updateSounds()
         }
     }
+    
+    @ObservationIgnored
+    @AppStorage(Constants.wordsearchAllowShowHints) private var allowShowHints = true
 
     @ObservationIgnored
     private var dictionary: [String]
@@ -38,6 +41,7 @@ class WordSearchViewModel {
     var matchedWords: [MatchedWord] = []
     var gameState: GameState = .playing
     var speakerIcon: String = "speaker.fill"
+    var hintsIcon: String = "eye.fill"
     var secondsElapsed: Int = 0
     var leaderBoard = LeaderBoard()
     
@@ -46,6 +50,7 @@ class WordSearchViewModel {
         newGame()
     }
     
+    /// Create a new game, new words, new letters and reset the timer.
     func newGame() {
         var gameGenerated: Bool = false
         var safetyNet: Int = 10
@@ -68,6 +73,57 @@ class WordSearchViewModel {
         gameState = .playing
     }
     
+    /// Toggle the ability to show hints using the keyboard
+    func allowHints() {
+        allowShowHints.toggle()
+        hintsIcon = allowShowHints ? "eye.fill" : "eye.slash.fill"
+    }
+    
+    
+    /// Locate every occurence of a letter and set it's selected property to true causing it to be highlighted.
+    ///
+    /// - Parameter letter: The letter to select
+    ///
+    /// The selections will reset after 2 seconds. There is a 10 second time penalty for using this cheat.
+    func hilightLetter(letter: Character) {
+        guard allowShowHints == true else { return }
+        
+        secondsElapsed += 10
+        clearSelectedLetters()
+        startSelection = nil
+
+        selectAllLetters(letter: letter)
+    
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.clearSelectedLetters()
+        }
+    }
+    
+    /// Find all tiles marked as selected and turn off the selection status
+    fileprivate func clearSelectedLetters() {
+        // Clear any currently selected letters
+        let currentlyMarked = gameBoard.flatMap { $0 }
+            .filter { $0.selected == true }
+        if currentlyMarked.count != 0 {
+            for matched in currentlyMarked {
+                matched.selected = false
+            }
+        }
+    }
+    
+    /// Find all occurrences of the selected letter and turn on its selection status
+    ///
+    /// - Parameter letter: The letter to locate.
+    fileprivate func selectAllLetters(letter: Character) {
+        // Find all tiles of this letter and highlight them
+        let markedLetters = gameBoard.flatMap { $0 }
+            .filter { $0.letter.uppercased() == letter.uppercased() }
+
+        for matched in markedLetters {
+            matched.selected = true
+        }
+    }
+
     /// Player has selected a letter. We need to determine whether this is the second letter selected
     /// and, if it is, whether the player has selected one of the words from our word list.
     ///
