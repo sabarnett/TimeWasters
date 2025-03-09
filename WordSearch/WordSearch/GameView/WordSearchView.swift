@@ -46,7 +46,7 @@ public struct WordSearchView: View {
                     }
                     .frame(width: (Constants.tileSize + 2) * CGFloat(Constants.tileCountPerRow))
                     
-                    TargetWordsList(game: game)
+                    TargetWordsListView(game: game)
                 }
                 .padding([.leading, .trailing, .bottom])
             }

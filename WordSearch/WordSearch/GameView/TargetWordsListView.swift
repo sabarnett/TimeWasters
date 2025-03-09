@@ -11,7 +11,7 @@
 
 import SwiftUI
 
-struct TargetWordsList: View {
+struct TargetWordsListView: View {
     var game: WordSearchViewModel
     
     var body: some View {
@@ -65,5 +65,5 @@ struct TargetWord: View {
 }
 
 #Preview {
-    TargetWordsList(game: WordSearchViewModel())
+    TargetWordsListView(game: WordSearchViewModel())
 }
