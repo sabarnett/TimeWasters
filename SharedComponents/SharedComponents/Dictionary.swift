@@ -21,7 +21,7 @@ public struct Dictionary {
     private var dictionary: Set<String> = []
     
     public init(size: DictionarySize = .medium) {
-        let dictionaryFileName = size == .large ? "Dictionary" : "shortDictionary"
+        let dictionaryFileName = size == .large ? "dictionary" : "shortDictionary"
         dictionary = load(fromFile: dictionaryFileName)
     }
     
