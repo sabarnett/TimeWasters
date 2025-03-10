@@ -37,6 +37,8 @@ struct SettingsSelectionView: View {
                     .tag(SettingsTabs.numbercombinations)
                 Label("Matched Pairs", systemImage: "square.and.line.vertical.and.square")
                     .tag(SettingsTabs.matchedPairs)
+                Label("Word Search", systemImage: "wonsign.square.fill")
+                    .tag(SettingsTabs.wordSearch)
             }
         }
     }

@@ -38,11 +38,24 @@ enum PlacementType: CaseIterable {
     }
 }
 
-enum Difficulty {
+enum Difficulty: Int, Identifiable, CaseIterable, CustomStringConvertible {
     case easy
     case medium
     case hard
 
+    var id: Int { rawValue }
+    
+    var description: String {
+        switch self {
+        case .easy:
+            return "Easy (left/right, up/down"
+        case .medium:
+            return "Medium (left/right, up/down, right/left, down/up)"
+        case .hard:
+            return "Hard (all directions)"
+        }
+    }
+    
     var placementTypes: [PlacementType] {
         switch self {
         case .easy:

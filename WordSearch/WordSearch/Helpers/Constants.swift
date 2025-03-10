@@ -25,4 +25,5 @@ struct Constants {
     
     static let wordsearchPlaySounds: String = "wordsearchPlaySounds"
     static let wordsearchAllowShowHints: String = "wordsearchAllowShowHints"
+    static let wordsearchDifficulty: String = "wordsearchDifficulty"
 }

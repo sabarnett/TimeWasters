@@ -15,6 +15,7 @@ import WordCraft
 import Snake
 import NumberCombinations
 import MatchedPairs
+import WordSearch
 
 struct SettingsActionView: View {
     @Binding var selectedOption: SettingsTabs
@@ -53,6 +54,12 @@ struct SettingsActionView: View {
                 .settingsViewDefinition(
                     title: "Matched Pairs settings",
                     icon: "square.and.line.vertical.and.square")
+            
+        case .wordSearch:
+            WordSearchSettingsView()
+                .settingsViewDefinition(
+                    title: "Word Search settings",
+                    icon: "wonsign.square.fill")
 
         }
     }
