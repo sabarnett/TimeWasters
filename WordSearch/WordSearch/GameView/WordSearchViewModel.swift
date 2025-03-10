@@ -184,15 +184,8 @@ class WordSearchViewModel {
     /// in any unused spaces.
     private func generateGameGrid() -> Bool {
         let words = self.words.map { $0.word }
-        let gen = WordGridGenerator(
-            words: words,
-            row: Constants.tileCountPerRow,
-            column: Constants.tileCountPerRow
-        )
-        guard let letters = gen.generate() else {
-            // Failed to place all the words.
-            return false
-        }
+        let ws = WordSearch(words: words, difficulty: .hard)
+        let letters = ws.makeGrid()
         
         // We're going to build this thing column by column where each column contains
         // 14 items representing the values in the row.
@@ -201,7 +194,7 @@ class WordSearchViewModel {
             var rowValues: [Letter] = []
             
             for row in 0..<Constants.tileCountPerRow {
-                let current = letters[column][row]
+                let current = letters[column][row].letter
                 rowValues.append(Letter(letter: current, xPos: column, yPos: row))
             }
             // Add the column to the array of columns.
