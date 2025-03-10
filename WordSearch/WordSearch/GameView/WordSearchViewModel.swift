@@ -30,6 +30,9 @@ class WordSearchViewModel {
     
     @ObservationIgnored
     @AppStorage(Constants.wordsearchAllowShowHints) private var allowShowHints = true
+    
+    @ObservationIgnored
+    @AppStorage(Constants.wordsearchDifficulty) private var gameDifficulty: Difficulty = .easy
 
     @ObservationIgnored
     private var dictionary: [String]
@@ -184,7 +187,7 @@ class WordSearchViewModel {
     /// in any unused spaces.
     private func generateGameGrid() -> Bool {
         let words = self.words.map { $0.word }
-        let ws = WordSearch(words: words, difficulty: .hard)
+        let ws = WordSearch(words: words, difficulty: gameDifficulty)
         let letters = ws.makeGrid()
         
         // We're going to build this thing column by column where each column contains
