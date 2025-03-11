@@ -135,6 +135,14 @@ The player identifies a word by clicking on the first and last letter. Assuming 
 
 The time taken to find all the words will be recorded and used to maintain a leader board of the five fastest times.
 
+The game supports three levels of play:
+
+* Easy - where words are arranged left to right or top to bottom,
+* Medium - where words are left to right, right to left, top to bottom or bottom to top,
+* Hard - where words are arranged in all vertical, horizontal or diagonal directions.
+
+Recognising that this can be a difficult game to complete, there is also a hint mode where the player can type a single letter on the keyboard and all occurrences of that letter will be highlighted. So as to not make the game too easy, they are only highlighted for 2 seconds and it incurs a 10 second penalty on your score. 
+
 ## Overviews
 
 When you hover over the buttons on the home screen, the clock face will change to an information icon. If you click the information icon, you get an overview of the game.
