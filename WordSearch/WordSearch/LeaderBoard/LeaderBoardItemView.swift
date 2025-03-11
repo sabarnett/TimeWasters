@@ -9,7 +9,6 @@
 // Copyright © 2025 Steven Barnett. All rights reserved.
 //
 
-
 import SwiftUI
 
 struct LeaderBoardItemView: View {

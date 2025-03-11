@@ -26,4 +26,6 @@ struct Constants {
     static let wordsearchPlaySounds: String = "wordsearchPlaySounds"
     static let wordsearchAllowShowHints: String = "wordsearchAllowShowHints"
     static let wordsearchDifficulty: String = "wordsearchDifficulty"
+    
+    static let oed: String = "https://www.oed.com/search/dictionary/?scope=Entries&q="
 }

@@ -93,10 +93,7 @@ public struct WordSearchView: View {
     /// buttons we have in the buttons area.
     private var toggleButtons : some View {
         HStack {
-            Button(action: {
-                //model.stopSounds()
-                showGamePlay.toggle()
-            }) {
+            Button(action: { showGamePlay.toggle() }) {
                 Image(systemName: "questionmark.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
@@ -104,10 +101,7 @@ public struct WordSearchView: View {
             .buttonStyle(.plain)
             .help("Show the game play")
             
-            Button(action: {
-                //model.stopSounds()
-                showLeaderBoard.toggle()
-            }) {
+            Button(action: { showLeaderBoard.toggle() }) {
                 Image(systemName: "trophy.circle.fill")
                     .scaleEffect(2)
                     .padding(5)
@@ -146,15 +140,18 @@ public struct WordSearchView: View {
     }
     
     private func handleKeyPress(_ key: NSEvent) {
-        guard let chars = key.characters else { return }
-        game.hilightLetter(letter: chars.first!)
+        guard let char = key.characters?.first else { return }
+        game.hilightLetter(letter: char)
     }
     
+    /// Format the number of seconds. We have to do it this way because we have
+    /// four digits and do not want the separating comma.
+    ///
+    /// - Parameter seconds: The number of seconds to format
+    /// - Returns: A string containing the four digit seconds count including leading zeros.
     private func secondsFormatted(seconds: Int) -> String {
         let formatter = NumberFormatter()
-        // locale determines the decimal point (. or ,); English locale has "."
         formatter.locale = Locale(identifier: "en_US")
-        // you will never get thousands separator as output
         formatter.groupingSeparator = ""
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
@@ -170,8 +167,6 @@ public struct WordSearchView: View {
     /// left. These are produced by the toggleButtons function.
     private var gameStatusDisplay : some View {
         HStack(spacing: 0) {
-            // Matched items
-            // Seconds elapsed
             Text(secondsFormatted(seconds: game.secondsElapsed))
                 .fixedSize()
                 .padding(.horizontal, 6)
@@ -184,7 +179,6 @@ public struct WordSearchView: View {
         .clipShape(.rect(cornerRadius: 10))
         .padding(.top)
     }
-
 }
 
 #Preview {

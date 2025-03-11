@@ -21,7 +21,6 @@ struct GameBoardView: View {
                     let column = game.gameBoard[i]
                     
                     ForEach(column) { letter in
-                        
                             TileView(tile: letter)
                             .onTapGesture {
                                 game.select(letter: letter)

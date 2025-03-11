@@ -13,9 +13,14 @@ import SwiftUI
 
 public struct WordSearchSettingsView: View {
     
-    @AppStorage(Constants.wordsearchPlaySounds) private var wordsearchPlaySounds = true
-    @AppStorage(Constants.wordsearchAllowShowHints) private var allowShowHints = true
-    @AppStorage(Constants.wordsearchDifficulty) private var gameDifficulty: Difficulty = .easy
+    @AppStorage(Constants.wordsearchPlaySounds)
+    private var wordsearchPlaySounds = true
+    
+    @AppStorage(Constants.wordsearchAllowShowHints)
+    private var allowShowHints = true
+    
+    @AppStorage(Constants.wordsearchDifficulty)
+    private var gameDifficulty: Difficulty = .easy
 
     public init() { }
     
@@ -36,7 +41,6 @@ public struct WordSearchSettingsView: View {
         .frame(width: 350)
         .padding()
     }
-    
 }
 
 #Preview {

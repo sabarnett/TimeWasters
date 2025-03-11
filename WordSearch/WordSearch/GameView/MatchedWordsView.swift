@@ -64,7 +64,7 @@ struct MatchedWordsView: View {
     /// - Parameter x: The column to translate
     /// - Returns: The X position of the middle of the cell
     ///
-    /// We add 8 to the X position to account for the spacing of the ZStack it is
+    /// We add 2 to the X position to account for the spacing of the ZStack it is
     /// contained in.
     func transX(x: Int) -> CGFloat {
         (Constants.tileSize + 2) * CGFloat(x) + 2
@@ -75,8 +75,6 @@ struct MatchedWordsView: View {
     /// - Parameter y: The row number to translate
     /// - Returns: The X position of the middle of the cell
     ///
-    /// We add 16 to the Y position to account for the padding of the ZStack it is
-    /// contained in.
     func transY(y: Int) -> CGFloat {
         ((Constants.tileSize + 2) * CGFloat(y))
         + (Constants.tileSize / 2)

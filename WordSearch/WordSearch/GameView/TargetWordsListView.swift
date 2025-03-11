@@ -34,7 +34,7 @@ struct TargetWord: View {
     
     init(word: Word) {
         self.word = word
-        self.dictionaryUrl = URL(string: "https://www.oed.com/search/dictionary/?scope=Entries&q=\(word.word)")
+        self.dictionaryUrl = URL(string: Constants.oed + word.word)
     }
     
     var body: some View {
@@ -60,7 +60,6 @@ struct TargetWord: View {
                 .clipped()
         )
         .clipShape(Capsule())
-//            .strikethrough(word.found)
     }
 }
 

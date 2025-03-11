@@ -55,22 +55,13 @@ class WordSearchViewModel {
     
     /// Create a new game, new words, new letters and reset the timer.
     func newGame() {
-        var gameGenerated: Bool = false
-        var safetyNet: Int = 10
-        
         matchedWords = []
         words = []
         gameBoard = []
         secondsElapsed = 0
         
-        // Keep trying with a new word list until we generate a working grid
-        while gameGenerated == false && safetyNet > 0 {
-            generateRandomWords()
-            gameGenerated = generateGameGrid()
-            
-            // We want to try 10 times maximum.
-            safetyNet -= 1
-        }
+        generateRandomWords()
+        generateGameGrid()
         
         speakerIcon = wordsearchPlaySounds ? "speaker.slash.fill" : "speaker.fill"
         gameState = .playing
@@ -81,8 +72,7 @@ class WordSearchViewModel {
         allowShowHints.toggle()
         hintsIcon = allowShowHints ? "eye.fill" : "eye.slash.fill"
     }
-    
-    
+
     /// Locate every occurence of a letter and set it's selected property to true causing it to be highlighted.
     ///
     /// - Parameter letter: The letter to select
@@ -104,13 +94,10 @@ class WordSearchViewModel {
     
     /// Find all tiles marked as selected and turn off the selection status
     fileprivate func clearSelectedLetters() {
-        // Clear any currently selected letters
         let currentlyMarked = gameBoard.flatMap { $0 }
             .filter { $0.selected == true }
-        if currentlyMarked.count != 0 {
-            for matched in currentlyMarked {
-                matched.selected = false
-            }
+        for matched in currentlyMarked {
+            matched.selected = false
         }
     }
     
@@ -118,7 +105,6 @@ class WordSearchViewModel {
     ///
     /// - Parameter letter: The letter to locate.
     fileprivate func selectAllLetters(letter: Character) {
-        // Find all tiles of this letter and highlight them
         let markedLetters = gameBoard.flatMap { $0 }
             .filter { $0.letter.uppercased() == letter.uppercased() }
 
@@ -176,7 +162,6 @@ class WordSearchViewModel {
     /// Generates a list of words to place in the grid for the players to find.
     private func generateRandomWords() {
         for _ in 0..<Constants.wordCount {
-//        for _ in 0..<2 {
             if let randomWord = dictionary.randomElement() {
                 words.append(Word(randomWord))
             }
@@ -185,7 +170,7 @@ class WordSearchViewModel {
     
     /// Generate the game grid, placing the words on the grid and random letters
     /// in any unused spaces.
-    private func generateGameGrid() -> Bool {
+    private func generateGameGrid() {
         let words = self.words.map { $0.word }
         let ws = WordSearch(words: words, difficulty: gameDifficulty)
         let letters = ws.makeGrid()
@@ -203,8 +188,6 @@ class WordSearchViewModel {
             // Add the column to the array of columns.
             gameBoard.append(rowValues)
         }
-        
-        return true
     }
     
     /// If the letter is selected, deselect it. Also check if this is the currently selected start letter
@@ -321,7 +304,6 @@ class WordSearchViewModel {
             gameState = .endOfGame
         }
     }
-    
     
     // MARK: - Souond functions
     
