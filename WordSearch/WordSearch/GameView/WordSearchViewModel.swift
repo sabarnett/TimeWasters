@@ -32,7 +32,7 @@ class WordSearchViewModel {
     @AppStorage(Constants.wordsearchAllowShowHints) private var allowShowHints = true
     
     @ObservationIgnored
-    @AppStorage(Constants.wordsearchDifficulty) private var gameDifficulty: Difficulty = .easy
+    @AppStorage(Constants.wordsearchDifficulty) var gameDifficulty: Difficulty = .easy
 
     @ObservationIgnored
     private var dictionary: [String]
@@ -317,7 +317,7 @@ class WordSearchViewModel {
     /// Checks whether all words have been found
     private func checkForEndOfGame() {
         if words.count(where: {$0.found == false}) == 0 {
-            leaderBoard.addLeader(score: secondsElapsed)
+            leaderBoard.addLeader(score: secondsElapsed, for: gameDifficulty)
             gameState = .endOfGame
         }
     }

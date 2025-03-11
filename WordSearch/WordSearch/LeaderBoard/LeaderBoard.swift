@@ -9,7 +9,6 @@
 // Copyright © 2025 Steven Barnett. All rights reserved.
 //
 
-
 import Foundation
 
 @Observable
@@ -17,38 +16,64 @@ class LeaderBoard {
     
     private var leaderBoard: LeaderBoardData = LeaderBoardData()
     
-    var playerLeaderBoard: [LeaderBoardItem] { leaderBoard.playerLeaderBoard }
-    
+    var easyLeaderBoard: [LeaderBoardItem] { leaderBoard.easyLeaderBoard }
+    var mediumLeaderBoard: [LeaderBoardItem] { leaderBoard.mediumLeaderBoard }
+    var hardLeaderBoard: [LeaderBoardItem] { leaderBoard.hardLeaderBoard }
+
     init () {
         loadLeaderBoard()
     }
     
-    /// Adds a score to the leader board. The score will be for the player.
-    /// We cannot assume that the score is eligible for the
-    /// high score list, so we need to check it is a high score.
+    /// Adds a score to the leader board at the game difficulty level if it is better than
+    /// one of the existing high scores. The best five scores are retained for each of
+    /// the game levels.
     ///
     /// - Parameters:
-    ///   - score: The potential high score.
-    func addLeader(score: Int) {
+    ///   - score: The score to be added if it beats one of the saved scores.
+    ///   - level: The game difficulty level to add the score to.
+    func addLeader(score: Int, for level: Difficulty) {
         var requiresSave = false
 
-        requiresSave = addLeaderBoard(score: score,
-                                      to: &leaderBoard.playerLeaderBoard)
+        switch level {
+        case .easy:
+            requiresSave = addLeaderBoard(score: score,
+                                          to: &leaderBoard.easyLeaderBoard)
+        case .medium:
+            requiresSave = addLeaderBoard(score: score,
+                                          to: &leaderBoard.mediumLeaderBoard)
+        case .hard:
+            requiresSave = addLeaderBoard(score: score,
+                                          to: &leaderBoard.hardLeaderBoard)
+        }
         
         if requiresSave {
             saveLoaderBoard()
         }
     }
     
-    /// Clear the leader board
+    /// Emptys the saved leader board scores.
     func clearScores() {
-        leaderBoard.playerLeaderBoard.removeAll()
+        leaderBoard.mediumLeaderBoard.removeAll()
+        leaderBoard.easyLeaderBoard.removeAll()
+        leaderBoard.hardLeaderBoard.removeAll()
         saveLoaderBoard()
     }
     
+    /// Check the passed scores array to see if the new score should be added or discarded. If
+    /// it should be added (i.e. it's a better score than one of the existing ones), then add the score
+    /// and truncate the leader board arry to five items.
+    ///
+    /// If there are less than five items in the current list, the score will be added without any checks.
+    ///
+    /// - Parameters:
+    ///   - score: The score to be potentially added.
+    ///   - scores: The current array of leader board scores.
+    ///
+    /// - Returns: A bool value; true if the score was added so the list needs to be saved
+    /// else false if no save is required.
     private func addLeaderBoard(score: Int, to scores: inout [LeaderBoardItem]) -> Bool {
         if scores.count == 5 {
-            if let maxScore = scores.max(by: { $0.gameScore < $1.gameScore }) {
+            if let maxScore = scores.max(by: { $0.gameScore > $1.gameScore }) {
                 if score >= maxScore.gameScore { return false }
             }
         }
@@ -97,7 +122,9 @@ class LeaderBoard {
 }
 
 struct LeaderBoardData: Codable {
-    var playerLeaderBoard: [LeaderBoardItem] = []
+    var easyLeaderBoard: [LeaderBoardItem] = []
+    var mediumLeaderBoard: [LeaderBoardItem] = []
+    var hardLeaderBoard: [LeaderBoardItem] = []
 }
 
 struct LeaderBoardItem: Codable, Identifiable {

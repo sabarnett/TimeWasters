@@ -54,7 +54,8 @@ public struct WordSearchView: View {
                 GamePlayView(game: gameData)
             }
             .sheet(isPresented: $showLeaderBoard) {
-                LeaderBoardView(leaderBoard: game.leaderBoard)
+                LeaderBoardView(leaderBoard: game.leaderBoard,
+                                initialTab: game.gameDifficulty)
             }
             .onReceive(timer) { _ in
                 if showGamePlay || showLeaderBoard { return }
