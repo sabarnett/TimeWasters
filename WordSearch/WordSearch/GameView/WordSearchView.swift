@@ -78,10 +78,10 @@ public struct WordSearchView: View {
             // Game over view
             if game.gameState == .endOfGame {
                 let _ = game.stopSounds()
-                GameOverView(restart: {
+                GameOverView() {
                     game.newGame()
                     game.playBackgroundSound()
-                }, timeExpired: false)
+                }
             }
             
         }

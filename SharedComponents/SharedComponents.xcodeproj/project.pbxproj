@@ -14,6 +14,7 @@
 		E893248E2CBD5086005B30BC /* SharedComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = E89324882CBD5086005B30BC /* SharedComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8CA15662D7897A200B7CDD5 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CA15652D7897A200B7CDD5 /* Dictionary.swift */; };
 		E8DCA5052CB5709F00DC873E /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DCA4FC2CB5709F00DC873E /* SharedComponents.framework */; };
+		E8E54C532D8A0469004FA446 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E54C522D8A0469004FA446 /* GameOverView.swift */; };
 		E8ED46182CDFAD4800A90EE5 /* PopoverMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED46172CDFAD4800A90EE5 /* PopoverMessage.swift */; };
 		E8ED461A2CDFAD8D00A90EE5 /* BHBezelNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED46192CDFAD8D00A90EE5 /* BHBezelNotification.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		E8CA15652D7897A200B7CDD5 /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		E8DCA4FC2CB5709F00DC873E /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DCA5042CB5709F00DC873E /* SharedComponentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SharedComponentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8E54C522D8A0469004FA446 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		E8ED46172CDFAD4800A90EE5 /* PopoverMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverMessage.swift; sourceTree = "<group>"; };
 		E8ED46192CDFAD8D00A90EE5 /* BHBezelNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BHBezelNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +65,7 @@
 		E89324892CBD5086005B30BC /* SharedComponents */ = {
 			isa = PBXGroup;
 			children = (
+				E8E54C522D8A0469004FA446 /* GameOverView.swift */,
 				E8CA15652D7897A200B7CDD5 /* Dictionary.swift */,
 				E89324842CBD5086005B30BC /* Game.swift */,
 				E89324852CBD5086005B30BC /* GameInfo.swift */,
@@ -213,6 +216,7 @@
 				E893248B2CBD5086005B30BC /* GameInfo.swift in Sources */,
 				E8CA15662D7897A200B7CDD5 /* Dictionary.swift in Sources */,
 				E893248C2CBD5086005B30BC /* GamePlayView.swift in Sources */,
+				E8E54C532D8A0469004FA446 /* GameOverView.swift in Sources */,
 				E893248D2CBD5086005B30BC /* HostingWindowFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

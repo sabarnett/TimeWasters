@@ -16,7 +16,6 @@
 		E8EA11532C8F3C760078A9A6 /* MineSweeper.h in Headers */ = {isa = PBXBuildFile; fileRef = E8EA11522C8F3C760078A9A6 /* MineSweeper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8EA11692C8F42D00078A9A6 /* MinesweeperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11642C8F42D00078A9A6 /* MinesweeperView.swift */; };
 		E8EA116A2C8F42D00078A9A6 /* SquareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11652C8F42D00078A9A6 /* SquareView.swift */; };
-		E8EA116B2C8F42D00078A9A6 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11662C8F42D00078A9A6 /* GameOverView.swift */; };
 		E8EA116C2C8F42D00078A9A6 /* MinesweeperGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11672C8F42D00078A9A6 /* MinesweeperGame.swift */; };
 		E8EA116D2C8F42D00078A9A6 /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA11682C8F42D00078A9A6 /* Square.swift */; };
 		E8F80DDC2CB18E590067BE92 /* winner.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E8F80DDB2CB18E590067BE92 /* winner.mp3 */; };
@@ -48,7 +47,6 @@
 		E8EA11522C8F3C760078A9A6 /* MineSweeper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineSweeper.h; sourceTree = "<group>"; };
 		E8EA11642C8F42D00078A9A6 /* MinesweeperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinesweeperView.swift; sourceTree = "<group>"; };
 		E8EA11652C8F42D00078A9A6 /* SquareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareView.swift; sourceTree = "<group>"; };
-		E8EA11662C8F42D00078A9A6 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		E8EA11672C8F42D00078A9A6 /* MinesweeperGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinesweeperGame.swift; sourceTree = "<group>"; };
 		E8EA11682C8F42D00078A9A6 /* Square.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 		E8F80DD92CB18E590067BE92 /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
@@ -68,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E893E43F2D8A173A0092C7C9 /* Leader Board */ = {
+			isa = PBXGroup;
+			children = (
+				E8264C212D0468770023287C /* LeaderBoard.swift */,
+				E8CB0A592D07395F005BA139 /* LeaderBoardView.swift */,
+			);
+			path = "Leader Board";
+			sourceTree = "<group>";
+		};
 		E8ADC5CD2D4D1AF300A1C9AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +103,8 @@
 		E8EA11512C8F3C760078A9A6 /* MineSweeper */ = {
 			isa = PBXGroup;
 			children = (
-				E8EA11662C8F42D00078A9A6 /* GameOverView.swift */,
 				E8EA11672C8F42D00078A9A6 /* MinesweeperGame.swift */,
-				E8264C212D0468770023287C /* LeaderBoard.swift */,
+				E893E43F2D8A173A0092C7C9 /* Leader Board */,
 				E8EA11642C8F42D00078A9A6 /* MinesweeperView.swift */,
 				E8EA11682C8F42D00078A9A6 /* Square.swift */,
 				E8EA11652C8F42D00078A9A6 /* SquareView.swift */,
@@ -106,7 +112,6 @@
 				E862BCFD2C9989A0003D9BA5 /* MinesweeperSettings.swift */,
 				E8F80DDF2CB18E600067BE92 /* Sounds */,
 				E80ABFEC2CC00B0E00740D82 /* Constants.swift */,
-				E8CB0A592D07395F005BA139 /* LeaderBoardView.swift */,
 			);
 			path = MineSweeper;
 			sourceTree = "<group>";
@@ -208,7 +213,6 @@
 				E8EA116D2C8F42D00078A9A6 /* Square.swift in Sources */,
 				E8264C222D0468770023287C /* LeaderBoard.swift in Sources */,
 				E8EA11692C8F42D00078A9A6 /* MinesweeperView.swift in Sources */,
-				E8EA116B2C8F42D00078A9A6 /* GameOverView.swift in Sources */,
 				E8CB0A5A2D07395F005BA139 /* LeaderBoardView.swift in Sources */,
 				E862BCFE2C9989A0003D9BA5 /* MinesweeperSettings.swift in Sources */,
 				E80ABFED2CC00B0E00740D82 /* Constants.swift in Sources */,

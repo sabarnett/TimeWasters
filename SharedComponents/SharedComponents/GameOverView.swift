@@ -1,35 +1,40 @@
 //
 // -----------------------------------------
-// Original project: WordSearch
-// Original package: WordSearch
-// Created on: 04/03/2025 by: Steven Barnett
+// Original project: SharedComponents
+// Original package: SharedComponents
+// Created on: 18/03/2025 by: Steven Barnett
 // Web: http://www.sabarnett.co.uk
 // GitHub: https://www.github.com/sabarnett
 // -----------------------------------------
 // Copyright © 2025 Steven Barnett. All rights reserved.
 //
 
+
 import SwiftUI
 
-struct GameOverView: View {
-    var restart: () -> Void
+public struct GameOverView: View {
+    public var restart: () -> Void
+    public var message: String
+    public var playAgain: String
     
-    @State var timeExpired: Bool = false
-
-    var caption: String {
-        timeExpired ? "Time's Up!" : "You Win!"
+    public init(restart: @escaping () -> Void,
+                message: String = "Game Over",
+                buttonCaption: String = "Play Again") {
+        self.restart = restart
+        self.message = message
+        self.playAgain = buttonCaption
     }
     
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 10) {
-            Text(caption)
+            Text(message)
                 .textCase(.uppercase)
             .font(.system(size: 60).weight(.black))
             .fontDesign(.rounded)
             .foregroundStyle(.white)
 
             Button(action: restart) {
-                Text("Play Again")
+                Text(playAgain)
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
                     .foregroundStyle(.white)

@@ -16,6 +16,19 @@ public struct TicTacToeView: View {
     
     @State public var gameData: Game
     @StateObject var model = TicTacToeGameModel()
+    
+    var gameOverMessage: String {
+        switch model.gameState {
+        case .playerWin:
+            return "You win!"
+        case .computerWin:
+            return "I win this time"
+        case .draw:
+            return "It's a draw!"
+        case .active:
+            return "Game On!"
+        }
+    }
 
     public init(gameData: Game) {
         self.gameData = gameData
@@ -41,11 +54,13 @@ public struct TicTacToeView: View {
             .disabled(model.gameState != .active)
             
             if model.gameState != .active {
-                GameOverView(state: model.gameState) {
-                    withAnimation {
-                        model.newGame()
-                    }
-                }
+                GameOverView(restart: {
+                        withAnimation {
+                            model.newGame()
+                        }
+                    },
+                    message: gameOverMessage)
+                
             }
         }
         .sheet(isPresented: $model.showGamePlay) {

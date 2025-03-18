@@ -93,11 +93,11 @@ public struct SnakeGameView: View {
             }.disabled(game.isGameOver)
                         
             if game.isGameOver {
-                GameOverView() {
+                GameOverView(restart:  {
                     withAnimation {
                         restartGame()
                     }
-                }
+                }, message: "Bad luck")
             }
         }
         .onAppear {

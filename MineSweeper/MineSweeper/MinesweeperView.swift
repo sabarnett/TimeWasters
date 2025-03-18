@@ -65,11 +65,11 @@ public struct MinesweeperView: View {
             .disabled(game.isWon || game.isLost)
             
             if game.isWon || game.isLost {
-                GameOverView(state: game.gameState) {
+                GameOverView(restart: {
                     withAnimation {
                         resetGame()
                     }
-                }
+                }, message: game.isWon ? "You win!" : "Bad Luck!")
             }
             HostingWindowFinder { win in
                 guard let win else { return }

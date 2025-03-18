@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E86851AB2CDBB8FD0062FD9E /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86851AA2CDBB8FD0062FD9E /* GameOverView.swift */; };
 		E8DE7E592CD3BDE200847B82 /* AdventureGame.h in Headers */ = {isa = PBXBuildFile; fileRef = E8DE7E572CD3BDE200847B82 /* AdventureGame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DE7E5C2CD3BE4100847B82 /* SharedComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */; };
 		E8DE7E5D2CD3BE4100847B82 /* SharedComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -65,7 +64,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E86851AA2CDBB8FD0062FD9E /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		E8DE7E3E2CD3BDD600847B82 /* AdventureGame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AdventureGame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8DE7E572CD3BDE200847B82 /* AdventureGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdventureGame.h; sourceTree = "<group>"; };
 		E8DE7E5B2CD3BE4100847B82 /* SharedComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SharedComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +201,6 @@
 				E8DE7E732CD3C25E00847B82 /* GamePlayViewModel.swift */,
 				E8DE7E742CD3C25E00847B82 /* GameRowView.swift */,
 				E8DE7E752CD3C25E00847B82 /* AdventureGameView.swift */,
-				E86851AA2CDBB8FD0062FD9E /* GameOverView.swift */,
 			);
 			path = GamePlay;
 			sourceTree = "<group>";
@@ -342,7 +339,6 @@
 				E8FC3FCA2CD66C4800991B12 /* GameSave.swift in Sources */,
 				E8DE7EA12CD3C25E00847B82 /* ActionInstruction.swift in Sources */,
 				E8DE7EA22CD3C25E00847B82 /* GameDataRowType.swift in Sources */,
-				E86851AB2CDBB8FD0062FD9E /* GameOverView.swift in Sources */,
 				E8DE7EA32CD3C25E00847B82 /* GameOptions.swift in Sources */,
 				E8DE7EA42CD3C25E00847B82 /* GamePlayViewModel.swift in Sources */,
 				E8DE7EA52CD3C25E00847B82 /* GameItem.swift in Sources */,

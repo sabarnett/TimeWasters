@@ -65,11 +65,11 @@ public struct CombinationsView: View {
             }.disabled(model.success)
             
             if model.success {
-                GameOverView() {
+                GameOverView(restart: {
                     withAnimation {
                         model.generatePuzzle()
                     }
-                }
+                }, message: "You got it!!")
             }
         }
         .padding()

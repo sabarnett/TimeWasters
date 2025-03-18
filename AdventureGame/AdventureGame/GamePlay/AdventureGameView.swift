@@ -83,12 +83,12 @@ public struct AdventureGameView: View {
             }
             
             if gameModel.gameOver {
-                GameOverView() {
+                GameOverView(restart: {
                     withAnimation {
                         gameModel.restartGame()
                         inputFocus = true
                     }
-                }
+                }, message: "Game Over!")
             }
         }
     }
