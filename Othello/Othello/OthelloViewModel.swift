@@ -188,6 +188,7 @@ class OthelloViewModel: ObservableObject {
     
     /// Mark the cells the player could potentially select. After they have been on
     /// the scteen for 3.5 seconds, clear them away again.
+    @MainActor
     func showHint() {
         objectWillChange.send()
         markPlayerPotentialMoves()

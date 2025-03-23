@@ -78,6 +78,7 @@ class WordSearchViewModel {
     /// - Parameter letter: The letter to select
     ///
     /// The selections will reset after 2 seconds. There is a 10 second time penalty for using this cheat.
+    @MainActor
     func hilightLetter(letter: Character) {
         guard allowShowHints == true else { return }
         

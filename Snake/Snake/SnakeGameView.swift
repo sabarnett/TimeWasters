@@ -181,9 +181,15 @@ public struct SnakeGameView: View {
             withTimeInterval: snakeGameSpeed.speed,
             repeats: true
         ) { _ in
-            guard pause == false else { return }
-            game.moveSnake()
+            Task {
+                await snakeMove()
+            }
         }
+    }
+    
+    @MainActor func snakeMove() {
+        guard pause == false else { return }
+        game.moveSnake()
     }
     
     func handleKeyPress(_ event: NSEvent) {
