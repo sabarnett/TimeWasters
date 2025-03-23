@@ -12,6 +12,6 @@
 import Foundation
 
 struct Constants {
-    static var mineGameDifficulty: String = "mineGameDifficulty"
-    static var minePlaySounds: String = "minePlaySounds"
+    static let mineGameDifficulty: String = "mineGameDifficulty"
+    static let minePlaySounds: String = "minePlaySounds"
 }

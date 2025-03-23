@@ -133,9 +133,6 @@ extension Adventure {
         let copyright = "(c) Scott Adams & 2024 Steven Barnett"
 
         display(message: "\(gameId)\n\(copyright)")
-        
-        // Set the word length for lookup list searches
-        ListManager.wordLength = gameHeader.WordLength
     }
 
     /// Displays the prompt to the user to enter a command. Before we do that
@@ -209,25 +206,26 @@ extension Adventure {
 
         var verb = withVerb
         let noun = andNoun
+        let wordLength = gameHeader.WordLength
 
         if options.WizardMode && verb.count > 0 {
             if wizardCommand(verb: verb, noun: noun) {
                 return
             }
         }
-
+        
         verb = Translators.translateShortCommands(verb)
 
         // There are commands to print the current noun. Who knows why!
         self.noun = noun
 
-        var vIndex = ListManager.find(word: verb, inList: verbs)
-        var nIndex = ListManager.find(word: noun, inList: nouns)
+        var vIndex = ListManager.find(word: verb, inList: verbs, wordLength: wordLength)
+        var nIndex = ListManager.find(word: noun, inList: nouns, wordLength: wordLength)
 
         if vIndex == 0 && noun == "" {
-            var tmp = ListManager.find(word: verb, inList: nouns)
+            var tmp = ListManager.find(word: verb, inList: nouns, wordLength: wordLength)
             if tmp == 0 {
-                tmp = ListManager.find(word: verb, inList: goDirections)
+                tmp = ListManager.find(word: verb, inList: goDirections, wordLength: wordLength)
             }
 
             if tmp != 0 {

@@ -21,9 +21,7 @@ import Foundation
 /// word length.
 public class ListManager {
 
-    public static var wordLength: Int = 0
-
-    public class func find(word: String, inList: [String]) -> Int {
+    public class func find(word: String, inList: [String], wordLength: Int) -> Int {
 
         if word.count == 0 {
             return 0
