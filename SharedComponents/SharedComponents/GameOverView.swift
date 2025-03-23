@@ -17,9 +17,9 @@ public struct GameOverView: View {
     public var message: String
     public var playAgain: String
     
-    public init(restart: @escaping () -> Void,
-                message: String = "Game Over",
-                buttonCaption: String = "Play Again") {
+    public init(message: String = "Game Over",
+                buttonCaption: String = "Play Again",
+                restart: @escaping () -> Void) {
         self.restart = restart
         self.message = message
         self.playAgain = buttonCaption

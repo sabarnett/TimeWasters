@@ -29,6 +29,10 @@ public struct MinesweeperView: View {
     private var fanfareURL: URL { soundFile(named: "winner") }
     private var gameData: Game
     
+    private var gameOverMessage: String {
+        game.isWon ? "You win!" : "Bad Luck!"
+    }
+    
     public init(gameData: Game) {
         self.gameData = gameData
     }
@@ -65,11 +69,11 @@ public struct MinesweeperView: View {
             .disabled(game.isWon || game.isLost)
             
             if game.isWon || game.isLost {
-                GameOverView(restart: {
+                GameOverView(message: gameOverMessage) {
                     withAnimation {
                         resetGame()
                     }
-                }, message: game.isWon ? "You win!" : "Bad Luck!")
+                }
             }
             HostingWindowFinder { win in
                 guard let win else { return }

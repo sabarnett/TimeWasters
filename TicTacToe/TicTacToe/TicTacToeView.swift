@@ -54,12 +54,11 @@ public struct TicTacToeView: View {
             .disabled(model.gameState != .active)
             
             if model.gameState != .active {
-                GameOverView(restart: {
-                        withAnimation {
-                            model.newGame()
-                        }
-                    },
-                    message: gameOverMessage)
+                GameOverView(message: gameOverMessage) {
+                    withAnimation {
+                        model.newGame()
+                    }
+                }
                 
             }
         }

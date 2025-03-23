@@ -20,6 +20,10 @@ public struct OthelloView: View {
     @State private var isGameOver: Bool = false
     @State private var showLeaderBoard: Bool = false
 
+    var gameOverMessage: String {
+        model.gameState == .playerWin ? "😀 You win!" : "🤖 I win this time."
+    }
+    
     public init(gameData: Game) {
         self.gameData = gameData
     }
@@ -46,13 +50,11 @@ public struct OthelloView: View {
             }
             
             if isGameOver {
-                GameOverView(
-                    restart: {
-                        isGameOver = false
-                        model.newGame()
-                    },
-                    message: model.gameState == .playerWin ? "😀 You win!" : "🤖 I win this time.",
-                             buttonCaption: "New Game") 
+                GameOverView(message: gameOverMessage,
+                             buttonCaption: "New Game") {
+                                 isGameOver = false
+                                 model.newGame()
+                             }
             }
         }
         .onChange(of: model.gameState) { old, new in
