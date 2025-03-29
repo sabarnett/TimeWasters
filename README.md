@@ -3,7 +3,7 @@ I've never been one for games on computers. The sad fact is I have arthritis in 
 
 The purpose of this app is to get some practice in creating simple to play games. The kind of thing we used to play before computers became graphic processing work-horses.
 
-At present, this Mac app contains seven games;
+At present, this Mac app contains nine games;
 
 * Minesweeper
 * WordCraft
@@ -30,6 +30,8 @@ The opening screen animates a button for each game we have created:
 ![timeWaasters](./Images/timeWasters.gif)
 
 If you click on one of the buttons, the game will open.
+
+The entire project has been converted for Swift 6 compatability. 
 
 ## Minesweeper
 
@@ -66,10 +68,6 @@ This is my variant, written in Swift/SwiftUI. It took a long time to translate t
 ![timeWasters](./Images/pyramidOfDoom.png)
 
 This is currently a work in progress. It has some minor glitches (such as the game continues when you die!) and it needs some UI changes. However, it is very playable and quite difficult to master at first.
-
-#### To do?
-
-* There are commands to save and restore the game that the user can enter. Right now, these are ignored in favour of using the save and restore icons. I should probably reinstate the command line options.
 
 ## Number Combinations
 
