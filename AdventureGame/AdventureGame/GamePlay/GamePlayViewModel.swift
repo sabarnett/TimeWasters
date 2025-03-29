@@ -25,7 +25,7 @@ class GamePlayViewModel {
     var showResetConfirmation: Bool = false
     var showReloadConfirmation: Bool = false
     
-    var notify = PopupNotificationCentre.shared
+    var notifyMessage: ToastConfig?
     
     init(game gameName: String) {
         let gamesList = GameDefinitions()
@@ -65,7 +65,7 @@ class GamePlayViewModel {
         game.promptForTurn()
         gameOver = false
         
-        notify.showPopup(.success, title: "Game Restarted", description: "Game has been restarted from scratch")
+        notifyMessage = ToastConfig(message: "Game restored", type: .success)
     }
     
     /// Save the current state of the game so it can be restored later
@@ -73,7 +73,7 @@ class GamePlayViewModel {
         let gameSaver = GameSave()
         gameSaver.save(game: game, progress: gameProgress, gameDefinition: gameDefinition)
         
-        notify.showPopup(.success, title: "Game Saved", description: "Game saved to documents folder.")
+        notifyMessage = ToastConfig(message: "Game saved", type: .success)
     }
     
     /// Clear the current state of the game and reload the last saved game details.
@@ -81,7 +81,7 @@ class GamePlayViewModel {
         let gameLoader = GameSave()
         gameLoader.restore(game: &game, progress: &gameProgress, gameDefinition: gameDefinition)
         
-        notify.showPopup(.success, title: "Game Restored", description: "Game loaded from documents folder.")
+        notifyMessage = ToastConfig(message: "Game restored", type: .success)
     }
     
     /// Displays the text from the game.

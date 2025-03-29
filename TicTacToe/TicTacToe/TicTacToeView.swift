@@ -52,16 +52,16 @@ public struct TicTacToeView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .disabled(model.gameState != .active)
-            
+
             if model.gameState != .active {
                 GameOverView(message: gameOverMessage) {
                     withAnimation {
                         model.newGame()
                     }
                 }
-                
             }
         }
+        .toast(toastMessage: $model.notifyMessage)
         .sheet(isPresented: $model.showGamePlay) {
             GamePlayView(game: gameData)
         }

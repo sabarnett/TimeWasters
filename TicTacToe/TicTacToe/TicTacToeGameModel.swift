@@ -36,7 +36,7 @@ class TicTacToeGameModel: ObservableObject {
     
     @Published var speakerIcon: String = "speaker.fill"
 
-    private var notify = PopupNotificationCentre.shared
+    @Published var notifyMessage: ToastConfig?
 
     init() {
         initialiseGameBoard()
@@ -124,9 +124,7 @@ class TicTacToeGameModel: ObservableObject {
         computerWins = 0
         draws = 0
         
-        notify.showPopup(.success,
-            title: "Game Reset",
-            description: "The game has been reset")
+        notifyMessage = ToastConfig(message: "Game reset", type: .info)
 
         decideWhoGoesFirst()
         gameState = .active

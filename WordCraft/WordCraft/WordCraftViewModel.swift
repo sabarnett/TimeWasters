@@ -20,7 +20,7 @@ class WordCraftViewModel {
     }
 
     var columns = [[Tile]]()
-    var notify = PopupNotificationCentre.shared
+    var notifyMessage: ToastConfig?
 
     private var selected = [Tile]()
     var usedWords = Set<String>()
@@ -86,14 +86,14 @@ class WordCraftViewModel {
         restoreData.restore(game: self)
         selectRule()
         
-        notify.showPopup(.success, title: "Game restored", description: "The last saved game has been restored")
+        notifyMessage = ToastConfig(message: "Game restored", type: .success)
     }
     
     func saveGame() {
         let saveData = GameSave()
         saveData.save(game: self)
         
-        notify.showPopup(.saved, title: "Game saved", description: "The game has been saved")
+        notifyMessage = ToastConfig(message: "Game saved", type: .success)
     }
     
     // We have a key press. Find a currently unselected tile that matches the
@@ -165,31 +165,16 @@ class WordCraftViewModel {
         submittedWord = nil
 
         guard usedWords.contains(word) == false else {
-            notify.showPopup(
-                .failure,
-                title: "Word already used",
-                description: "Word already used",
-                size: .wide
-            )
+            notifyMessage = ToastConfig(message: "Word already used", type: .error, showDuration: 5)
             submittedWord = word
             return
         }
         guard dictionary.contains(word.lowercased()) else {
-            notify.showPopup(
-                .failure,
-                title: "Not in dictionary",
-                description: "Word not in dictionary",
-                size: .wide
-            )
+            notifyMessage = ToastConfig(message: "Not in dictionary", type: .error, showDuration: 5)
             return
         }
         guard currentRule.predicate(word) else {
-            notify.showPopup(
-                .failure,
-                title: "Does not match the rule",
-                description: "Word does not match the rule",
-                size: .wide
-            )
+            notifyMessage = ToastConfig(message: "Rule not matched", type: .error, showDuration: 5)
             return
         }
         

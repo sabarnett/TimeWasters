@@ -47,6 +47,7 @@ public struct WordCraftView: View {
         .onDisappear() {
             viewModel.stopSounds()
         }
+        .toast(toastMessage: $viewModel.notifyMessage)
         .confirmationDialog(
             String("Reset the game?"),
             isPresented: $viewModel.showResetConfirmation,

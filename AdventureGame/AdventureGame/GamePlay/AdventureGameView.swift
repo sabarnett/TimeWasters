@@ -55,6 +55,8 @@ public struct AdventureGameView: View {
             .onAppear {
                 inputFocus = true
             }
+            .toast(toastMessage: $gameModel.notifyMessage)
+            
             .confirmationDialog(
                 String("Reset the game?"),
                 isPresented: $gameModel.showResetConfirmation,

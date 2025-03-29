@@ -65,8 +65,7 @@ class CombinationsViewModel {
     @ObservationIgnored
     var leaderBoard = LeaderBoard()
     
-    @ObservationIgnored
-    var notify = PopupNotificationCentre.shared
+    var notifyMessage: ToastConfig?
     
     @ObservationIgnored
     @AppStorage(Constants.ncPlaySounds) private var playSounds = true {
@@ -186,10 +185,12 @@ class CombinationsViewModel {
     }
     
     func showSolution() {
-        notify.showPopup(
-            systemImage: "squareshape.split.2x2",
-            title: usedFormula,
-            description: "The formula used was \(usedFormula)"
+        notifyMessage = ToastConfig(
+            title: "Formula",
+            message: usedFormula,
+            icon: "squareshape.split.2x2",
+            type: .info,
+            showDuration: 5
         )
     }
 

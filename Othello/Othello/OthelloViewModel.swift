@@ -48,7 +48,7 @@ class OthelloViewModel: ObservableObject {
     @Published var speakerIcon = ""
     @Published var leaderBoard = LeaderBoard()
     
-    private var notify = PopupNotificationCentre.shared
+    @Published var notifyMessage: ToastConfig?
     
     private var allTiles: [Tile] { gameBoard.flatMap({$0}) }
     
@@ -121,9 +121,10 @@ class OthelloViewModel: ObservableObject {
     func computerMove() {
         guard gameState == .computerMove || gameState == .noValidMove else { return }
         guard let computer = getComputerMove() else {
-            notify.showPopup(systemImage: "circle.slash.fill",
-                             title: "I have no moves",
-                             description: "I cannot move, your turn again")
+            notifyMessage = ToastConfig(message: "I have no moves",
+                                        icon: "circle.slash.fill",
+                                        type: .info
+            )
             statusMessage = "I cannot move, you get the next turn..."
             
             if canPlayerMove() {
@@ -139,9 +140,10 @@ class OthelloViewModel: ObservableObject {
         
         if !canPlayerMove() {
             statusMessage = "You cannot move, my try again..."
-            notify.showPopup(systemImage: "circle.slash.fill",
-                             title: "You cannot move",
-                             description: "You cannot move, my turn again")
+            notifyMessage = ToastConfig(message: "You cannot move",
+                                        icon: "circle.slash.fill",
+                                        type: .info
+            )
             gameState = .noValidMove
         } else {
             gameState = .playerMove

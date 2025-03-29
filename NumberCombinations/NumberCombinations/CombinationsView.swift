@@ -83,6 +83,7 @@ public struct CombinationsView: View {
         .sheet(isPresented: $model.showLeaderBoard) {
             LeaderBoardView(leaderBoard: model.leaderBoard)
         }
+        .toast(toastMessage: $model.notifyMessage)
         .frame(width: 600, height: 360)
     }
     

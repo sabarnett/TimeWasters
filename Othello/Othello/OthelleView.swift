@@ -48,6 +48,7 @@ public struct OthelloView: View {
             .sheet(isPresented: $model.showGamePlay) {
                 GamePlayView(game: gameData)
             }
+            .toast(toastMessage: $model.notifyMessage)
             
             if isGameOver {
                 GameOverView(message: gameOverMessage,
