@@ -31,7 +31,7 @@ struct GameIndexView: View {
         ZStack {
             Image("bgImage")
                 .resizable()
-                .frame(width: 800, height: 460)
+                .frame(width: 850, height: 486)
                 .ignoresSafeArea()
 
             VStack {
@@ -102,7 +102,7 @@ struct GameIndexView: View {
             GameInfo(gameData: game)
         }
 
-        .frame(width: 800, height: 417)
+        .frame(width: 820, height: 450)
         .presentedWindowStyle(.hiddenTitleBar)
     }
     
